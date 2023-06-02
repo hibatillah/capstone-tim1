@@ -1,7 +1,7 @@
 # Website Supply Chain *Rotte*
 
 ## Tentang projek
-***Capstone Project Tim 1 - 2SIC - Semester 4***
+### ***Capstone Project Tim 1 - 2SIC - Semester 4***
 
 Projek website admin untuk supply chain toko roti *Rotte* Umbansari, Rumbai, Pekanbaru. Website dibangun untuk memantau persediaan bahan baku, menampilkan grafik histori penjualan serta memberikan notifikasi kepada supplier untuk memenuhi kebutuhan bahan baku sesuai penerapan Supply Chain Management.
 
