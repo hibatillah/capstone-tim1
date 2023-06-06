@@ -1,9 +1,9 @@
-import Navbar  from './Navbar';
+import Aside  from './Aside';
 import Header  from './Header';
 import Footer  from './Footer';
 
 export {
-  Navbar,
+  Aside,
   Header,
   Footer,
 }

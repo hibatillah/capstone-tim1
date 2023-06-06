@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Navbar, Header, Footer } from "./components";
+import { Aside, Header, Footer } from "./components";
 import { Dashboard } from "./pages";
 
 const App = () => {
@@ -8,7 +8,7 @@ const App = () => {
     <Router>
       <div className="w-full h-screen flex">
         <div className="flex-none">
-          <Navbar />
+          <Aside />
         </div>
         <div className="flex-1">
           <Header />
