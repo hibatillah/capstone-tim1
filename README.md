@@ -17,9 +17,9 @@ Capstone projek ini merupakan projek UAS semester 4 gabungan beberapa mata kulia
 
 ## Teknologi 
 Projek ini dibangun dengan MERN stack:
-* *MongoDB* v5.6.0
-* *ExpresJS* v4.18.2
-* *ReactJS* v18.2.0
-* *NodeJS* v18.12.1
-* *React Router* v6.11.2
-* *TailwindCSS* v3.3.2
+* MongoDB v5.6.0
+* ExpresJS v4.18.2
+* ReactJS v18.2.0
+* NodeJS v18.12.1
+* React Router v6.11.2
+* TailwindCSS v3.3.2
