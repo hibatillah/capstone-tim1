@@ -3,15 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-
-}
-
-@layer components {
-
-}
-
-@layer utilities {
-  .container {
-    @apply px-4;
+  @font-face {
+    font-family: 'Outfit';
+    src: url('./assets/fonts/Outfit-VariableFont_wght.ttf');
   }
 }
