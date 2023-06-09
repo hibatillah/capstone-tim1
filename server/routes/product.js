@@ -6,45 +6,45 @@ const ObjectId = require("mongodb").ObjectId;
 recordRoutes.use(express.urlencoded({ extended: true }));
 
 // menampilkan data
-recordRoutes.route("/produk").get(function (req, res) {
+recordRoutes.route("/product").get(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   db_connect
-    .collection("produk")
+    .collection("products")
     .find({})
     .toArray(function (err, result) {
       if (err) throw err;
       res.json(result);
     })
     .then((data) => {
-      console.log('produk berhasil ditampilkan')
+      console.log('product berhasil ditampilkan')
       res.json({
-        message: "produk berhasil ditampilkan",
+        message: "product berhasil ditampilkan",
         data: data,
       });
     });
 });
 
 // menampilkan data by id
-recordRoutes.route("/produk/:id").get(function (req, res) {
+recordRoutes.route("/product/:id").get(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   db_connect
-    .collection("produk")
+    .collection("products")
     .findOne(myquery, function (err, result) {
       if (err) throw err;
       res.json(result);
     })
     .then((data) => {
-      console.log('produk berhasil ditampilkan')
+      console.log('product berhasil ditampilkan')
       res.json({
-        message: "produk berhasil ditampilkan",
+        message: "product berhasil ditampilkan",
         data: data,
       });
     });
 });
 
 // menambahkan data
-recordRoutes.route("/produk/add").post(function (req, res) {
+recordRoutes.route("/product/add").post(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myObj = {
     name: req.body.name,
@@ -55,22 +55,22 @@ recordRoutes.route("/produk/add").post(function (req, res) {
     expireDate: req.body.expireDate,
   };
   db_connect
-    .collection("produk")
+    .collection("products")
     .insertOne(myObj, function (err, result) {
       if (err) throw err;
       res.json(result);
     })
     .then(() => {
-      console.log('produk berhasil ditambahkan')
+      console.log('product berhasil ditambahkan')
       res.json({
-        message: "produk berhasil ditambahkan",
+        message: "product berhasil ditambahkan",
         data: myObj,
       });
     });
 });
 
 // mengupdate data
-recordRoutes.route("/produk/update/:id").put(function (req, res) {
+recordRoutes.route("/product/update/:id").put(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   let newValues = {
@@ -84,14 +84,14 @@ recordRoutes.route("/produk/update/:id").put(function (req, res) {
     },
   };
   db_connect
-    .collection("produk")
+    .collection("products")
     .updateOne(myquery, newValues, function (err, result) {
       if (err) throw err;
-      console.log("berhasil update produk");
+      console.log("berhasil update product");
       res.json(result);
     })
     .then(() => {
-      console.log("berhasil update produk");
+      console.log("berhasil update product");
       res.json({
         message: "Data berhasil diupdate",
         data: newValues,
@@ -100,20 +100,20 @@ recordRoutes.route("/produk/update/:id").put(function (req, res) {
 });
 
 // menghapus data
-recordRoutes.route("/produk/delete/:id").delete(function (req, res) {
+recordRoutes.route("/product/delete/:id").delete(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   db_connect
-    .collection("produk")
+    .collection("products")
     .deleteOne(myquery, function (err, result) {
       if (err) throw err;
-      console.log("produk berhasil dihapus");
+      console.log("product berhasil dihapus");
       res.json(result);
     })
     .then((data) => {
-      console.log("produk berhasil dihapus");
+      console.log("product berhasil dihapus");
       res.json({
-        message: "produk berhasil dihapus",
+        message: "product berhasil dihapus",
         data: data,
       });
     });

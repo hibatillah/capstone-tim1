@@ -9,7 +9,7 @@ recordRoutes.use(express.urlencoded({ extended: true }));
 recordRoutes.route("/user").get(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   db_connect
-    .collection("user")
+    .collection("users")
     .find({})
     .toArray(function (err, result) {
       if (err) throw err;
@@ -29,7 +29,7 @@ recordRoutes.route("/user/:id").get(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   db_connect
-    .collection("user")
+    .collection("users")
     .findOne(myquery, function (err, result) {
       if (err) throw err;
       res.json(result);
@@ -52,7 +52,7 @@ recordRoutes.route("/user/add").post(function (req, res) {
     password: req.body.password,
   };
   db_connect
-    .collection("user")
+    .collection("users")
     .insertOne(myObj, function (err, result) {
       if (err) throw err;
       res.json(result);
@@ -78,7 +78,7 @@ recordRoutes.route("/user/update/:id").put(function (req, res) {
     },
   };
   db_connect
-    .collection("user")
+    .collection("users")
     .updateOne(myquery, newValues, function (err, result) {
       if (err) throw err;
       console.log("berhasil update user");
@@ -98,7 +98,7 @@ recordRoutes.route("/user/delete/:id").delete(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   db_connect
-    .collection("user")
+    .collection("users")
     .deleteOne(myquery, function (err, result) {
       if (err) throw err;
       console.log("user berhasil dihapus");

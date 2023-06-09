@@ -6,45 +6,45 @@ const ObjectId = require("mongodb").ObjectId;
 recordRoutes.use(express.urlencoded({ extended: true }));
 
 // menampilkan data
-recordRoutes.route("/bahan").get(function (req, res) {
+recordRoutes.route("/material").get(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   db_connect
-    .collection("bahan_baku")
+    .collection("materials")
     .find({})
     .toArray(function (err, result) {
       if (err) throw err;
       res.json(result);
     })
     .then((data) => {
-      console.log('bahan baku berhasil ditampilkan')
+      console.log('material berhasil ditampilkan')
       res.json({
-        message: "bahan baku berhasil ditampilkan",
+        message: "material berhasil ditampilkan",
         data: data,
       });
     });
 });
 
 // menampilkan data by id
-recordRoutes.route("/bahan/:id").get(function (req, res) {
+recordRoutes.route("/material/:id").get(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   db_connect
-    .collection("bahan_baku")
+    .collection("materials")
     .findOne(myquery, function (err, result) {
       if (err) throw err;
       res.json(result);
     })
     .then((data) => {
-      console.log('bahan baku berhasil ditampilkan')
+      console.log('material berhasil ditampilkan')
       res.json({
-        message: "bahan baku berhasil ditampilkan",
+        message: "material berhasil ditampilkan",
         data: data,
       });
     });
 });
 
 // menambahkan data
-recordRoutes.route("/bahan/add").post(function (req, res) {
+recordRoutes.route("/material/add").post(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myObj = {
     name: req.body.name,
@@ -52,22 +52,22 @@ recordRoutes.route("/bahan/add").post(function (req, res) {
     supplier: req.body.supplier,
   };
   db_connect
-    .collection("bahan_baku")
+    .collection("materials")
     .insertOne(myObj, function (err, result) {
       if (err) throw err;
       res.json(result);
     })
     .then(() => {
-      console.log('bahan baku berhasil ditambahkan')
+      console.log('material berhasil ditambahkan')
       res.json({
-        message: "bahan baku berhasil ditambahkan",
+        message: "material berhasil ditambahkan",
         data: myObj,
       });
     });
 });
 
 // mengupdate data
-recordRoutes.route("/bahan/update/:id").put(function (req, res) {
+recordRoutes.route("/material/update/:id").put(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   let newValues = {
@@ -78,14 +78,14 @@ recordRoutes.route("/bahan/update/:id").put(function (req, res) {
     },
   };
   db_connect
-    .collection("bahan_baku")
+    .collection("materials")
     .updateOne(myquery, newValues, function (err, result) {
       if (err) throw err;
-      console.log("berhasil update bahan baku");
+      console.log("berhasil update material");
       res.json(result);
     })
     .then(() => {
-      console.log("berhasil update bahan baku");
+      console.log("berhasil update material");
       res.json({
         message: "Data berhasil diupdate",
         data: newValues,
@@ -94,20 +94,20 @@ recordRoutes.route("/bahan/update/:id").put(function (req, res) {
 });
 
 // menghapus data
-recordRoutes.route("/bahan/delete/:id").delete(function (req, res) {
+recordRoutes.route("/material/delete/:id").delete(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   db_connect
-    .collection("bahan_baku")
+    .collection("materials")
     .deleteOne(myquery, function (err, result) {
       if (err) throw err;
-      console.log("bahan baku berhasil dihapus");
+      console.log("material berhasil dihapus");
       res.json(result);
     })
     .then((data) => {
-      console.log("bahan baku berhasil dihapus");
+      console.log("material berhasil dihapus");
       res.json({
-        message: "bahan baku berhasil dihapus",
+        message: "material berhasil dihapus",
         data: data,
       });
     });

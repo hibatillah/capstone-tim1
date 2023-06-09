@@ -9,7 +9,7 @@ recordRoutes.use(express.urlencoded({ extended: true }));
 recordRoutes.route("/cashier").get(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   db_connect
-    .collection("cashier")
+    .collection("cashiers")
     .find({})
     .toArray(function (err, result) {
       if (err) throw err;
@@ -29,7 +29,7 @@ recordRoutes.route("/cashier/:id").get(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   db_connect
-    .collection("cashier")
+    .collection("cashiers")
     .findOne(myquery, function (err, result) {
       if (err) throw err;
       res.json(result);
@@ -50,7 +50,7 @@ recordRoutes.route("/cashier/add").post(function (req, res) {
     name: req.body.name,
   };
   db_connect
-    .collection("cashier")
+    .collection("cashiers")
     .insertOne(myObj, function (err, result) {
       if (err) throw err;
       res.json(result);
@@ -74,7 +74,7 @@ recordRoutes.route("/cashier/update/:id").put(function (req, res) {
     },
   };
   db_connect
-    .collection("cashier")
+    .collection("cashiers")
     .updateOne(myquery, newValues, function (err, result) {
       if (err) throw err;
       console.log("berhasil update cashier");
@@ -94,7 +94,7 @@ recordRoutes.route("/cashier/delete/:id").delete(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   db_connect
-    .collection("cashier")
+    .collection("cashiers")
     .deleteOne(myquery, function (err, result) {
       if (err) throw err;
       console.log("cashier berhasil dihapus");

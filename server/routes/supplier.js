@@ -9,7 +9,7 @@ recordRoutes.use(express.urlencoded({ extended: true }));
 recordRoutes.route("/supplier").get(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   db_connect
-    .collection("supplier")
+    .collection("suppliers")
     .find({})
     .toArray(function (err, result) {
       if (err) throw err;
@@ -29,7 +29,7 @@ recordRoutes.route("/supplier/:id").get(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   db_connect
-    .collection("supplier")
+    .collection("suppliers")
     .findOne(myquery, function (err, result) {
       if (err) throw err;
       res.json(result);
@@ -52,7 +52,7 @@ recordRoutes.route("/supplier/add").post(function (req, res) {
     productSupply: req.body.productSupply,
   };
   db_connect
-    .collection("supplier")
+    .collection("suppliers")
     .insertOne(myObj, function (err, result) {
       if (err) throw err;
       res.json(result);
@@ -78,7 +78,7 @@ recordRoutes.route("/supplier/update/:id").put(function (req, res) {
     },
   };
   db_connect
-    .collection("supplier")
+    .collection("suppliers")
     .updateOne(myquery, newValues, function (err, result) {
       if (err) throw err;
       console.log("berhasil update supplier");
@@ -98,7 +98,7 @@ recordRoutes.route("/supplier/delete/:id").delete(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   db_connect
-    .collection("supplier")
+    .collection("suppliers")
     .deleteOne(myquery, function (err, result) {
       if (err) throw err;
       console.log("supplier berhasil dihapus");

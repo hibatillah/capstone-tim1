@@ -17,4 +17,14 @@ app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
 
-app.use(require("./routes/bahanBaku"));
+// get routes
+const user = require("./routes/user");
+const cashier = require("./routes/cashier");
+const supplier = require("./routes/supplier");
+const customer = require("./routes/customer");
+const product = require("./routes/product");
+const material = require("./routes/material");
+const order = require("./routes/order");
+
+// use routes
+app.use([user, cashier, supplier, customer, product, material, order]);
