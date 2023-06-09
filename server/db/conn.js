@@ -17,7 +17,7 @@ module.exports = {
         return callback(err);
       })
       .then(() => {
-        _db = client.db("capstone");
+        _db = client.db("rotte");
         console.log("Successfully connected to MongoDB.");
       });
   },

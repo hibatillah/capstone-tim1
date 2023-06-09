@@ -17,4 +17,4 @@ app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
 
-app.use(require("./routes/record"));
+app.use(require("./routes/bahanBaku"));

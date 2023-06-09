@@ -6,83 +6,82 @@ const ObjectId = require("mongodb").ObjectId;
 recordRoutes.use(express.urlencoded({ extended: true }));
 
 // menampilkan data
-recordRoutes.route("/record").get(function (req, res) {
-  let db_connect = dbo.getDb("employees");
+recordRoutes.route("/cashier").get(function (req, res) {
+  let db_connect = dbo.getDb("rotte");
   db_connect
-    .collection("records")
+    .collection("cashier")
     .find({})
     .toArray(function (err, result) {
       if (err) throw err;
       res.json(result);
     })
     .then((data) => {
+      console.log('cashier berhasil ditampilkan')
       res.json({
-        message: "Data berhasil ditampilkan",
+        message: "cashier berhasil ditampilkan",
         data: data,
       });
     });
 });
 
 // menampilkan data by id
-recordRoutes.route("/record/:id").get(function (req, res) {
-  let db_connect = dbo.getDb("employees");
+recordRoutes.route("/cashier/:id").get(function (req, res) {
+  let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   db_connect
-    .collection("records")
+    .collection("cashier")
     .findOne(myquery, function (err, result) {
       if (err) throw err;
       res.json(result);
     })
     .then((data) => {
+      console.log('cashier berhasil ditampilkan')
       res.json({
-        message: "Data berhasil ditampilkan",
+        message: "cashier berhasil ditampilkan",
         data: data,
       });
     });
 });
 
 // menambahkan data
-recordRoutes.route("/record/add").post(function (req, res) {
-  let db_connect = dbo.getDb("employees");
+recordRoutes.route("/cashier/add").post(function (req, res) {
+  let db_connect = dbo.getDb("rotte");
   let myObj = {
     name: req.body.name,
-    position: req.body.position,
-    level: req.body.level,
   };
   db_connect
-    .collection("records")
+    .collection("cashier")
     .insertOne(myObj, function (err, result) {
       if (err) throw err;
       res.json(result);
     })
     .then(() => {
+      console.log('cashier berhasil ditambahkan')
       res.json({
-        message: "Data berhasil ditambahkan",
+        message: "cashier berhasil ditambahkan",
         data: myObj,
       });
     });
 });
 
 // mengupdate data
-recordRoutes.route("/update/:id").put(function (req, res) {
-  let db_connect = dbo.getDb("employees");
+recordRoutes.route("/cashier/update/:id").put(function (req, res) {
+  let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   let newValues = {
     $set: {
       name: req.body.name,
-      position: req.body.position,
-      level: req.body.level,
     },
   };
   db_connect
-    .collection("records")
+    .collection("cashier")
     .updateOne(myquery, newValues, function (err, result) {
       if (err) throw err;
-      console.log("1 document updated");
+      console.log("berhasil update cashier");
       res.json(result);
     })
     .then(() => {
-      console.log("1 document updated");
+      console.log("berhasil update cashier");
       res.json({
         message: "Data berhasil diupdate",
         data: newValues,
@@ -91,20 +90,20 @@ recordRoutes.route("/update/:id").put(function (req, res) {
 });
 
 // menghapus data
-recordRoutes.route("/delete/:id").delete(function (req, res) {
-  let db_connect = dbo.getDb("employees");
+recordRoutes.route("/cashier/delete/:id").delete(function (req, res) {
+  let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   db_connect
-    .collection("records")
+    .collection("cashier")
     .deleteOne(myquery, function (err, result) {
       if (err) throw err;
-      console.log("1 document deleted");
+      console.log("cashier berhasil dihapus");
       res.json(result);
     })
     .then((data) => {
-      console.log("1 document deleted");
+      console.log("cashier berhasil dihapus");
       res.json({
-        message: "Data berhasil dihapus",
+        message: "cashier berhasil dihapus",
         data: data,
       });
     });
