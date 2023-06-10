@@ -12,7 +12,7 @@ const Aside = () => {
   return (
     <>
       <h2 className="text-primary font-bold dark:text-primary-light">Rotte Bakery</h2>
-      <ul className="flex flex-col gap-y-2">
+      <ul className="flex flex-col gap-y-2 select-none">
         {menu.map(([name, path], i) => (
           <li key={i}>
             <NavLink

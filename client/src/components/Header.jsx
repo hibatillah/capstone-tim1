@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { DarkMode } from './'
 
-const Header = () => {
+const Header = ({ handleNotif }) => {
   // change title based on location
   const location = useLocation();
   const title = () => {
@@ -33,7 +33,7 @@ const Header = () => {
             id="search"
             placeholder="Cari sesuatu..."
             autoComplete="off"
-            className="w-64 text-tertiary bg-inherit text-base focus:outline-none order-2 peer/search "
+            className="w-64 text-tertiary bg-inherit text-base focus:outline-none order-2 peer/search dark:text-white"
           />
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,10 @@ const Header = () => {
             />
           </svg>
         </label>
-        <div className="w-10 h-10 rounded-md bg-white grid place-items-center cursor-pointer select-none active:bg-primary group dark:bg-black-dark dark:active:bg-primary">
+        <div
+          onClick={handleNotif}
+          className="w-10 h-10 rounded-md bg-white grid place-items-center cursor-pointer select-none active:bg-primary group dark:bg-black-dark dark:active:bg-primary"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

@@ -7,6 +7,9 @@
     font-family: 'Outfit';
     src: url('./assets/fonts/Outfit-VariableFont_wght.ttf');
   }
+  *::selection{
+    @apply bg-primary-light text-white
+  }
 }
 
 @layer components {
