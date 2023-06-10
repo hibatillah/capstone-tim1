@@ -1,15 +1,5 @@
 import React from "react";
-
-const ScoreCard = ({ title, result, desc }) => {
-  return (
-    <div className="flex-1 p-5 rounded-lg bg-white dark:bg-black-dark">
-      <div className="w-8 h-8 rounded bg-grey-light dark:bg-black-light"></div>
-      <div className="mt-2 mb-1 text-tertiary dark:text-white">{title}</div>
-      <h3 className="text-2xl font-bold text-primary dark:text-primary-light">{result}</h3>
-      <p className="text-sm dark:text-grey-dark">{desc}</p>
-    </div>
-  );
-};
+import { ScoreCard } from "../components/Card";
 
 const Dashboard = () => {
   const scoreContents = [
@@ -21,7 +11,7 @@ const Dashboard = () => {
   return (
     <>
       <section id="score-card" className="flex items-stretch gap-4">
-        <div className="flex-none flex flex-col justify-center w-48 p-4 bg-primary rounded-lg">
+        <div className="flex-none flex flex-col justify-center p-4 w-48 rounded-lg bg-primary">
           <div className="w-10 h-10 rounded-full object-cover bg-tertiary mb-3 border-2 border-white" />
           <h3 className="font-semibold text-white tracking-wide">
             Qalbi Husaini

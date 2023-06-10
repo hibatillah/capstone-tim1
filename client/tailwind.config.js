@@ -17,7 +17,7 @@ module.exports = {
     },
     extend: {
       flex: {
-        fill: "1 0 auto",
+        fill: "1 0 0%",
       },
       colors: {
         black: {
@@ -40,17 +40,7 @@ module.exports = {
     },
   },
   plugins: [
-    plugin(function ({ addBase, addComponents, theme }) {
-      addBase({
-        h1: {
-          fontSize: theme("fontSize.2xl"),
-          fontWeight: theme("fontWeight.bold"),
-          color: theme("colors.tertiary"),
-        },
-        h2: { fontSize: theme("fontSize.xl") },
-        h3: { fontSize: theme("fontSize.lg") },
-        p: { color: theme("colors.grey.dark") },
-      });
+    plugin(function ({ addComponents, theme }) {
       addComponents({
         ".btn": {
           borderRadius: theme("borderRadius.lg"),

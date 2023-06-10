@@ -10,10 +10,25 @@
   *::selection{
     @apply bg-primary-light text-white
   }
+  p {
+    @apply text-grey-dark dark:text-grey
+  }
+  h1 {
+    @apply text-2xl font-bold text-tertiary dark:text-white
+  }
+  h2 {
+    @apply text-xl font-semibold text-tertiary dark:text-grey-light
+  }
+  h3 {
+    @apply text-lg font-semibold text-tertiary dark:text-grey-light
+  }
 }
 
 @layer components {
   #search-box:has(input:focus) {
     @apply ring-1 ring-primary ring-offset-1 dark:ring-primary
+  }
+  .card {
+    @apply p-5 rounded-lg bg-white dark:bg-black-dark
   }
 }

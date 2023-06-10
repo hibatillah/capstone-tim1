@@ -7,8 +7,7 @@ const DarkMode = () => {
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const activeTheme = () =>
-    document.documentElement.setAttribute("class", theme);
+  const activeTheme = () => document.documentElement.setAttribute("class", theme);
 
   useEffect(() => {
     activeTheme();
