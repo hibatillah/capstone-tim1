@@ -5,7 +5,7 @@ const Api = (link) => {
   const { data, error, isLoading } = useSWR(link, fetcher);
 
   return {
-    user: data,
+    users: data,
     isLoading,
     isError: error,
   };
