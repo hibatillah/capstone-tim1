@@ -9,8 +9,8 @@ const App = () => {
   return (
     <Router>
       {user === "admin" || user === "supplier" ? (
-        <div className="w-full min-h-screen flex gap-x-5 py-3 pl-3 pr-5 bg-grey-light dark:bg-black-dark font-outfit">
-          <nav className="flex-none flex flex-col justify-start items-center gap-20 px-5 py-10 w-[15%] max-h-[calc(100vh-1.5rem)] bg-white rounded-xl">
+        <div className="w-full min-h-screen flex gap-x-5 py-3 pl-3 pr-5 bg-grey-light dark:bg-black-light font-outfit">
+          <nav className="flex-none flex flex-col justify-start items-center gap-20 px-5 py-10 w-[15%] max-h-[calc(100vh-1.5rem)] bg-white rounded-xl dark:bg-black-dark">
             <Aside />
           </nav>
           <div className="flex-auto space-y-5">

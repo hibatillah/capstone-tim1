@@ -11,7 +11,7 @@ const Aside = () => {
 
   return (
     <>
-      <h2 className="text-primary font-bold">Rotte Bakery</h2>
+      <h2 className="text-primary font-bold dark:text-primary-light">Rotte Bakery</h2>
       <ul className="flex flex-col gap-y-2">
         {menu.map(([name, path], i) => (
           <li key={i}>
@@ -19,11 +19,11 @@ const Aside = () => {
               to={path}
               className={({ isActive }) =>
                 isActive
-                  ? "text-tertiary stroke-primary"
-                  : "text-grey-dark stroke-grey-dark active:text-tertiary/70 active:stroke-tertiary/70"
+                  ? "text-tertiary stroke-primary dark:text-white dark:stroke-primary-light"
+                  : "text-grey-dark stroke-grey-dark active:text-grey active:stroke-grey"
               }
             >
-              <div className="flex gap-3 items-center px-4 py-2 font-medium rounded-md hover:bg-grey-light">
+              <div className="flex gap-3 items-center px-4 py-2 font-medium rounded-md hover:bg-grey-light dark:hover:bg-black-light">
                 {(() => {
                   switch (name) {
                     case "Dashboard":

@@ -2,11 +2,11 @@ import React from "react";
 
 const ScoreCard = ({ title, result, desc }) => {
   return (
-    <div className="flex-1 px-5 py-4 rounded-lg bg-white">
-      <div className="w-8 h-8 rounded bg-grey-light"></div>
-      <div className="mt-2 mb-1 text-tertiary">{title}</div>
-      <h3 className="text-2xl font-bold text-tertiary">{result}</h3>
-      <p className="text-sm">{desc}</p>
+    <div className="flex-1 p-5 rounded-lg bg-white dark:bg-black-dark">
+      <div className="w-8 h-8 rounded bg-grey-light dark:bg-black-light"></div>
+      <div className="mt-2 mb-1 text-tertiary dark:text-grey-light">{title}</div>
+      <h3 className="text-2xl font-bold text-tertiary dark:text-white">{result}</h3>
+      <p className="text-sm dark:text-grey-dark">{desc}</p>
     </div>
   );
 };

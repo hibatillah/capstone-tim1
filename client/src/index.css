@@ -11,6 +11,6 @@
 
 @layer components {
   #search-box:has(input:focus) {
-    @apply ring-1 ring-primary ring-offset-1
+    @apply ring-1 ring-primary ring-offset-1 dark:ring-primary
   }
 }
