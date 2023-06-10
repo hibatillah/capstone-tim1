@@ -50,6 +50,7 @@ recordRoutes.route("/user/add").post(function (req, res) {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
+    role: req.body.role,
   };
   db_connect
     .collection("users")
@@ -75,6 +76,7 @@ recordRoutes.route("/user/update/:id").put(function (req, res) {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
+      role: req.body.role,
     },
   };
   db_connect
