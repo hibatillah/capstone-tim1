@@ -1,9 +1,10 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
-const plugin = require("tailwindcss/plugin");
 
 module.exports = {
   darkMode: "class",
-  content: ["./src/**/*.{js,jsx}"],
+  content: [
+    "./src/**/*.{js,jsx}"
+  ],
   theme: {
     container: {
       center: true,
@@ -39,27 +40,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    plugin(function ({ addComponents, theme }) {
-      addComponents({
-        ".btn": {
-          borderRadius: theme("borderRadius.lg"),
-          paddingInline: theme("spacing.6"),
-          paddingBlock: theme("spacing.2"),
-          fontWeight: theme("fontWeight.medium"),
-          cursor: "pointer",
-          "&.btn-primary": {
-            backgroundColor: theme("colors.primary"),
-            color: theme("colors.white"),
-          },
-          "&.btn-secondary": {
-            backgroundColor: theme("colors.inherit"),
-            color: theme("colors.primary"),
-            borderWidth: theme("spacing.px"),
-            borderColor: theme("colors.primary"),
-          },
-        },
-      });
-    }),
-  ],
+  plugins: [],
 };

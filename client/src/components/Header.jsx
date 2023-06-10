@@ -25,7 +25,7 @@ const Header = ({ handleNotif }) => {
         <label
           htmlFor="search"
           id="search-box"
-          className="flex items-center gap-3 py-2 pl-3 pr-4 rounded-md bg-white cursor-text dark:bg-black-dark"
+          className="flex items-center gap-3 py-2 pl-3 pr-2 rounded-md bg-white cursor-text dark:bg-black-dark"
         >
           <input
             type="search"

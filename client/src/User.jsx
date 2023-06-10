@@ -49,7 +49,7 @@ export const Admin = () => {
       >
         <div className="flex justify-between items-center">
           <h3 className="font-semibold text-tertiary dark:text-white">
-            Notification
+            Notifikasi
           </h3>
           <div
             onClick={handleNotif}

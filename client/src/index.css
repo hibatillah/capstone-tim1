@@ -10,25 +10,30 @@
   *::selection{
     @apply bg-primary-light text-white
   }
-  p {
-    @apply text-grey-dark dark:text-grey
-  }
-  h1 {
-    @apply text-2xl font-bold text-tertiary dark:text-white
-  }
-  h2 {
-    @apply text-xl font-semibold text-tertiary dark:text-grey-light
-  }
-  h3 {
-    @apply text-lg font-semibold text-tertiary dark:text-grey-light
-  }
+  p { @apply text-grey-dark dark:text-grey }
+  h1 { @apply text-2xl font-bold text-tertiary dark:text-white }
+  h2 { @apply text-xl font-semibold text-tertiary dark:text-grey-light }
+  h3 { @apply text-lg font-semibold text-tertiary dark:text-grey-light }
 }
 
 @layer components {
   #search-box:has(input:focus) {
     @apply ring-1 ring-primary ring-offset-1 dark:ring-primary
   }
+  input[type='search']::-webkit-search-cancel-button {
+    @apply relative right-1 w-4 h-4 rounded-full bg-contain bg-[url('./assets/icons/clear.svg')] opacity-30 text-white cursor-pointer bg-no-repeat;
+    -webkit-appearance: none;
+  }
   .card {
     @apply p-5 rounded-lg bg-white dark:bg-black-dark
+  }
+  .btn {
+    @apply rounded-lg px-4 py-2 font-medium cursor-pointer;
+  }
+  .btn-primary {
+    @apply bg-primary text-white
+  }
+  .btn-secondary {
+    @apply bg-inherit text-primary border border-primary
   }
 }
