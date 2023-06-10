@@ -13,14 +13,14 @@ const Aside = () => {
     <>
       <h2 className="text-primary font-bold">Rotte Bakery</h2>
       <ul className="flex flex-col gap-y-2">
-        {menu.map(([name, path, icon], i) => (
+        {menu.map(([name, path], i) => (
           <li key={i}>
             <NavLink
               to={path}
               className={({ isActive }) =>
                 isActive
                   ? "text-tertiary stroke-primary"
-                  : "text-grey-dark stroke-grey-dark"
+                  : "text-grey-dark stroke-grey-dark active:text-tertiary/70 active:stroke-tertiary/70"
               }
             >
               <div className="flex gap-3 items-center px-4 py-2 font-medium rounded-md hover:bg-grey-light">

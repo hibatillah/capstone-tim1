@@ -2,6 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
 
 module.exports = {
+  darkMode: "class",
   content: [
     "./src/**/*.{js,jsx}"
   ],
@@ -21,7 +22,11 @@ module.exports = {
         fill: "1 0 auto",
       },
       colors: {
-        black: "#1F1F1F",
+        black: {
+          light: '#2F2F2F',
+          DEFAULT: "#1F1F1F",
+          dark: "#1C1C1C",
+        },
         primary: "#775FFD",
         secondary: "#6AD2FF",
         tertiary: "#2B3674",
@@ -36,7 +41,11 @@ module.exports = {
   plugins: [
     plugin(function ({ addBase, addComponents, theme }) {
       addBase({
-        h1: { fontSize: theme("fontSize.2xl") },
+        h1: {
+          fontSize: theme("fontSize.2xl"),
+          fontWeight: theme("fontWeight.bold"),
+          color: theme("colors.tertiary"),
+        },
         h2: { fontSize: theme("fontSize.xl") },
         h3: { fontSize: theme("fontSize.lg") },
         p: { color: theme("colors.grey.dark") },
@@ -47,6 +56,7 @@ module.exports = {
           paddingInline: theme("spacing.6"),
           paddingBlock: theme("spacing.2"),
           fontWeight: theme("fontWeight.medium"),
+          cursor: "pointer",
           "&.btn-primary": {
             backgroundColor: theme("colors.primary"),
             color: theme("colors.white"),
