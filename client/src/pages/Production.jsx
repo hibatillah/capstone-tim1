@@ -59,9 +59,11 @@ const AddProduct = () => {
           onChange={(e) => setProduct(e.target.value)}
           className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark cursor-pointer dark:ring-black-light dark:ring-2"
         >
-          {dataProducts?.data.map((item) => (
+          {dataProducts? dataProducts.data.map((item) => (
             <option value={item._id}>{item.name}</option>
-          ))}
+          )) : (
+            <option value="0">Produk tidak tersedia</option>
+          )}
         </select>
         <label
           htmlFor="numberProduct"

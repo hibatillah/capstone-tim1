@@ -12,13 +12,17 @@ export const TableProduct = ({ dataHead, dataTable }) => {
           </tr>
         </thead>
         <tbody>
-          {dataTable?.map((item) => (
+          {dataTable? dataTable.map((item) => (
             <tr>
               <td>{item.name}</td>
               <td>{item.price}</td>
               <td>{item.amount}</td>
             </tr>
-          ))}
+          )) : (
+            <tr>
+              Data Tak tersedia
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

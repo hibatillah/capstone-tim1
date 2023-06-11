@@ -20,7 +20,7 @@ const Aside = () => {
               className={({ isActive }) =>
                 isActive
                   ? "text-tertiary stroke-primary dark:text-white dark:stroke-primary-light"
-                  : "text-grey-dark stroke-grey-dark active:text-grey active:stroke-grey"
+                  : "text-grey-dark stroke-grey-dark active:text-tertiary/70 active:stroke-tertiary/70 dark:active:text-grey dark:active:stroke-grey"
               }
             >
               <div className="flex gap-3 items-center px-4 py-2 font-medium rounded-md hover:bg-grey-light dark:hover:bg-black-light">

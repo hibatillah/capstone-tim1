@@ -20,8 +20,7 @@
     @apply pb-2 font-medium text-left text-grey-dark
   }
   table 
-  tbody 
-  td {
+  tbody {
     @apply py-1.5 font-medium text-left text-tertiary dark:text-grey
   }
   main.main-admin {
