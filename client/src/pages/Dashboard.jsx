@@ -1,5 +1,5 @@
 import React from "react";
-import { ScoreCard } from "../components/Card";
+import { ScoreCard } from "../components";
 
 const Dashboard = () => {
   const scoreContents = [

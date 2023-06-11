@@ -32,7 +32,6 @@ export const Admin = () => {
       </nav>
       <div className="flex-auto space-y-5">
         <Header handleNotif={handleNotif} />
-        <main>
           <Routes>
             <Route index element={<Dashboard />} />
             <Route path="/production" element={<Production />} />
@@ -40,7 +39,6 @@ export const Admin = () => {
             <Route path="/supply" element={<Supply />} />
             <Route path="*" element={<Unknown />} />
           </Routes>
-        </main>
       </div>
       <div
         className={`

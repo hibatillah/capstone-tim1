@@ -1,30 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { GetData } from "../Api";
+import { TableProduct, ScoreCard } from "../components";
 import axios from "axios";
 
+const Products = () => {
+  const { users } = GetData("http://localhost:5000/product");
+  console.log(users);
+  return users;
+};
+
 const AddProduct = () => {
-  const { users } = GetData('http://localhost:5000/product')
-  console.log(users)
-  
   const [product, setProduct] = useState("");
   const [amount, setAmount] = useState();
 
+  // submit form
   const handleSubmit = async (target) => {
     target.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:5000/product/update/:${product}`, {
-        amount: amount,
-      })
-      console.log(response)
-    }
-    catch (error) {
-      console.error(error)
+      const response = await axios.post(
+        `http://localhost:5000/product/update/:${product}`,
+        {
+          amount: amount,
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.error(error);
     }
   };
-  
+
+  // evaluate form changes
   useEffect(() => {
-    console.log({ product })
-  },[product])
+    console.log({ product });
+  }, [product]);
+
+  // get products
+  const dataProducts = Products();
 
   return (
     <div className="flex gap-6 card">
@@ -48,7 +59,7 @@ const AddProduct = () => {
           onChange={(e) => setProduct(e.target.value)}
           className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark cursor-pointer dark:ring-black-light dark:ring-2"
         >
-          {users?.data.map((item) => (
+          {dataProducts?.data.map((item) => (
             <option value={item._id}>{item.name}</option>
           ))}
         </select>
@@ -72,15 +83,38 @@ const AddProduct = () => {
       </form>
     </div>
   );
-}
+};
 
 const Production = () => {
+  const tableProducts = ["Nama Produk", "Harga (Rp)", "Persediaan"];
+  const dataProducts = Products();
+
   return (
-    <>
+    <main className="main-admin space-y-5">
       <section id="make-product" className="flex items-stretch gap-x-4">
         <AddProduct />
+        <ScoreCard 
+          title="Produk Tersedia"
+          result='32 buah'
+          desc="pada hari ini"
+        />
+        <ScoreCard 
+          title="Produk Terjual"
+          result='24 buah'
+          desc="pada hari ini"
+        />
       </section>
-    </>
+      <section id="table-product" className="flex gap-x-4">
+        <TableProduct
+          dataHead={tableProducts}
+          dataTable={dataProducts?.data}
+        />
+        <TableProduct
+          dataHead={tableProducts}
+          dataTable={dataProducts?.data}
+        />
+      </section>
+    </main>
   );
 };
 

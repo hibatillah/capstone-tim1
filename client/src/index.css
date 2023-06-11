@@ -14,6 +14,22 @@
   h1 { @apply text-2xl font-bold text-tertiary dark:text-white }
   h2 { @apply text-xl font-semibold text-tertiary dark:text-grey-light }
   h3 { @apply text-lg font-semibold text-tertiary dark:text-grey-light }
+  table
+  thead 
+  th {
+    @apply pb-2 font-medium text-left text-grey-dark
+  }
+  table 
+  tbody 
+  td {
+    @apply py-1.5 font-medium text-left text-tertiary dark:text-grey
+  }
+  main.main-admin {
+    @apply max-h-[calc(100vh-116px)] overflow-y-scroll
+  }
+  main.main-admin::-webkit-scrollbar-thumb {
+    @apply w-1 rounded
+  }
 }
 
 @layer components {
