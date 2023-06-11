@@ -1,9 +1,22 @@
-import React from 'react'
+import React from "react";
+import { Github } from "./Svg";
 
 const Footer = () => {
-  return (
-    <footer>Footer</footer>
-  )
-}
+  const year = new Date().getFullYear();
 
-export default Footer
+  return (
+    <footer className="flex justify-between items-center px-12 py-3 bg-white">
+      <div className="text-grey-dark text-sm">&copy; {year}</div>
+      <a
+        href="http://github.com/hibatillah/capstone-tim1"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fill-grey-dark hover:fill-primary"
+      >
+        <Github />
+      </a>
+    </footer>
+  );
+};
+
+export default Footer;

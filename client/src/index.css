@@ -7,6 +7,9 @@
     font-family: 'Outfit';
     src: url('./assets/fonts/Outfit-VariableFont_wght.ttf');
   }
+  * {
+    @apply box-border
+  }
   *::selection{
     @apply bg-primary-light text-white
   }
@@ -17,17 +20,22 @@
   table
   thead 
   th {
-    @apply pb-2 font-medium text-left text-grey-dark
+    @apply pb-2 font-medium
+     text-left text-grey-dark
   }
   table 
-  tbody {
+  tbody 
+  td {
     @apply py-1.5 font-medium text-left text-tertiary dark:text-grey
+  }
+  main::-webkit-scrollbar-thumb {
+    @apply w-1 rounded
   }
   main.main-admin {
     @apply max-h-[calc(100vh-116px)] overflow-y-scroll
   }
-  main.main-admin::-webkit-scrollbar-thumb {
-    @apply w-1 rounded
+  main.main-customer {
+    @apply min-h-[calc(100vh-112px)]
   }
 }
 
@@ -43,12 +51,12 @@
     @apply p-5 rounded-lg bg-white dark:bg-black-dark
   }
   .btn {
-    @apply rounded-lg px-4 py-2 font-medium cursor-pointer;
+    @apply rounded-md px-5 py-1.5 font-medium cursor-pointer
   }
   .btn-primary {
-    @apply bg-primary text-white
+    @apply bg-primary text-white border border-primary active:ring-1 active:ring-primary active:ring-offset-2
   }
   .btn-secondary {
-    @apply bg-inherit text-primary border border-primary
+    @apply bg-inherit text-primary border border-primary active:bg-primary active:text-white
   }
 }

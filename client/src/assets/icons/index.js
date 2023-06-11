@@ -12,6 +12,7 @@ import layers from './layers.svg'
 import layout from './layout.svg'
 import rocket from './rocket.svg'
 import clear from './clear.svg'
+import github from './github.svg'
 
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -30,4 +31,5 @@ export {
   layout,
   rocket,
   clear,
+  github,
 }
