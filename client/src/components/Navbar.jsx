@@ -1,19 +1,18 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import { DarkMode } from "./";
-import { Square, Box, Note, Info } from "./Svg";
+import { DarkMode, ToggleNotif } from "./";
+import { Square, Box, Note, Info, SignOut } from "./Svg";
 
-const Navbar = () => {
+const Navbar = ({ user, handleNotif }) => {
   const menu = [
     ["Beranda", "/"],
     ["Produk", "/product"],
-    ["Pesanan", "/order"],
+    ["Pesanan", `${user === 'customer'? `/order/:${user.id}` : '/order'}`],
     ["Tentang Rotte", "/about"],
   ];
 
   return (
     <nav className="flex justify-center items-center gap-3 px-12 py-3 bg-white dark:bg-black-dark">
-      <DarkMode />
       <h2 className="text-primary font-bold dark:text-primary-light">
         Rotte Bakery
       </h2>
@@ -49,13 +48,31 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
-      <div className="flex gap-3 items-center">
-        <Link to="/auth/login">
-          <div className="btn btn-secondary">Login</div>
-        </Link>
-        <Link to="/auth/signup">
-          <div className="btn btn-primary">Sign Up</div>
-        </Link>
+      <div
+        className={`flex items-center ${
+          user === "customer" ? "gap-0" : "gap-3"
+        }`}
+      >
+        <DarkMode />
+        {user === "customer" ? (
+          <>
+            <ToggleNotif handleNotif={handleNotif} />
+            <Link to="/auth">
+              <div className="w-10 h-10 rounded-md bg-white grid place-items-center cursor-pointer select-none active:bg-primary group dark:bg-black-dark dark:active:bg-primary">
+                <SignOut custom="stroke-grey-dark group-hover:stroke-primary group-active:stroke-white dark:group-hover:stroke-primary-light dark:group-active:stroke-white" />
+              </div>
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to="/auth#login">
+              <div className="btn btn-secondary">Login</div>
+            </Link>
+            <Link to="/auth#signup">
+              <div className="btn btn-primary">Sign Up</div>
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );

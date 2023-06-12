@@ -62,14 +62,14 @@ export const Box = () => {
   );
 };
 
-export const SignOut = () => {
+export const SignOut = ({ custom }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
       stroke-width="2"
-      class="w-5 h-5"
+      class={`w-5 h-5 ${custom}`}
     >
       <path
         stroke-linecap="round"

@@ -14,20 +14,21 @@ import {
   Unknown,
 } from "./pages";
 
-export const Admin = () => {
-  // toggle notification
+const ToggleNotif = () => {
   const [toggleNotif, setToggleNotif] = useState(false);
   const handleNotif = () => {
     setToggleNotif(!toggleNotif);
   };
 
-  useEffect(() => {
-    console.info({ toggleNotif });
-  }, [toggleNotif]);
+  return { toggleNotif, handleNotif };
+};
+
+export const Admin = ({ user }) => {
+  const { toggleNotif, handleNotif } = ToggleNotif();
 
   return (
     <div className="relative w-full min-h-screen flex gap-x-5 py-3 pl-3 pr-5 bg-grey-light dark:bg-black-light font-outfit">
-      <Aside />
+      <Aside user={user} />
       <div className="flex-auto space-y-5">
         <Header handleNotif={handleNotif} />
         <Routes>
@@ -44,9 +45,16 @@ export const Admin = () => {
 };
 
 export const Customer = ({ user }) => {
+  const { toggleNotif, handleNotif } = ToggleNotif();
+
   return (
     <div className="w-full min-h-screen bg-grey-light font-outfit dark:bg-black-light">
-      <Navbar />
+      <Navbar user={user} handleNotif={handleNotif} />
+      {user === "customer" ? (
+        <Notifications stateNotif={toggleNotif} handleNotif={handleNotif} />
+      ) : (
+        <></>
+      )}
       <Routes>
         <Route index element={<Home />} />
         <Route path="/product" element={<Menu />} />

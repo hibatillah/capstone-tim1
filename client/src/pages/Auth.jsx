@@ -2,7 +2,9 @@ import React from 'react'
 
 const Auth = () => {
   return (
-    <div>Auth</div>
+    <main className="main-customer">
+      auth
+    </main>
   )
 }
 

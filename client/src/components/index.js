@@ -4,6 +4,7 @@ import Header  from './Header';
 import Footer  from './Footer';
 import DarkMode  from './DarkMode';
 import Notifications  from './Notifications';
+import ToggleNotif  from './ToggleNotif';
 import { ScoreCard }  from './Card';
 import { TableProduct }  from './Table';
 
@@ -14,6 +15,7 @@ export {
   Footer,
   DarkMode,
   Notifications,
+  ToggleNotif,
   ScoreCard,
   TableProduct,
 }
