@@ -16,7 +16,7 @@ const Header = ({ handleNotif }) => {
       case "/supply":
         return "Suplai"
       default:
-        return "";
+        return "Unknown";
     }
   };
 

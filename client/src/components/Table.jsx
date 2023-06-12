@@ -20,7 +20,7 @@ export const TableProduct = ({ dataHead, dataTable }) => {
             </tr>
           )) : (
             <tr>
-              Data Tak tersedia
+              Data Tidak tersedia
             </tr>
           )}
         </tbody>
