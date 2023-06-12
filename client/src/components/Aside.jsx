@@ -20,13 +20,15 @@ const Aside = ({ user }) => {
   useEffect(() => {
     setActiveUser(user === "admin" ? menuAdmin : menuSupplier);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[activeUser, user]);
+  }, [activeUser, user]);
 
   return (
     <aside className="flex-none flex flex-col justify-start items-center gap-20 px-5 py-10 w-[15%] max-h-[calc(100vh-1.5rem)] bg-white rounded-xl dark:bg-black-dark">
-      <h2 className="text-primary font-bold dark:text-primary-light">
-        Rotte Bakery
-      </h2>
+      <a href="/">
+        <h2 className="text-primary font-bold dark:text-primary-light">
+          Rotte Bakery
+        </h2>
+      </a>
       <ul className="flex flex-col gap-y-2 select-none">
         {activeUser.map(([name, path], i) => (
           <li key={i}>

@@ -7,15 +7,17 @@ const Navbar = ({ user, handleNotif }) => {
   const menu = [
     ["Beranda", "/"],
     ["Produk", "/product"],
-    ["Pesanan", `${user === 'customer'? `/order/:${user.id}` : '/order'}`],
+    ["Pesanan", `${user === "customer" ? `/order/:${user.id}` : "/order"}`],
     ["Tentang Rotte", "/about"],
   ];
 
   return (
     <nav className="flex justify-center items-center gap-3 px-12 py-3 bg-white dark:bg-black-dark">
-      <h2 className="text-primary font-bold dark:text-primary-light">
-        Rotte Bakery
-      </h2>
+      <a href="/">
+        <h2 className="text-primary font-bold dark:text-primary-light">
+          Rotte Bakery
+        </h2>
+      </a>
       <ul className="flex mx-auto select-none">
         {menu.map(([name, path], i) => (
           <li key={i}>
