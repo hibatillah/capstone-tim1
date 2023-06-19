@@ -10,7 +10,7 @@ Capstone projek ini merupakan projek UAS semester 4 gabungan beberapa mata kulia
 * Pemrograman Framework
 * Visualisasi Data
 
-## Anggota Tim 1
+## Tim 1
 * Astri Adinda Safira 21573010
 * M. Hibatillah Hasanin 2157301046
 * Muhammad Qalbi Husain 21573010
