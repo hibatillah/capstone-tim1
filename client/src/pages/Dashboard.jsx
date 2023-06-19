@@ -16,7 +16,7 @@ const Dashboard = () => {
           <h3 className="font-semibold text-white tracking-wide">
             Qalbi Husaini
           </h3>
-          <p className="font-medium text-tertiary">Admin</p>
+          <p className="font-medium text-grey">Admin</p>
         </div>
         {scoreContents.map(([title, result, desc], i) => (
           <ScoreCard

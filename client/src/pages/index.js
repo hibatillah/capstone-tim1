@@ -8,6 +8,7 @@ import Production from "./Production";
 import Supply from "./Supply";
 import Auth from "./Auth";
 import Unknown from "./Unknown";
+import Materials from "./Materials";
 
 export {
   Dashboard,
@@ -20,4 +21,5 @@ export {
   Supply,
   Auth,
   Unknown,
+  Materials,
 }

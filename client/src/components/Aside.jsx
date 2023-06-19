@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Square, Box, Note, SignOut } from "./Svg";
+import { Square, Box, Note, SignOut, Gift } from "./Svg";
 
 const Aside = ({ user }) => {
   const menuAdmin = [
     ["Dashboard", "/"],
     ["Produksi", "/production"],
+    ["Material", "/materials"],
     ["Pesanan", "/order"],
     ["Sign Out", "/auth"],
   ];
@@ -47,6 +48,8 @@ const Aside = ({ user }) => {
                         case "Dashboard":
                           return <Square />;
                         case "Produksi":
+                          return <Gift />;
+                        case "Material":
                           return <Box />;
                         case "Pesanan":
                           return <Note />;

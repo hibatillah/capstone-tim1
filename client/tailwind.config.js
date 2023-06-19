@@ -2,9 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   darkMode: "class",
-  content: [
-    "./src/**/*.{js,jsx}"
-  ],
+  content: ["./src/**/*.{js,jsx}"],
   theme: {
     container: {
       center: true,
@@ -27,8 +25,8 @@ module.exports = {
           dark: "#222731",
         },
         primary: {
-          light: "#8A75FF",
-          DEFAULT: "#775FFD",
+          light: "#E62129",
+          DEFAULT: "#E62129",
         },
         secondary: "#6AD2FF",
         tertiary: "#2B3674",

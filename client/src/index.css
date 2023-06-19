@@ -11,7 +11,7 @@
     @apply box-border
   }
   *::selection{
-    @apply bg-primary-light text-white
+    @apply bg-primary/80 text-white
   }
   p { @apply text-grey-dark dark:text-grey }
   h1 { @apply text-2xl font-bold text-tertiary dark:text-white }
@@ -37,6 +37,9 @@
   main.main-customer {
     @apply min-h-[calc(100vh-112px)]
   }
+  label {
+    @apply font-medium text-tertiary/70 dark:text-grey;
+  }
 }
 
 @layer components {
@@ -51,7 +54,7 @@
     @apply p-5 rounded-lg bg-white dark:bg-black-dark
   }
   .btn {
-    @apply rounded-md px-5 py-1.5 font-medium cursor-pointer
+    @apply rounded-md px-6 py-2 font-medium cursor-pointer
   }
   .btn-primary {
     @apply bg-primary text-white border border-primary active:ring-1 active:ring-primary active:ring-offset-2

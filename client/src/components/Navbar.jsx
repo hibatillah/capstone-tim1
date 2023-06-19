@@ -6,7 +6,7 @@ import { Square, Box, Note, Info, SignOut } from "./Svg";
 const Navbar = ({ user, handleNotif }) => {
   const menu = [
     ["Beranda", "/"],
-    ["Produk", "/product"],
+    ["Menu", "/menu"],
     ["Pesanan", `${user === "customer" ? `/order/:${user.id}` : "/order"}`],
     ["Tentang Rotte", "/about"],
   ];
@@ -34,7 +34,7 @@ const Navbar = ({ user, handleNotif }) => {
                   switch (name) {
                     case "Beranda":
                       return <Square />;
-                    case "Produk":
+                    case "Menu":
                       return <Box />;
                     case "Pesanan":
                       return <Note />;

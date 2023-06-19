@@ -15,6 +15,8 @@ const Header = ({ handleNotif }) => {
         return "Pesanan";
       case "/supply":
         return "Suplai"
+      case "/materials":
+        return "Bahan Baku";
       default:
         return "Unknown";
     }

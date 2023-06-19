@@ -1,73 +1,80 @@
 import React, { useEffect, useState } from "react";
 import { GetData } from "../Api";
-import { TableProduct, ScoreCard } from "../components";
-import axios from "axios";
+import { TableMaterial } from "../components";
 
-const Products = () => {
-  const { users } = GetData("http://localhost:5000/product");
+const Material = () => {
+  const { users } = GetData("http://localhost:5000/material");
   console.log(users);
   return users;
 };
 
-const AddProduct = () => {
-  const [product, setProduct] = useState("");
+const AddMaterials = () => {
+  const [material, setMaterial] = useState("");
   const [amount, setAmount] = useState();
 
-  // submit form
   const handleSubmit = async (target) => {
     target.preventDefault();
-    try {
-      const response = await axios.post(
-        `http://localhost:5000/product/update/:${product}`,
-        {
-          amount: amount,
-        }
-      );
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
   };
 
   // evaluate form changes
   useEffect(() => {
-    console.log({ product });
-  }, [product]);
+    console.log({ material });
+  }, [material]);
 
   // get products
-  const dataProducts = Products();
+  const dataMaterials = Material();
 
   return (
     <div className="card">
       <div>
-        <h3>Membuat Produk</h3>
-        <p>Pilih produk dan tentukan jumlah produk yang akan dibuat.</p>
+        <h3>Pemesanan Bahan Baku</h3>
+        <p>Pilih untuk melakukan pemesanan persediaan bahan baku.</p>
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5 mt-14">
-        {/* select product */}
+        {/* select supplier */}
         <div className="flex flex-col gap-1.5">
           <label htmlFor="product" className="flex-auto justify-self-end">
-            Pilih produk
+            Pilih Supplier
           </label>
           <select
             name="product"
             id="product"
-            onChange={(e) => setProduct(e.target.value)}
+            onChange={(e) => setMaterial(e.target.value)}
             className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark cursor-pointer dark:ring-black-light dark:ring-2"
           >
-            {dataProducts ? (
-              dataProducts.data.map((item) => (
+            {dataMaterials ? (
+              dataMaterials.data.map((item) => (
                 <option value={item._id}>{item.name}</option>
               ))
             ) : (
-              <option value="0">Produk tidak tersedia</option>
+              <option value="0">Supplier tidak tersedia</option>
             )}
           </select>
         </div>
-        {/* amount */}
+        {/* select material */}
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="product" className="flex-auto justify-self-end">
+            Pilih Bahan
+          </label>
+          <select
+            name="product"
+            id="product"
+            onChange={(e) => setMaterial(e.target.value)}
+            className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark cursor-pointer dark:ring-black-light dark:ring-2"
+          >
+            {dataMaterials ? (
+              dataMaterials.data.map((item) => (
+                <option value={item._id}>{item.name}</option>
+              ))
+            ) : (
+              <option value="0">Bahan tidak tersedia</option>
+            )}
+          </select>
+        </div>
+        {/* material amount */}
         <div className="flex flex-col gap-1.5">
           <label htmlFor="numberProduct" className="flex-auto justify-self-end">
-            Jumlah produk
+            Jumlah Pemesanan
           </label>
           <input
             type="number"
@@ -78,36 +85,31 @@ const AddProduct = () => {
             className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark dark:ring-black-light dark:ring-2"
           />
         </div>
+        {/* submit */}
         <button type="submit" className="btn btn-primary w-fit col-start-2">
-          Buat produk
+          Pesan Bahan Baku
         </button>
       </form>
     </div>
   );
 };
 
-const Production = () => {
-  const tableProducts = ["Nama Produk", "Harga (Rp)", "Persediaan"];
-  const dataProducts = Products();
+const Materials = () => {
+  const tableProducts = ["Nama Bahan", "Minimum Persediaan", "Tersedia"];
+  const dataProducts = Material();
 
   return (
     <main className="main-admin flex items-start gap-4">
-      <TableProduct
-        title="Persediaan Produk"
+      <TableMaterial
+        title="Persediaan Bahan Baku"
         dataHead={tableProducts}
         dataTable={dataProducts?.data}
       />
       <div id="make-product" className="flex-none space-y-4">
-        <ScoreCard
-          title="Produk Tersedia"
-          result="32 buah"
-          desc="pada hari ini"
-          flex
-        />
-        <AddProduct />
+        <AddMaterials />
       </div>
     </main>
   );
 };
 
-export default Production;
+export default Materials;

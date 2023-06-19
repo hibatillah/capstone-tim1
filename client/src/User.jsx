@@ -11,6 +11,7 @@ import {
   Production,
   Supply,
   Order,
+  Materials,
   Unknown,
 } from "./pages";
 
@@ -34,6 +35,7 @@ export const Admin = ({ user }) => {
         <Routes>
           <Route index element={<Dashboard />} />
           <Route path="/production" element={<Production />} />
+          <Route path="/materials" element={<Materials />} />
           <Route path="/order" element={<Order />} />
           <Route path="/supply" element={<Supply />} />
           <Route path="*" element={<Unknown />} />
@@ -57,7 +59,7 @@ export const Customer = ({ user }) => {
       )}
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/product" element={<Menu />} />
+        <Route path="/menu" element={<Menu />} />
         <Route
           path={user === "customer" ? `/order/:${user.id}` : "/order"}
           element={<CustomerOrder />}
