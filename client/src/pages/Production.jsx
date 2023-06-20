@@ -83,21 +83,18 @@ const AddProduct = () => {
 };
 
 const Production = () => {
-  const tableProducts = ["Nama Produk", "Harga (Rp)", "Persediaan"];
   const dataProducts = Products();
 
   // get total product available
   const [totalProduct, setTotalProduct] = useState(0);
   useEffect(() => {
-    setTotalProduct(dataProducts.data?.reduce((acc, item) => acc + item.amount, 0))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+    if (dataProducts) setTotalProduct(dataProducts?.data.reduce((acc, item) => acc + item.amount, 0))
+  },[dataProducts])
 
   return (
     <main className="main-admin flex items-start gap-4">
       <TableProduct
         title="Persediaan Produk"
-        dataHead={tableProducts}
         dataTable={dataProducts?.data}
       />
       <div id="make-product" className="flex-none space-y-4">

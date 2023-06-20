@@ -89,14 +89,12 @@ const AddMaterials = () => {
 };
 
 const Materials = () => {
-  const tableProducts = ["Nama Bahan", "Minimum Persediaan", "Tersedia"];
   const dataProducts = Material();
 
   return (
     <main className="main-admin flex items-start gap-4">
       <TableMaterial
         title="Persediaan Bahan Baku"
-        dataHead={tableProducts}
         dataTable={dataProducts?.data}
       />
       <div id="make-product" className="flex-none space-y-4">

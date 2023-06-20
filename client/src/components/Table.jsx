@@ -35,7 +35,7 @@ export const TableProduct = ({ title, dataTable }) => {
   );
 };
 
-export const TableMaterial = ({ title, dataHead, dataTable }) => {
+export const TableMaterial = ({ title, dataTable }) => {
   return (
     <div className="card flex-auto">
       <div className="flex gap-5 mb-5">
