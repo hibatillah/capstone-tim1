@@ -24,7 +24,7 @@ const Header = ({ handleNotif }) => {
 
   return (
     <header className="flex items-end justify-between h-[10%]">
-      <h1 className="dark:text-white">{title()}</h1>
+      <h1 className="capitalize dark:text-white">{title()}</h1>
       <div className="flex gap-3">
         <label
           htmlFor="search"

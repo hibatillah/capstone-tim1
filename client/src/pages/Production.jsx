@@ -43,10 +43,9 @@ const AddProduct = () => {
         <h3>Membuat Produk</h3>
         <p>Pilih produk dan tentukan jumlah produk yang akan dibuat.</p>
       </div>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-5 mt-14">
+      <form onSubmit={handleSubmit} className="grid grid-[auto_1fr] gap-5 mt-14">
         {/* select product */}
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="product" className="flex-auto justify-self-end">
+          <label htmlFor="product" className="self-center justify-self-end">
             Pilih produk
           </label>
           <select
@@ -63,10 +62,8 @@ const AddProduct = () => {
               <option value="0">Produk tidak tersedia</option>
             )}
           </select>
-        </div>
         {/* amount */}
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="numberProduct" className="flex-auto justify-self-end">
+          <label htmlFor="numberProduct" className="self-center justify-self-end">
             Jumlah produk
           </label>
           <input
@@ -77,9 +74,8 @@ const AddProduct = () => {
             onChange={(e) => setAmount(e.target.value)}
             className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark dark:ring-black-light dark:ring-2"
           />
-        </div>
         <button type="submit" className="btn btn-primary w-fit col-start-2">
-          Buat produk
+          Buat Produk
         </button>
       </form>
     </div>
@@ -89,6 +85,13 @@ const AddProduct = () => {
 const Production = () => {
   const tableProducts = ["Nama Produk", "Harga (Rp)", "Persediaan"];
   const dataProducts = Products();
+
+  // get total product available
+  const [totalProduct, setTotalProduct] = useState(0);
+  useEffect(() => {
+    setTotalProduct(dataProducts.data?.reduce((acc, item) => acc + item.amount, 0))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   return (
     <main className="main-admin flex items-start gap-4">
@@ -100,7 +103,7 @@ const Production = () => {
       <div id="make-product" className="flex-none space-y-4">
         <ScoreCard
           title="Produk Tersedia"
-          result="32 buah"
+          result={`${totalProduct} produk`}
           desc="pada hari ini"
           flex
         />

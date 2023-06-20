@@ -1,6 +1,6 @@
 import React from "react";
 
-export const TableProduct = ({ title, dataHead, dataTable }) => {
+export const TableProduct = ({ title, dataTable }) => {
   return (
     <div className="card flex-auto">
       <div className="flex gap-5 mb-5">
@@ -12,9 +12,9 @@ export const TableProduct = ({ title, dataHead, dataTable }) => {
       <table className="table-auto w-full">
         <thead>
           <tr>
-            {dataHead?.map((item) => (
-              <th>{item}</th>
-            ))}
+            <th>Nama Produk</th>
+            <th>Harga (Rp)</th>
+            <th>Persediaan</th>
           </tr>
         </thead>
         <tbody>
@@ -47,9 +47,9 @@ export const TableMaterial = ({ title, dataHead, dataTable }) => {
       <table className="table-auto w-full">
         <thead>
           <tr>
-            {dataHead?.map((item) => (
-              <th>{item}</th>
-            ))}
+            <th>Nama Bahan</th>
+            <th>Minimum Persediaan</th>
+            <th>Tersedia</th>
           </tr>
         </thead>
         <tbody>
