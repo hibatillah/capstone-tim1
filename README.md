@@ -1,4 +1,4 @@
-# Website Supply Chain *Rotte*
+# Website Supply Chain [*Rotte Bakery*](https://rottebakery.com/)
 
 ## Tentang
 ***Capstone Project Tim 1 - 2SIC - Semester 4***
@@ -11,9 +11,9 @@ Capstone projek ini merupakan projek UAS semester 4 gabungan beberapa mata kulia
 * Visualisasi Data
 
 ## Tim 1
-* Astri Adinda Safira 21573010
-* M. Hibatillah Hasanin 2157301046
-* Muhammad Qalbi Husain 21573010
+* [Astri Adinda Safira](mailto:astri21si@mahasiswa.pcr.ac.id) 21573010
+* [M. Hibatillah Hasanin](mailto:hibatillah21si@mahasiswa.pcr.ac.id) 2157301046
+* [Muhammad Qalbi Husaini](mailto:qalbi21si@mahasiswa.pcr.ac.id) 21573010
 
 ## Teknologi 
 Projek dibangun dengan MERN stack:
