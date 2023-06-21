@@ -77,7 +77,7 @@ const Aside = ({ user }) => {
       </ul>
       <Link to="/auth" className="mt-auto">
         <div className="flex gap-3 items-center px-4 py-2 font-medium rounded-md text-grey-dark stroke-grey-dark active:text-tertiary/70 active:stroke-tertiary/70 dark:active:text-grey dark:active:stroke-grey hover:bg-grey-light dark:hover:bg-black-light">
-          <SignOut /> Sign Out
+          <SignOut /> Logout
         </div>
       </Link>
     </aside>
