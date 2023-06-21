@@ -6,7 +6,7 @@ import DarkMode  from './DarkMode';
 import Notifications  from './Notifications';
 import ToggleNotif  from './ToggleNotif';
 import { ScoreCard }  from './Card';
-import { TableProduct, TableMaterial }  from './Table';
+import { TableProduct, TableMaterial, TableOrder, TableRiwayat } from "./Table";
 
 export {
   Aside,
@@ -19,4 +19,6 @@ export {
   ScoreCard,
   TableProduct,
   TableMaterial,
+  TableOrder,
+  TableRiwayat
 }
