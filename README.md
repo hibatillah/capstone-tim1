@@ -34,25 +34,35 @@ npm i
 
 ## 🎯 Code
 ### Frontend
-Pada vscode, jalankan dengan buka terminal pada `client` lalu ketikkan perintah berikut
+Pada vscode, jalankan dengan buka terminal pada `client` lalu ketikkan perintah berikut, frontend dapat diakses melalui `localhost:3000`.
 ```
 npm start
 ```
-Frontend dapat diakses melalui `localhost:3000`
 
 ### Backend
 Terlebih dahulu download extension *mongodb* pada vscode, lalu connect link berikut ke extension mongodb
 ```
 mongodb+srv://hibatillah:habibsic@cluster0.yycq009.mongodb.net/
 ```
-Kemudian jalankan dengan buka terminal pada `server` dan ketikkan perintah berikut
+Kemudian jalankan backend dengan buka terminal pada `server` dan ketikkan perintah berikut, backend dapat diakses melalui `localhost:5000`.
 ```
 node server
 ```
-Backend dapat diakses melalui `localhost:5000
 
 ### Berpindah versi
-Dapat dilakukan perpindahan versi code yang telah ada, dengan klik tombol pada bagian kiri bawah vscode seperti berikut:<br>
-<img src='https://github.com/hibatillah/capstone-tim1/assets/99963638/ca793cf4-dc99-489d-ba51-b6dbbf59cfb8' alt='branch' width='70%'/>
-<br>Lalu memilih berbagai versi yang tersedia:<br>
-<img src='https://github.com/hibatillah/capstone-tim1/assets/99963638/71296fbc-0bf9-4f11-898b-38d3ac2ed3b6' alt='branch' width='70%'/>
+Dapat dilakukan perpindahan versi code yang telah ada, dengan klik tombol pada bagian kiri bawah vscode, lalu memilih berbagai versi yang tersedia:<br>
+<img src='https://github.com/hibatillah/capstone-tim1/assets/99963638/ca793cf4-dc99-489d-ba51-b6dbbf59cfb8' alt='branch' width='41%'/>
+<img src='https://github.com/hibatillah/capstone-tim1/assets/99963638/71296fbc-0bf9-4f11-898b-38d3ac2ed3b6' alt='branch' width='55%'/>
+
+### Simpan versi code
+Buka terminal dan ketikkan perintah berikut satu per satu, pada bagian `nama` dapat diubah dengan nama akun github anda dan `email@email.com` dapat diubah dengan akun email anda yang terhubung dengan github.
+```
+git config --global user.name nama
+git config --global user.email email@email.com
+```
+Setelah selesai coding, simpan perubahan code dengan memilih menu source control pada sidebar vscode, lalu masukkan pesan terkait perubahan apa saja yanng dilakukan dan kemudian tekan `commit`. Maka perubahan akan dikirimkan ke github sesuai versi yang digunakan sebelumnya.<br>
+<img src='https://github.com/hibatillah/capstone-tim1/assets/99963638/4f858a0b-5665-449d-805b-f838a06a7325' alt='branch' width='30%'/>
+<img src='https://github.com/hibatillah/capstone-tim1/assets/99963638/6f25afbd-9826-4db2-957e-56e47d749f08' alt='branch' width='31%'/>
+<br><br>
+
+> 🎉 happy coding! hopefully avoid errors 👀💯
