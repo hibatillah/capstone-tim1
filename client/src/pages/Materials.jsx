@@ -92,7 +92,7 @@ const Materials = () => {
   const dataProducts = Material();
 
   return (
-    <main className="main-admin flex items-start gap-4">
+    <main className="main-admin flex items-stretch gap-4">
       <TableMaterial
         title="Persediaan Bahan Baku"
         dataTable={dataProducts?.data}

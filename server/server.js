@@ -27,4 +27,4 @@ const material = require("./routes/material");
 const order = require("./routes/order");
 
 // use routes
-app.use([user, cashier, supplier, customer, product, material, order]);
+app.use([user, cashier, supplier, customer, product, material, order])

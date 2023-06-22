@@ -70,7 +70,7 @@ export const TableMaterial = ({ title, dataTable }) => {
   );
 };
 
-export const TableOrder = ({ title, dataTable }) => {
+export const TableOrder = ({ title, dataTable, selectOrder }) => {
   return (
     <div className="card flex-auto">
       <div className="flex gap-5 mb-5">
@@ -89,13 +89,29 @@ export const TableOrder = ({ title, dataTable }) => {
           {dataTable ? (
             dataTable.map((item) => (
               <tr>
-                <td>{item.name ? item.name : "-"}</td>
-                <td>{item.minimum ? item.minimum : "-"}</td>
-                <td>{item.amount ? item.amount : 0}</td>
+                <td>{item.customer ? item.customer : "-"}</td>
+                <td>{item.productPurchased ? item.productPurchased : "-"}</td>
+                <td onClick={() => selectOrder(item._id)}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    class="w-5 h-5 stroke-primary"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                    />
+                  </svg>
+                </td>
               </tr>
             ))
           ) : (
-            <tr>Bahan Baku Tidak tersedia</tr>
+            <tr>
+              <td>Pesanan tidak tersedia</td>
+            </tr>
           )}
         </tbody>
       </table>
@@ -105,7 +121,7 @@ export const TableOrder = ({ title, dataTable }) => {
 
 export const TableRiwayat = ({ title, dataTable }) => {
   return (
-    <div className="card flex-auto">
+    <div className="card flex-auto min-h-[300px]">
       <div className="flex gap-5 mb-5">
         <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light"></div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>

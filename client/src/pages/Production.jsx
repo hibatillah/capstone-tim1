@@ -92,7 +92,7 @@ const Production = () => {
   },[dataProducts])
 
   return (
-    <main className="main-admin flex items-start gap-4">
+    <main className="main-admin flex items-stretch gap-4">
       <TableProduct
         title="Persediaan Produk"
         dataTable={dataProducts?.data}
