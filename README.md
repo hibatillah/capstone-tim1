@@ -15,7 +15,7 @@ Jika belum mempunyai akun github, lakukan [pendaftaran akun](https://github.com/
 Setelah menginstal git ke device dan memiliki akun github, kemudian lakukan clone project. Pilih lokasi untuk menyimpan project di device anda, lalu klik kanan dan pilih `git bash here`.<br>
 <img src='https://github.com/hibatillah/capstone-tim1/assets/99963638/3e17dafe-81de-4392-9816-e0599762308f' alt='git bash' width='50%'/>
 
-Pada git bash ketikkan perintah berikut:
+Pada git bash ketikkan perintah berikut untuk cloning project ini:
 ```
 git clone https://github.com/hibatillah/capstone-tim1
 ```
