@@ -8,22 +8,53 @@ const Material = () => {
   return users;
 };
 
+const Suppliers = () => {
+  const { users } = GetData("http://localhost:5000/supplier");
+  console.log(users);
+  return users;
+};
+
 const AddMaterials = () => {
-  const [supplier, setSupplier] = useState("");
-  const [material, setMaterial] = useState("");
+  // post data
+  const [supplier, setSupplier] = useState("A");
+  const [material, setMaterial] = useState("Tepung");
   const [amount, setAmount] = useState();
+
+  const materialSupplier = {
+    A: ["Tepung", "Gula", "Telur", "Ragi"],
+    B: ["Susu Bubuk", "Susu Kental Manis", "Mentega"],
+    C: ["Coklat Batang", "Coklat Batang"],
+    Kemasan: ["Plastik", "Toples Kaca"],
+  };
+
+  const defaultMaterial = {
+    A: "Tepung",
+    B: "Susu Bubuk",
+    C: "Coklat Batang",
+    "Kemasan": "Plastik",
+  }
+  
+  useEffect(() => {
+    setMaterial(defaultMaterial[supplier]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[supplier])
+
+  useEffect(() => {
+    console.log("selected", { supplier, material, amount });
+  }, [amount, material, supplier]);
 
   const handleSubmit = async (target) => {
     target.preventDefault();
+    console.log("submitted", { supplier, material, amount });
   };
 
-  // get products
+  // get data
   const dataMaterials = Material();
+  const dataSuppliers = Suppliers();
 
-  // evaluate form changes
   useEffect(() => {
-    console.log({ material, dataMaterials });
-  }, [material, dataMaterials]);
+    console.log({ dataSuppliers, dataMaterials });
+  }, []);
 
   return (
     <div className="card">
@@ -33,7 +64,7 @@ const AddMaterials = () => {
       </div>
       <form
         onSubmit={handleSubmit}
-        className="grid grid-[auto_1fr] gap-5 mt-14"
+        className="grid grid-cols-[auto_1fr] gap-5 mt-14"
       >
         {/* select supplier */}
         <label htmlFor="product" className="self-center justify-self-end">
@@ -42,12 +73,12 @@ const AddMaterials = () => {
         <select
           name="product"
           id="product"
-          onChange={(e) => setMaterial(e.target.value)}
+          onChange={(e) => setSupplier(e.target.value)}
           className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark cursor-pointer dark:ring-black-light dark:ring-2"
         >
-          {dataMaterials ? (
-            dataMaterials.data.map((item) => (
-              <option value={item._id}>{item.name}</option>
+          {dataSuppliers ? (
+            dataSuppliers.data.map((item) => (
+              <option value={item.name}>{item.name}</option>
             ))
           ) : (
             <option value="0">Supplier tidak tersedia</option>
@@ -63,9 +94,9 @@ const AddMaterials = () => {
           onChange={(e) => setMaterial(e.target.value)}
           className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark cursor-pointer dark:ring-black-light dark:ring-2"
         >
-          {dataMaterials ? (
-            dataMaterials.data.map((item) => (
-              <option value={item._id}>{item.name}</option>
+          {supplier ? (
+            materialSupplier[supplier].map((material) => (
+              <option value={material}>{material}</option>
             ))
           ) : (
             <option value="0">Bahan tidak tersedia</option>

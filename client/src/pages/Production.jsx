@@ -20,7 +20,7 @@ const AddProduct = () => {
   // evaluate form changes
   useEffect(() => {
     console.log({ product });
-  }, [product]);
+  }, []);
 
   // get products
   const dataProducts = Products();

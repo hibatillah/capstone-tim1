@@ -36,7 +36,7 @@ export const TableProduct = ({ title, dataTable }) => {
 export const TableMaterial = ({ title, dataTable }) => {
   const satuanMaterial = {
     "Roti Tawar": "buah",
-    Telur: "butir",
+    "Telur": "butir",
     "Plasik Kemasan": "buah",
     "Selai Coklat": "toples",
     "Susu Kental Manis": "ml",
@@ -64,7 +64,7 @@ export const TableMaterial = ({ title, dataTable }) => {
               <tr>
                 <td>{item.name ? item.name : "-"}</td>
                 <td>{item.supplier ? item.supplier : "-"}</td>
-                <td className="flex items-center gap-2">
+                <td className="flex items-end gap-2">
                   {item.amount
                     ? !satuanMaterial[item.name]
                       ? item.amount / 1000
@@ -89,9 +89,7 @@ export const TableMaterial = ({ title, dataTable }) => {
                         </svg>
                         <div className="absolute -top-7 left-1/2 -translate-x-1/2 hidden peer-hover:block transition-all duration-300 w-[92px] py-1 rounded shadow-lg bg-primary text-white text-center text-xs">Stok minimum</div>
                       </>
-                    ) : (
-                      <></>
-                    )}
+                    ) : null}
                   </span>
                 </td>
                 <td>
@@ -152,9 +150,7 @@ export const TableOrder = ({ title, dataTable, selectOrder }) => {
               </tr>
             ))
           ) : (
-            <tr>
-              <td>Pesanan tidak tersedia</td>
-            </tr>
+            <tr>Pesanan tidak tersedia</tr>
           )}
         </tbody>
       </table>
