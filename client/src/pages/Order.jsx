@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { GetData } from "../Api";
+import { GetData } from "../api";
 import { TableOrder, TableRiwayat } from "../components";
-import axios from "axios";
 
 const Orders = () => {
   const { users } = GetData("http://localhost:5000/order");
@@ -16,17 +15,22 @@ const AddOrder = ({ selected }) => {
 
   // get products
   const dataOrders = Orders();
-  const selectedOrder = dataOrders?.data.filter((item) => item._id === selected);
+  const selectedOrder = dataOrders?.data.filter(
+    (item) => item._id === selected
+  );
+  useEffect(() => {
+    console.log("selectedOrder", selectedOrder);
+  }, [selectedOrder]);
 
   return (
-    <div className="card">
+    <div className="card flex-none">
       <div>
         <h3> Konfirmasi Pesanan </h3>
         <p> Lakukan Konfirmasi Pesanan oleh Customer </p>
       </div>
       <form
         onSubmit={handleSubmit}
-        className="grid grid-[auto_1fr] gap-5 mt-14"
+        className="grid grid-cols-[auto_1fr] gap-5 mt-14"
       >
         {/* customer*/}
         <label htmlFor="customer" className="self-center justify-self-end">
@@ -36,7 +40,7 @@ const AddOrder = ({ selected }) => {
           type="text"
           name="customer"
           id="customer"
-          placeholder="Nama Customer"
+          placeholder="Customer"
           value={selectedOrder?.customer}
           disabled
           className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark dark:ring-black-light dark:ring-2"
@@ -52,7 +56,7 @@ const AddOrder = ({ selected }) => {
           type="text"
           name="codeTransaction"
           id="codeTransaction"
-          placeholder="Kode Transaksi"
+          placeholder="Transaksi"
           value={selectedOrder?.codeTransaction}
           disabled
           className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark dark:ring-black-light dark:ring-2"
@@ -67,8 +71,8 @@ const AddOrder = ({ selected }) => {
           type="text"
           name="productPurchased"
           id="productPurchased"
-          placeholder="Produk Dibeli"
-          value={selectedOrder?.productPurchased.join(", ")}
+          placeholder="Produk"
+          value={selectedOrder?.productPurchased}
           disabled
           className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark dark:ring-black-light dark:ring-2"
         />
@@ -79,13 +83,14 @@ const AddOrder = ({ selected }) => {
           type="text"
           name="paymentType"
           id="paymentType"
-          placeholder="Metode Pembayaran"
+          placeholder="Pembayaran"
           value={selectedOrder?.paymentType}
           disabled
           className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark dark:ring-black-light dark:ring-2"
         />
-        <button type="submit" className="btn btn-primary w-fit col-start-2">
-          Buat Produk
+        <button className="btn btn-secondary">Batalkan Pesanan</button>
+        <button type="submit" className="btn btn-primary flex-initial">
+          Konfirmasi Pesanan
         </button>
       </form>
     </div>
