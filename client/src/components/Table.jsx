@@ -1,4 +1,5 @@
 import React from "react";
+import { formatCurrency } from "./format";
 
 export const TableProduct = ({ title, dataTable }) => {
   return (
@@ -19,8 +20,8 @@ export const TableProduct = ({ title, dataTable }) => {
           {dataTable ? (
             dataTable.map((item) => (
               <tr>
-                <td>{item.name ? item.name : "-"}</td>
-                <td>{item.price ? item.price : "-"}</td>
+                <td className="capitalize">{item.name ? item.name : "-"}</td>
+                <td>{item.price ? formatCurrency(item.price) : "-"}</td>
                 <td>{item.amount ? item.amount : 0}</td>
               </tr>
             ))
@@ -62,8 +63,8 @@ export const TableMaterial = ({ title, dataTable }) => {
           {dataTable ? (
             dataTable.map((item) => (
               <tr>
-                <td>{item.name ? item.name : "-"}</td>
-                <td>{item.supplier ? item.supplier : "-"}</td>
+                <td className="capitalize">{item.name ? item.name : "-"}</td>
+                <td className="capitalize">{item.supplier ? item.supplier : "-"}</td>
                 <td className="flex items-end gap-2">
                   {item.amount
                     ? !satuanMaterial[item.name]
@@ -130,8 +131,8 @@ export const TableOrder = ({ title, dataTable, selectOrder }) => {
           {dataTable ? (
             dataTable.map((item) => (
               <tr>
-                <td>{item.customer ? item.customer : "-"}</td>
-                <td>{item.productPurchased ? item.productPurchased : "-"}</td>
+                <td className="capitalize">{item.customer ? item.customer : "-"}</td>
+                <td className="capitalize">{item.productPurchased ? item.productPurchased : "-"}</td>
                 <td onClick={() => selectOrder(item._id)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -182,10 +183,12 @@ export const TableRiwayat = ({ title, dataTable }) => {
                 <td>{item.name ? item.name : "-"}</td>
                 <td>{item.minimum ? item.minimum : "-"}</td>
                 <td>{item.amount ? item.amount : 0}</td>
+                <td>{item.totalPrice ? formatCurrency(item.totalPrice) : 0}</td>
+                <td>{item.paymentType ? item.paymentType : 0}</td>
               </tr>
             ))
           ) : (
-            <tr>Bahan Baku Tidak tersedia</tr>
+            <tr>Riwayat pesanan tidak tersedia</tr>
           )}
         </tbody>
       </table>

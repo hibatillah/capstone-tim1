@@ -23,19 +23,12 @@ const AddMaterials = () => {
   const materialSupplier = {
     A: ["Tepung", "Gula", "Telur", "Ragi"],
     B: ["Susu Bubuk", "Susu Kental Manis", "Mentega"],
-    C: ["Coklat Batang", "Coklat Batang"],
+    C: ["Coklat Bubuk", "Coklat Batang"],
     Kemasan: ["Plastik", "Toples Kaca"],
   };
-
-  const defaultMaterial = {
-    A: "Tepung",
-    B: "Susu Bubuk",
-    C: "Coklat Batang",
-    "Kemasan": "Plastik",
-  }
   
   useEffect(() => {
-    setMaterial(defaultMaterial[supplier]);
+    setMaterial(materialSupplier[supplier][0]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[supplier])
 
@@ -43,7 +36,7 @@ const AddMaterials = () => {
     console.log("selected", { supplier, material, amount });
   }, [amount, material, supplier]);
 
-  const handleSubmit = async (target) => {
+  const handleSubmit = (target) => {
     target.preventDefault();
     console.log("submitted", { supplier, material, amount });
   };
@@ -54,7 +47,7 @@ const AddMaterials = () => {
 
   useEffect(() => {
     console.log({ dataSuppliers, dataMaterials });
-  }, []);
+  }, [dataMaterials, dataSuppliers]);
 
   return (
     <div className="card">
