@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Admin, Customer } from './User'
 
 const App = () => {
-  const [user, setUser] = useState("admin");
+  const [user, setUser] = useState("");
 
   return (
     <Router>
