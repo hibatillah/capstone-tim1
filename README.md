@@ -73,7 +73,7 @@ git pull
 Hal ini dilakukan untuk memastikan code sudah sama dengan versi yang tersimpan pada repo GitHub.
 
 ### Simpan versi code
-Buka terminal dan ketikkan perintah berikut satu per satu, pada bagian `nama` dapat diubah dengan nama akun github anda dan `email@email.com` dapat diubah dengan akun email anda yang terhubung dengan github.
+Buka terminal dan ketikkan perintah berikut satu per satu, pada bagian `nama` dapat diubah dengan nama akun github anda dan `email@email.com` dapat diubah dengan akun email anda yang terhubung dengan github. **Perintah dibawah ini cukup dilakukan sekali saja saat pertama kali setup**.
 ```
 git config --global user.name nama
 git config --global user.email email@email.com
