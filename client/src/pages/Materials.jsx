@@ -87,7 +87,7 @@ const AddMaterials = () => {
           onChange={(e) => setMaterial(e.target.value)}
           className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark cursor-pointer dark:ring-black-light dark:ring-2"
         >
-          {supplier ? (
+          {dataSuppliers ? (
             materialSupplier[supplier].map((material) => (
               <option value={material}>{material}</option>
             ))

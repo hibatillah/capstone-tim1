@@ -17,20 +17,21 @@ import {
 
 const ToggleNotif = () => {
   const [toggleNotif, setToggleNotif] = useState(false);
-  const handleNotif = () => {
-    setToggleNotif(!toggleNotif);
-  };
+  const handleNotif = () => setToggleNotif(!toggleNotif);
 
-  return { toggleNotif, handleNotif };
+  return {
+    toggleNotif,
+    handleNotif,
+  }
 };
 
 export const Admin = ({ user }) => {
   const { toggleNotif, handleNotif } = ToggleNotif();
 
   return (
-    <div className="relative w-full min-h-screen flex gap-x-5 py-3 pl-3 pr-5 bg-grey-light dark:bg-black-light font-outfit">
+    <div className="relative w-full h-screen flex gap-x-5 py-3 pl-3 bg-grey-light dark:bg-black-light font-outfit">
       <Aside user={user} />
-      <div className="flex-auto space-y-5">
+      <div className="h-[calc(100vh-1.5rem)] pr-3 flex-auto space-y-5 overflow-y-scroll">
         <Header handleNotif={handleNotif} />
         <Routes>
           <Route index element={<Dashboard />} />
@@ -54,9 +55,7 @@ export const Customer = ({ user }) => {
       <Navbar user={user} handleNotif={handleNotif} />
       {user === "customer" ? (
         <Notifications stateNotif={toggleNotif} handleNotif={handleNotif} />
-      ) : (
-        <></>
-      )}
+      ) : null}
       <Routes>
         <Route index element={<Home />} />
         <Route path="/menu" element={<Menu />} />
