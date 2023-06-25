@@ -48,8 +48,7 @@ recordRoutes.route("/supplier/add").post(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myObj = {
     name: req.body.name,
-    type: req.body.type,
-    productSupply: req.body.productSupply,
+    materials: req.body.materials,
   };
   db_connect
     .collection("suppliers")
@@ -73,8 +72,7 @@ recordRoutes.route("/supplier/update/:id").put(function (req, res) {
   let newValues = {
     $set: {
       name: req.body.name,
-      type: req.body.type,
-      productSupply: req.body.productSupply,
+      materials: req.body.materials,
     },
   };
   db_connect

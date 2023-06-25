@@ -31,9 +31,9 @@
   main::-webkit-scrollbar-thumb {
     @apply w-1 rounded
   }
-  main.main-admin {
+  /* main.main-admin {
     @apply max-h-[calc(100vh-116px)] overflow-y-scroll
-  }
+  } */
   main.main-customer {
     @apply min-h-[calc(100vh-112px)]
   }
@@ -51,15 +51,15 @@
     -webkit-appearance: none;
   }
   .card {
-    @apply p-5 rounded-lg bg-white dark:bg-black-dark
+    @apply p-5 rounded-lg bg-white dark:bg-black-dark;
   }
   .btn {
-    @apply rounded-md px-6 py-2 font-medium cursor-pointer
+    @apply rounded-md px-6 py-2 font-medium cursor-pointer capitalize;
   }
   .btn-primary {
-    @apply bg-primary text-white border border-primary active:ring-1 active:ring-primary active:ring-offset-2
+    @apply bg-primary text-white border border-primary active:ring-1 active:ring-primary active:ring-offset-2;
   }
   .btn-secondary {
-    @apply bg-inherit text-primary border border-primary active:bg-primary active:text-white
+    @apply bg-inherit text-primary border border-primary active:bg-primary active:text-white;
   }
 }
