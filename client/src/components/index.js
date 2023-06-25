@@ -5,7 +5,7 @@ import Footer  from './Footer';
 import DarkMode  from './DarkMode';
 import Notifications  from './Notifications';
 import ToggleNotif  from './ToggleNotif';
-import { ScoreCard }  from './Card';
+import { ScoreCard, MenuCard }  from './Card';
 import { TableProduct, TableMaterial }  from './Table';
 
 export {
@@ -19,4 +19,5 @@ export {
   ScoreCard,
   TableProduct,
   TableMaterial,
+  MenuCard,
 }
