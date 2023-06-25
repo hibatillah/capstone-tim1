@@ -68,7 +68,7 @@ Buka terminal dan ketikkan perintah berikut satu per satu, pada bagian `nama` da
 git config --global user.name nama
 git config --global user.email email@email.com
 ```
-Setelah selesai coding, simpan perubahan code dengan memilih menu source control pada sidebar vscode, lalu masukkan pesan terkait perubahan apa saja yanng dilakukan dan kemudian tekan `commit`. Maka perubahan akan dikirimkan ke github sesuai versi yang digunakan sebelumnya.<br>
+Setelah selesai coding, simpan perubahan code dengan memilih menu source control pada sidebar vscode, lalu masukkan pesan terkait **perubahan apa saja yang dilakukan** dan kemudian tekan `commit`. Maka perubahan akan dikirimkan ke github sesuai versi yang digunaka.<br>
 <img src='https://github.com/hibatillah/capstone-tim1/assets/99963638/4f858a0b-5665-449d-805b-f838a06a7325' alt='branch' width='30%'/>
 <img src='https://github.com/hibatillah/capstone-tim1/assets/99963638/6f25afbd-9826-4db2-957e-56e47d749f08' alt='branch' width='31%'/>
 <br><br>
