@@ -60,7 +60,17 @@ Pada project ini terdapat 4 versi pengembangan:
 * supplier-user → pengembangan bagian supplier
 * customer-user → pengembangan bagian customer
 
-Diharuskan **berpindah versi sesuai bagian yang akan dikembangkan** sebelum menyimpan versi code.
+Jika versi yang akan dikembangkan tidak tersedia seperti gambar diatas, buka terminal pada `capstone-tim1` lalu ketikkan:
+```
+git checkout supplier-user
+```
+supplier-user dapat disesuaikan dengan versi yang diinginkan
+
+Setelah berpindah sesuai versi yang akan dikembangkan, buka terminal pada `capstone-tim1` lalu ketikkan:
+```
+git pull
+```
+Hal ini dilakukan untuk memastikan code sudah sama dengan versi yang tersimpan pada repo GitHub.
 
 ### Simpan versi code
 Buka terminal dan ketikkan perintah berikut satu per satu, pada bagian `nama` dapat diubah dengan nama akun github anda dan `email@email.com` dapat diubah dengan akun email anda yang terhubung dengan github.
@@ -68,7 +78,9 @@ Buka terminal dan ketikkan perintah berikut satu per satu, pada bagian `nama` da
 git config --global user.name nama
 git config --global user.email email@email.com
 ```
-Setelah selesai coding, simpan perubahan code dengan memilih menu source control pada sidebar vscode, lalu masukkan pesan terkait **perubahan apa saja yang dilakukan** dan kemudian tekan `commit`. Maka perubahan akan dikirimkan ke github sesuai versi yang digunaka.<br>
+Setelah selesai coding, simpan perubahan code dengan memilih menu source control pada sidebar vscode, lalu masukkan pesan terkait **perubahan apa saja yang dilakukan** dan kemudian tekan `commit`. Maka perubahan akan dikirimkan ke github sesuai versi yang digunakan.<br>
+
+***Diharuskan berpindah versi sesuai bagian yang akan dikembangkan sebelum menyimpan versi code.***<br>
 <img src='https://github.com/hibatillah/capstone-tim1/assets/99963638/4f858a0b-5665-449d-805b-f838a06a7325' alt='branch' width='30%'/>
 <img src='https://github.com/hibatillah/capstone-tim1/assets/99963638/6f25afbd-9826-4db2-957e-56e47d749f08' alt='branch' width='31%'/>
 <br><br>
