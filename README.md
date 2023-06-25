@@ -54,6 +54,14 @@ Dapat dilakukan perpindahan versi code yang telah ada, dengan klik tombol pada b
 <img src='https://github.com/hibatillah/capstone-tim1/assets/99963638/ca793cf4-dc99-489d-ba51-b6dbbf59cfb8' alt='branch' width='41%'/>
 <img src='https://github.com/hibatillah/capstone-tim1/assets/99963638/71296fbc-0bf9-4f11-898b-38d3ac2ed3b6' alt='branch' width='55%'/>
 
+Pada project ini terdapat 4 versi pengembangan:
+* master → sebagai versi utama
+* manufactur-user → pengembangan bagian manufaturer
+* supplier-user → pengembangan bagian supplier
+* customer-user → pengembangan bagian customer
+
+Diharuskan **berpindah versi sesuai bagian yang akan dikembangkan** sebelum menyimpan versi code.
+
 ### Simpan versi code
 Buka terminal dan ketikkan perintah berikut satu per satu, pada bagian `nama` dapat diubah dengan nama akun github anda dan `email@email.com` dapat diubah dengan akun email anda yang terhubung dengan github.
 ```
