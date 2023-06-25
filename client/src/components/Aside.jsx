@@ -19,7 +19,7 @@ const Aside = ({ user }) => {
   useEffect(() => {
     setActiveUser(user === "admin" ? menuAdmin : menuSupplier);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeUser, user]);
+  }, []);
 
   return (
     <aside className="flex-none flex flex-col justify-start items-center gap-20 px-5 pt-10 pb-8 w-[15%] max-h-[calc(100vh-1.5rem)] bg-white rounded-xl dark:bg-black-dark">
@@ -51,8 +51,6 @@ const Aside = ({ user }) => {
                           return <Box />;
                         case "Pesanan":
                           return <Note />;
-                        case "Sign Out":
-                          return <SignOut />;
                         default:
                           return null;
                       }
@@ -63,8 +61,6 @@ const Aside = ({ user }) => {
                           return <Square />;
                         case "Suplai":
                           return <Box />;
-                        case "Sign Out":
-                          return <SignOut />;
                         default:
                           return null;
                       }

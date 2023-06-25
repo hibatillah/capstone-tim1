@@ -31,9 +31,9 @@
   main::-webkit-scrollbar-thumb {
     @apply w-1 rounded
   }
-  main.main-admin {
+  /* main.main-admin {
     @apply max-h-[calc(100vh-116px)] overflow-y-scroll
-  }
+  } */
   main.main-customer {
     @apply min-h-[calc(100vh-112px)]
   }

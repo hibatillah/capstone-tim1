@@ -48,8 +48,6 @@ recordRoutes.route("/order/product/add").post(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myObj = {
     dateTime: req.body.dateTime,
-    codeTransaction: req.body.codeTransaction,
-    cashier: req.body.cashier,
     customer: req.body.customer,
     productPurchased: req.body.productPurchased,
     amount: req.body.amount,
@@ -79,8 +77,6 @@ recordRoutes.route("/order/product/update/:id").put(function (req, res) {
   let newValues = {
     $set: {
       dateTime: req.body.dateTime,
-      codeTransaction: req.body.codeTransaction,
-      cashier: req.body.cashier,
       customer: req.body.customer,
       productPurchased: req.body.productPurchased,
       amount: req.body.amount,
