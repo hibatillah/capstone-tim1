@@ -6,10 +6,10 @@ const ObjectId = require("mongodb").ObjectId;
 recordRoutes.use(express.urlencoded({ extended: true }));
 
 // menampilkan data
-recordRoutes.route("/order").get(function (req, res) {
+recordRoutes.route("/order/material").get(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   db_connect
-    .collection("orders")
+    .collection("materialsOrders")
     .find({})
     .toArray(function (err, result) {
       if (err) throw err;
@@ -25,11 +25,11 @@ recordRoutes.route("/order").get(function (req, res) {
 });
 
 // menampilkan data by id
-recordRoutes.route("/order/:id").get(function (req, res) {
+recordRoutes.route("/order/material/:id").get(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   db_connect
-    .collection("orders")
+    .collection("materialsOrders")
     .findOne(myquery, function (err, result) {
       if (err) throw err;
       res.json(result);
@@ -44,21 +44,18 @@ recordRoutes.route("/order/:id").get(function (req, res) {
 });
 
 // menambahkan data
-recordRoutes.route("/order/add").post(function (req, res) {
+recordRoutes.route("/order/material/add").post(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myObj = {
     dateTime: req.body.dateTime,
     codeTransaction: req.body.codeTransaction,
     cashier: req.body.cashier,
-    customer: req.body.customer,
-    productPurchased: req.body.productPurchased,
+    materialPurchased: req.body.materialPurchased,
     amount: req.body.amount,
     totalPrice: req.body.totalPrice,
-    paymentType: req.body.paymentType,
-    description: req.body.description,
   };
   db_connect
-    .collection("orders")
+    .collection("materialsOrders")
     .insertOne(myObj, function (err, result) {
       if (err) throw err;
       res.json(result);
@@ -73,7 +70,7 @@ recordRoutes.route("/order/add").post(function (req, res) {
 });
 
 // mengupdate data
-recordRoutes.route("/order/update/:id").put(function (req, res) {
+recordRoutes.route("/order/material/update/:id").put(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   let newValues = {
@@ -81,16 +78,13 @@ recordRoutes.route("/order/update/:id").put(function (req, res) {
       dateTime: req.body.dateTime,
       codeTransaction: req.body.codeTransaction,
       cashier: req.body.cashier,
-      customer: req.body.customer,
-      productPurchased: req.body.productPurchased,
+      materialPurchased: req.body.materialPurchased,
       amount: req.body.amount,
       totalPrice: req.body.totalPrice,
-      paymentType: req.body.paymentType,
-      description: req.body.description,
     },
   };
   db_connect
-    .collection("orders")
+    .collection("materialsOrders")
     .updateOne(myquery, newValues, function (err, result) {
       if (err) throw err;
       console.log("berhasil update order");
@@ -106,11 +100,11 @@ recordRoutes.route("/order/update/:id").put(function (req, res) {
 });
 
 // menghapus data
-recordRoutes.route("/order/delete/:id").delete(function (req, res) {
+recordRoutes.route("/order/material/delete/:id").delete(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myquery = { _id: new ObjectId(req.params.id) };
   db_connect
-    .collection("orders")
+    .collection("materialsOrders")
     .deleteOne(myquery, function (err, result) {
       if (err) throw err;
       console.log("order berhasil dihapus");

@@ -148,11 +148,8 @@ export const TableSupply = ({ title, dataTable }) => {
       <table className="table-auto w-full">
         <thead>
           <tr>
-            <th>Nama Customer</th>
             <th>Item</th>
             <th>Jumlah</th>
-            <th>Total (Rp)</th>
-            <th>Pembayaran</th>
           </tr>
         </thead>
         <tbody>
@@ -160,12 +157,11 @@ export const TableSupply = ({ title, dataTable }) => {
             dataTable.map((item) => (
               <tr>
                 <td>{item.name ? item.name : "-"}</td>
-                <td>{item.minimum ? item.minimum : "-"}</td>
                 <td>{item.amount ? item.amount : 0}</td>
               </tr>
             ))
           ) : (
-            <tr>Bahan Baku Tidak tersedia</tr>
+            <tr>Pesanan Bahan Baku Tidak tersedia</tr>
           )}
         </tbody>
       </table>

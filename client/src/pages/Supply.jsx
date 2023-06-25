@@ -1,31 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { GetData } from "../Api";
 import { TableSupply } from "../components";
-import axios from "axios";
 
-const Supply = () => {
+const Suppliers = () => {
   const { users } = GetData("http://localhost:5000/product");
   console.log(users);
   return users;
 };
 
 const AddSupplier = () => {
-  const [supply, setSupplier] = useState("");
+  const [supply, setSupply] = useState("");
   const [amount, setAmount] = useState();
 
   const handleSubmit = async (target) => {
     target.preventDefault();
-    try {
-      const response = await axios.post(
-        `http://localhost:5000/product/update/:${supply}`,
-        {
-          amount: amount,
-        }
-      );
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
   };
 
   // evaluate form changes
@@ -34,7 +22,7 @@ const AddSupplier = () => {
   }, [supply]);
 
   // get products
-  const dataSupply = Supply();
+  const dataSuppliers = Suppliers();
 
   return (
     <div className="card">
@@ -98,17 +86,16 @@ const AddSupplier = () => {
 };
 
 const Supply = () => {
-  const dataSupplier = supply();
+  const dataSuppliers = Suppliers();
 
   return (
     <main className="main-admin space-y-6">
       <div className="flex items-start gap-4">
-        <Tablesupply title="Pesanan Berlangsung" dataTable={dataOrder?.data} />
+        <TableSupply title="Pesanan Berlangsung" dataTable={dataSuppliers?.data} />
         <div id="make-supply" className="flex-none space-y-4">
-          <AddSupply />
+          <AddSupplier />
         </div>
       </div>
-      <TableRiwayat title="Riwayat Pesanan" dataTable={dataOrder?.data} />
     </main>
   );
 };
