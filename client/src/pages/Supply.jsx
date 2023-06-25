@@ -42,7 +42,7 @@ const AddSupplier = () => {
           type="text"
           name="supply"
           id="supply"
-          className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark dark:ring-black-light dark:ring-2"
+          className="form-input"
         />
         {/* amount */}
         <label htmlFor="numberOrder" className="self-center justify-self-end">
@@ -54,7 +54,7 @@ const AddSupplier = () => {
           id="numberSupplier"
           placeholder="0"
           onChange={(e) => setAmount(e.target.value)}
-          className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark dark:ring-black-light dark:ring-2"
+          className="form-input"
         />
         <label htmlFor="supply" className="self-center justify-self-end">
           Produk Dibeli
@@ -63,7 +63,7 @@ const AddSupplier = () => {
           type="text"
           name="supply"
           id="supply"
-          className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark dark:ring-black-light dark:ring-2"
+          className="form-input"
           disabled
         />
         <label htmlFor="supply" className="self-center justify-self-end">

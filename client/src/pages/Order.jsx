@@ -43,7 +43,7 @@ const AddOrder = ({ selected }) => {
           placeholder="Customer"
           value={selectedOrder?.customer}
           disabled
-          className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark dark:ring-black-light dark:ring-2"
+          className="form-input"
         />
         {/* amount */}
         <label
@@ -59,7 +59,7 @@ const AddOrder = ({ selected }) => {
           placeholder="Transaksi"
           value={selectedOrder?.codeTransaction}
           disabled
-          className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark dark:ring-black-light dark:ring-2"
+          className="form-input"
         />
         <label
           htmlFor="productPurchased"
@@ -74,7 +74,7 @@ const AddOrder = ({ selected }) => {
           placeholder="Produk"
           value={selectedOrder?.productPurchased}
           disabled
-          className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark dark:ring-black-light dark:ring-2"
+          className="form-input"
         />
         <label htmlFor="paymentType" className="self-center justify-self-end">
           Metode Pembayaran
@@ -85,8 +85,8 @@ const AddOrder = ({ selected }) => {
           id="paymentType"
           placeholder="Pembayaran"
           value={selectedOrder?.paymentType}
+          className="form-input"
           disabled
-          className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark dark:ring-black-light dark:ring-2"
         />
         <button className="btn btn-secondary">Batalkan Pesanan</button>
         <button type="submit" className="btn btn-primary flex-initial">

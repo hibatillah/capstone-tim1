@@ -67,7 +67,7 @@ const AddMaterials = () => {
           name="product"
           id="product"
           onChange={(e) => setSupplier(e.target.value)}
-          className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark cursor-pointer dark:ring-black-light dark:ring-2"
+          className="form-input"
         >
           {dataSuppliers ? (
             dataSuppliers.data.map((item) => (
@@ -78,14 +78,14 @@ const AddMaterials = () => {
           )}
         </select>
         {/* select material */}
-        <label htmlFor="product" className="self-center justify-self-end">
+        <label htmlFor="material" className="self-center justify-self-end">
           Pilih Bahan
         </label>
         <select
-          name="product"
-          id="product"
+          name="material"
+          id="material"
           onChange={(e) => setMaterial(e.target.value)}
-          className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark cursor-pointer dark:ring-black-light dark:ring-2"
+          className="form-input"
         >
           {dataSuppliers ? (
             materialSupplier[supplier].map((material) => (
@@ -96,16 +96,17 @@ const AddMaterials = () => {
           )}
         </select>
         {/* material amount */}
-        <label htmlFor="numberProduct" className="self-center justify-self-end">
+        <label htmlFor="amount" className="self-center justify-self-end">
           Jumlah Pemesanan
         </label>
         <input
           type="number"
-          name="numberProduct"
-          id="numberProduct"
+          name="amount"
+          id="amount"
           placeholder="0"
           onChange={(e) => setAmount(e.target.value)}
-          className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark dark:ring-black-light dark:ring-2"
+          className="form-input"
+          required
         />
         {/* submit */}
         <button type="submit" className="btn btn-primary w-fit col-start-2">
