@@ -75,8 +75,8 @@ Hal ini dilakukan untuk memastikan code sudah sama dengan versi yang tersimpan p
 ### Simpan versi code
 Buka terminal dan ketikkan perintah berikut satu per satu, pada bagian `nama` dapat diubah dengan nama akun github anda dan `email@email.com` dapat diubah dengan akun email anda yang terhubung dengan github. **Perintah dibawah ini cukup dilakukan sekali saja saat pertama kali setup**.
 ```
-git config --global user.name nama
-git config --global user.email email@email.com
+git config --global user.name "nama"
+git config --global user.email "email@email.com"
 ```
 Setelah selesai coding, simpan perubahan code dengan memilih menu source control pada sidebar vscode, lalu masukkan pesan terkait **perubahan apa saja yang dilakukan** dan kemudian tekan `commit`. Maka perubahan akan dikirimkan ke github sesuai versi yang digunakan.<br>
 
