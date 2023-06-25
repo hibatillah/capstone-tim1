@@ -51,8 +51,6 @@ const Aside = ({ user }) => {
                           return <Box />;
                         case "Pesanan":
                           return <Note />;
-                        case "Sign Out":
-                          return <SignOut />;
                         default:
                           return null;
                       }
@@ -63,8 +61,6 @@ const Aside = ({ user }) => {
                           return <Square />;
                         case "Suplai":
                           return <Box />;
-                        case "Sign Out":
-                          return <SignOut />;
                         default:
                           return null;
                       }
