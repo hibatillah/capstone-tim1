@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GetData } from "../api";
+import { GetData } from "../Api";
 import { TableProduct, ScoreCard } from "../components";
 
 const Products = () => {
