@@ -22,3 +22,6 @@ Projek dibangun dengan MERN stack:
 * ReactJS v18.2.0
 * NodeJS v18.12.1
 * TailwindCSS v3.3.2
+
+### Activity
+![Alt](https://repobeats.axiom.co/api/embed/634c61fd926841919e7af2101fc17edfe356c9a8.svg "Repobeats analytics image")
