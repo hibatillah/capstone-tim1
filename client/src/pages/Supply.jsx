@@ -64,7 +64,6 @@ const AddSupplier = () => {
           name="supply"
           id="supply"
           className="form-input"
-          disabled
         />
         <label htmlFor="supply" className="self-center justify-self-end">
           Metode Pembayaran

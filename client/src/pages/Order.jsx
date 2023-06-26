@@ -42,8 +42,8 @@ const AddOrder = ({ selected }) => {
           id="customer"
           placeholder="Customer"
           value={selectedOrder?.customer}
-          disabled
           className="form-input"
+          disabled
         />
         {/* amount */}
         <label
@@ -58,8 +58,8 @@ const AddOrder = ({ selected }) => {
           id="codeTransaction"
           placeholder="Transaksi"
           value={selectedOrder?.codeTransaction}
-          disabled
           className="form-input"
+          disabled
         />
         <label
           htmlFor="productPurchased"
@@ -73,8 +73,8 @@ const AddOrder = ({ selected }) => {
           id="productPurchased"
           placeholder="Produk"
           value={selectedOrder?.productPurchased}
-          disabled
           className="form-input"
+          disabled
         />
         <label htmlFor="paymentType" className="self-center justify-self-end">
           Metode Pembayaran
