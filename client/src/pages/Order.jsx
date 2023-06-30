@@ -80,7 +80,7 @@ const AddOrder = ({ selected, data }) => {
           htmlFor="totalPrice"
           className="self-center justify-self-end"
         >
-          Total
+          Total Harga
         </label>
         <input
           type="text"

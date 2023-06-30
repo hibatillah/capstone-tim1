@@ -4,7 +4,7 @@ import { Admin, Customer } from './User'
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(true); 
-  const [user, setUser] = useState("customer");
+  const [user, setUser] = useState("admin");
 
   const handleLogin = () => setIsLogin(!isLogin); 
   const handleUser = (id) => setUser(id);

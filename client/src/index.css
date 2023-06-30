@@ -61,7 +61,7 @@
   }
   /* button */
   .btn {
-    @apply rounded-md px-6 py-2 font-medium cursor-pointer capitalize tracking-wide;
+    @apply rounded-md px-6 py-2 font-medium cursor-pointer capitalize tracking-wide select-none;
   }
   .btn-primary {
     @apply bg-primary text-white border border-primary active:ring-1 active:ring-primary active:ring-offset-2;

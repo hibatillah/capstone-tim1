@@ -1,4 +1,4 @@
-import boxes from './boxes.svg'
+import boxes from './boxes.png'
 import bread from './bread.svg'
 import breadSlice from './bread-slice.svg'
 import chartGrow from './chart-grow.svg'
@@ -9,14 +9,16 @@ import dollarMessage from './dollar-message.svg'
 import hand from './hand.svg'
 import info from './info.svg'
 import layers from './layers.svg'
-import layout from './layout.svg'
+import layout from './layout.png'
 import rocket from './rocket.svg'
 import clear from './clear.svg'
 import github from './github.svg'
+import list from './list.png'
+import listCheck from './list-check.png'
 
-
-// eslint-disable-next-line import/no-anonymous-default-export
 export {
+  list,
+  listCheck,
   boxes,
   bread,
   breadSlice,

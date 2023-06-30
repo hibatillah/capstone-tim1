@@ -26,6 +26,14 @@ const Dashboard = () => {
           />
         ))}
       </section>
+      <section className="flex items-stretch gap-4 h-[214px]">
+        <div className="card flex-auto"></div>
+        <div className="card flex-none w-1/3"></div>
+      </section>
+      <section className="flex items-stretch gap-4 h-52">
+        <div className="card flex-auto"></div>
+        <div className="card flex-none w-1/3"></div>
+      </section>
     </>
   );
 };

@@ -43,7 +43,7 @@ const AddOrder = ({ selected, data }) => {
           placeholder="Bahan"
           value={selectedOrder?.materialPurchased}
           className="form-input capitalize"
-          disabled
+          readOnly
         />
         {/* jumlah pesanan */}
         <label
@@ -59,7 +59,7 @@ const AddOrder = ({ selected, data }) => {
           placeholder="Pesanan"
           value={selectedOrder?.amount}
           className="form-input"
-          disabled
+          readOnly
         />
         {/* jumlah supply */}
         <label htmlFor="supply" className="self-center justify-self-end">

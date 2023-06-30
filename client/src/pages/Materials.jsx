@@ -50,14 +50,14 @@ const AddMaterials = () => {
   }, [dataMaterials, dataSuppliers]);
 
   return (
-    <div className="card">
+    <div className="card flex flex-col">
       <div>
         <h3>Pemesanan Bahan Baku</h3>
         <p>Pilih untuk melakukan pemesanan persediaan bahan baku.</p>
       </div>
       <form
         onSubmit={handleSubmit}
-        className="grid grid-cols-[auto_1fr] gap-5 mt-14"
+        className={`grid grid-cols-[auto_1fr] gap-5 ${dataMaterials? 'mt-auto mb-10' : 'mt-14'}`}
       >
         {/* select supplier */}
         <label htmlFor="product" className="self-center justify-self-end">
