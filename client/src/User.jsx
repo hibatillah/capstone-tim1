@@ -48,7 +48,7 @@ export const Admin = ({ user }) => {
   );
 };
 
-export const Customer = ({ user }) => {
+export const Customer = ({ user, handleUser,handleLogin }) => {
   const { toggleNotif, handleNotif } = ToggleNotif();
 
   return (
@@ -65,7 +65,7 @@ export const Customer = ({ user }) => {
           element={<CustomerOrder />}
         />
         <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login handleUser={handleUser} handleLogin={handleLogin} />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Unknown />} />
       </Routes>

@@ -6,10 +6,13 @@ const App = () => {
   const [isLogin, setIsLogin] = useState(false); 
   const [user, setUser] = useState("customer");
 
+  const handleLogin = () => setIsLogin(!isLogin); 
+  const handleUser = (id) => setUser(id);
+
   return (
     <Router>
       {!isLogin ? (
-        <Customer />
+        <Customer handleLogin={handleLogin} handleUser={handleUser} />
       ) : user === "admin" || user === "supplier" ? (
         <Admin user={user} />
       ) : (
