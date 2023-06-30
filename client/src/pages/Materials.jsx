@@ -26,11 +26,11 @@ const AddMaterials = () => {
     C: ["Coklat Bubuk", "Coklat Batang"],
     Kemasan: ["Plastik", "Toples Kaca"],
   };
-  
+
   useEffect(() => {
     setMaterial(materialSupplier[supplier][0]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[supplier])
+  }, [supplier]);
 
   useEffect(() => {
     console.log("selected", { supplier, material, amount });
@@ -126,9 +126,7 @@ const Materials = () => {
         title="Persediaan Bahan Baku"
         dataTable={dataProducts?.data}
       />
-      <div id="make-product" className="flex-none space-y-4">
-        <AddMaterials />
-      </div>
+      <AddMaterials />
     </main>
   );
 };

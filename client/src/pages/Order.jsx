@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { GetData } from "../Api";
-import { TableOrder, TableRiwayat } from "../components";
+import { TableOrder, TableRiwayatProducts } from "../components";
 import { formatCurrency } from "../components/format";
 
 const Orders = () => {
@@ -120,7 +120,7 @@ const Order = () => {
           <AddOrder data={pendingOrders} selected={selectedOrder} />
         </div>
       </div>
-      <TableRiwayat title="Riwayat Pesanan" dataTable={finishOrders} />
+      <TableRiwayatProducts title="Riwayat Pesanan" dataTable={finishOrders} />
     </main>
   );
 };

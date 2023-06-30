@@ -38,10 +38,10 @@ export const TableMaterial = ({ title, dataTable }) => {
   const satuanMaterial = {
     "Roti Tawar": "buah",
     "Telur": "butir",
-    "Plasik Kemasan": "buah",
+    "plastik": "lembar",
     "Selai Coklat": "toples",
     "Susu Kental Manis": "ml",
-    "Toples Kaca": "buah",
+    "toples kaca": "buah",
   };
 
   return (
@@ -144,7 +144,7 @@ export const TableOrder = ({ title, dataTable, selectOrder }) => {
   );
 };
 
-export const TableRiwayat = ({ title, dataTable }) => {
+export const TableRiwayatProducts = ({ title, dataTable }) => {
   return (
     <div className="card flex-auto min-h-[300px]">
       <div className="flex gap-5 mb-5">
@@ -197,20 +197,63 @@ export const TableSupply = ({ title, dataTable }) => {
       <table className="table-auto w-full">
         <thead>
           <tr>
-            <th>Item</th>
+            <th>Nama Bahan Baku</th>
             <th>Jumlah</th>
+            <th>Admin</th>
           </tr>
         </thead>
         <tbody>
           {dataTable ? (
             dataTable.map((item) => (
               <tr>
-                <td>{item.name ? item.name : "-"}</td>
+                <td className="capitalize">
+                  {item.materialPurchased
+                    ? item.materialPurchased.join(", ")
+                    : "-"}
+                </td>
                 <td>{item.amount ? item.amount : 0}</td>
+                <td className="capitalize">{item.admin ? item.admin : "-"}</td>
               </tr>
             ))
           ) : (
             <tr>Pesanan Bahan Baku Tidak tersedia</tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export const TableRiwayatSupply = ({ title, dataTable }) => {
+  return (
+    <div className="card flex-auto min-h-[300px]">
+      <div className="flex gap-5 mb-5">
+        <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light"></div>
+        <h2 className="text-primary dark:text-primary-light">{title}</h2>
+      </div>
+      <table className="table-auto w-full">
+        <thead>
+          <tr>
+            <th>Nama Bahan Baku</th>
+            <th>Jumlah Pesanan</th>
+            <th>Jumlah Supply</th>
+            <th>Admin</th>
+          </tr>
+        </thead>
+        <tbody>
+          {dataTable ? (
+            dataTable.map((item) => (
+              <tr>
+                <td className="capitalize">
+                  {item.materialPurchased ? item.materialPurchased.join(", ") : "-"}
+                </td>
+                <td>{item.amount ? item.amount : 0}</td>
+                <td>{item.supply ? item.supply : 0}</td>
+                <td className="capitalize">{item.admin ? item.admin : '-'}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>Riwayat pesanan tidak tersedia</tr>
           )}
         </tbody>
       </table>

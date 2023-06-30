@@ -1,83 +1,80 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { GetData } from "../Api";
-import { TableSupply } from "../components";
+import { TableSupply, TableRiwayatSupply } from "../components";
 
-const Suppliers = () => {
-  const { users } = GetData("http://localhost:5000/product");
+const Supplies = () => {
+  const { users } = GetData("http://localhost:5000/order/material");
   console.log(users);
   return users;
 };
 
-const AddSupplier = () => {
-  const [supply, setSupply] = useState("");
-  const [amount, setAmount] = useState();
+const AddOrder = ({ selected, data }) => {
+  // get current order
+  const [selectedOrder, setSelectedOrder] = useState();
+  useEffect(() => {
+    if (selected) setSelectedOrder(data[selected]);
+    console.log("selected order", selectedOrder);
+  }, [selected]);
 
-  const handleSubmit = async (target) => {
+  // confirm order
+  const handleSubmit = (target) => {
     target.preventDefault();
   };
 
-  // evaluate form changes
-  useEffect(() => {
-    console.log({ supply });
-  }, [supply]);
-
-  // get products
-  const dataSuppliers = Suppliers();
-
   return (
-    <div className="card">
+    <div className="card flex-none">
       <div>
-        <h3> Konfirmasi Pesanan </h3>
-        <p> Lakukan Konfirmasi Pesanan oleh Customer </p>
+        <h3>Konfirmasi Pesanan</h3>
+        <p>Lakukan Konfirmasi Pesanan oleh Customer</p>
       </div>
       <form
         onSubmit={handleSubmit}
-        className="grid grid-[auto_1fr] gap-5 mt-14"
+        className="grid grid-cols-[auto_1fr] gap-5 mt-14"
       >
-        {/* select Order*/}
-        <label htmlFor="supply" className="self-center justify-self-end">
-          Nama Customer
+        {/* bahan*/}
+        <label htmlFor="bahan" className="self-center justify-self-end">
+          Nama Bahan Baku
         </label>
         <input
           type="text"
-          name="supply"
-          id="supply"
-          className="form-input"
+          name="bahan"
+          id="bahan"
+          placeholder="Bahan"
+          value={selectedOrder?.materialPurchased}
+          className="form-input capitalize"
+          disabled
         />
-        {/* amount */}
-        <label htmlFor="numberOrder" className="self-center justify-self-end">
-          Kode Transaksi
+        {/* jumlah pesanan */}
+        <label
+          htmlFor="amount"
+          className="self-center justify-self-end"
+        >
+          Jumlah Pesanan
+        </label>
+        <input
+          type="text"
+          name="amount"
+          id="amount"
+          placeholder="Pesanan"
+          value={selectedOrder?.amount}
+          className="form-input"
+          disabled
+        />
+        {/* jumlah supply */}
+        <label htmlFor="supply" className="self-center justify-self-end">
+          Jumlah Supply
         </label>
         <input
           type="number"
-          name="numberSupplier"
-          id="numberSupplier"
-          placeholder="0"
-          onChange={(e) => setAmount(e.target.value)}
-          className="form-input"
-        />
-        <label htmlFor="supply" className="self-center justify-self-end">
-          Produk Dibeli
-        </label>
-        <input
-          type="text"
           name="supply"
           id="supply"
+          placeholder="Supply"
           className="form-input"
         />
-        <label htmlFor="supply" className="self-center justify-self-end">
-          Metode Pembayaran
-        </label>
-        <select
-          name="supply"
-          id="supply"
-          className="flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark cursor-pointer dark:ring-black-light dark:ring-2"
-        >
-          <option value="Tunai">Tunai</option>
-          <option value="Debit">Debit</option>
-        </select>
-        <button type="submit" className="btn btn-primary w-fit col-start-2">
-          Buat Produk
+        <button className="btn btn-secondary">Batalkan Pesanan</button>
+        <button type="submit" className="btn btn-primary flex-initial">
+          Konfirmasi Pesanan
         </button>
       </form>
     </div>
@@ -85,16 +82,30 @@ const AddSupplier = () => {
 };
 
 const Supply = () => {
-  const dataSuppliers = Suppliers();
+  const dataSupply = Supplies();
+  const [selectedOrder, setSelectedOrder] = useState();
+  const selectOrder = (id) => setSelectedOrder(id);
+
+  const pendingOrders = dataSupply?.data.filter(
+    (item) => item.status === "pending"
+  );
+  const finishOrders = dataSupply?.data.filter(
+    (item) => item.status === "finish"
+  );
 
   return (
-    <main className="main-admin space-y-6">
-      <div className="flex items-start gap-4">
-        <TableSupply title="Pesanan Berlangsung" dataTable={dataSuppliers?.data} />
-        <div id="make-supply" className="flex-none space-y-4">
-          <AddSupplier />
+    <main className="main-admin space-y-4">
+      <div className="flex items-stretch gap-4">
+        <TableSupply
+          title="Pesanan Berlangsung"
+          dataTable={pendingOrders}
+          selectOrder={selectOrder}
+        />
+        <div id="make-order" className="flex-none space-y-4">
+          <AddOrder data={pendingOrders} selected={selectedOrder} />
         </div>
       </div>
+      <TableRiwayatSupply title="Riwayat Pesanan Bahan Baku" dataTable={finishOrders} />
     </main>
   );
 };
