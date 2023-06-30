@@ -15,10 +15,12 @@ import clear from './clear.svg'
 import github from './github.svg'
 import list from './list.png'
 import listCheck from './list-check.png'
+import crown from './crown.png'
 
 export {
   list,
   listCheck,
+  crown,
   boxes,
   bread,
   breadSlice,

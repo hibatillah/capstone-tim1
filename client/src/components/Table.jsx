@@ -7,7 +7,7 @@ export const TableProduct = ({ title, dataTable }) => {
     <div className="card flex-auto">
       <div className="flex gap-5 mb-5">
         <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center">
-          <img src={layout} alt="boxes" className="w-4 h-4" />
+          <img src={layout} alt="icon" className="w-4 h-4" />
         </div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>
       </div>
@@ -20,17 +20,13 @@ export const TableProduct = ({ title, dataTable }) => {
           </tr>
         </thead>
         <tbody>
-          {dataTable ? (
-            dataTable.map((item) => (
-              <tr>
-                <td className="capitalize">{item.name ? item.name : "-"}</td>
-                <td>{item.price ? formatCurrency(item.price) : "-"}</td>
-                <td>{item.amount ? item.amount : 0}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>Produk Tidak tersedia</tr>
-          )}
+          {dataTable?.map((item) => (
+            <tr>
+              <td className="capitalize">{item.name ?? "-"}</td>
+              <td>{formatCurrency(item.price) ?? "-"}</td>
+              <td>{item.amount ?? 0}</td>
+            </tr>
+          )) ?? <tr>Produk Tidak tersedia</tr>}
         </tbody>
       </table>
     </div>
@@ -40,8 +36,8 @@ export const TableProduct = ({ title, dataTable }) => {
 export const TableMaterial = ({ title, dataTable }) => {
   const satuanMaterial = {
     "Roti Tawar": "buah",
-    "Telur": "butir",
-    "plastik": "lembar",
+    Telur: "butir",
+    plastik: "lembar",
     "Selai Coklat": "toples",
     "Susu Kental Manis": "ml",
     "toples kaca": "buah",
@@ -51,7 +47,7 @@ export const TableMaterial = ({ title, dataTable }) => {
     <div className="card flex-auto">
       <div className="flex gap-5 mb-5">
         <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center">
-          <img src={boxes} alt="boxes" className="w-4 h-4" />
+          <img src={boxes} alt="icon" className="w-4 h-4" />
         </div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>
       </div>
@@ -59,43 +55,31 @@ export const TableMaterial = ({ title, dataTable }) => {
         <thead>
           <tr>
             <th>Nama Bahan</th>
-            {/* <th>Supplier</th> */}
             <th>Tersedia</th>
             <th>Minimum</th>
           </tr>
         </thead>
         <tbody>
-          {dataTable ? (
-            dataTable.map((item) => (
-              <tr>
-                <td className="capitalize">{item.name ? item.name : "-"}</td>
-                {/* <td className="capitalize">{item.supplier ? item.supplier : "-"}</td> */}
-                <td className="flex items-end gap-2">
-                  {item.amount
-                    ? !satuanMaterial[item.name]
-                      ? item.amount / 1000
-                      : item.amount
-                    : "-"}{" "}
-                  {satuanMaterial[item.name] || "kg"}
-                  <span className="relative">
-                    {item.amount <= item.minimum ? (
-                      <MinimumStock />
-                    ) : null}
-                  </span>
-                </td>
-                <td>
-                  {item.minimum
-                    ? !satuanMaterial[item.name]
-                      ? item.minimum / 1000
-                      : item.minimum
-                    : "-"}{" "}
-                  {satuanMaterial[item.name] || "kg"}
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>Bahan Baku Tidak tersedia</tr>
-          )}
+          {dataTable?.map((item) => (
+            <tr>
+              <td className="capitalize">{item.name ?? "-"}</td>
+              <td className="flex items-end gap-2">
+                {!satuanMaterial[item.name]
+                  ? item.amount / 1000
+                  : item.amount ?? "-"}{" "}
+                {satuanMaterial[item.name] || "kg"}
+                <span className="relative">
+                  {item.amount <= item.minimum ? <MinimumStock /> : null}
+                </span>
+              </td>
+              <td>
+                {!satuanMaterial[item.name]
+                  ? item.minimum / 1000
+                  : item.minimum ?? "-"}{" "}
+                {satuanMaterial[item.name] || "kg"}
+              </td>
+            </tr>
+          )) ?? <tr>Bahan Baku Tidak tersedia</tr>}
         </tbody>
       </table>
     </div>
@@ -107,7 +91,7 @@ export const TableOrder = ({ title, dataTable, selectOrder }) => {
     <div className="card flex-auto">
       <div className="flex gap-5 mb-5">
         <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center">
-          <img src={list} alt="boxes" className="w-4 h-4" />
+          <img src={list} alt="icon" className="w-4 h-4" />
         </div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>
       </div>
@@ -120,31 +104,32 @@ export const TableOrder = ({ title, dataTable, selectOrder }) => {
           </tr>
         </thead>
         <tbody>
-          {dataTable ? (
-            dataTable.map((item,i) => (
-              <tr>
-                <td className="capitalize">{item.customer ? item.customer : "-"}</td>
-                <td className="capitalize">{item.productPurchased ? item.productPurchased.join(", ") : "-"}</td>
-                <td onClick={() => selectOrder(i)} className="cursor-pointer select-none">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    class="w-5 h-5 stroke-primary"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
-                    />
-                  </svg>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>Pesanan tidak tersedia</tr>
-          )}
+          {dataTable?.map((item, i) => (
+            <tr>
+              <td className="capitalize">{item.customer ?? "-"}</td>
+              <td className="capitalize">
+                {item.productPurchased.join(", ") ?? "-"}
+              </td>
+              <td
+                onClick={() => selectOrder(i)}
+                className="cursor-pointer select-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  class="w-5 h-5 stroke-primary"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                  />
+                </svg>
+              </td>
+            </tr>
+          )) ?? <tr>Pesanan tidak tersedia</tr>}
         </tbody>
       </table>
     </div>
@@ -156,7 +141,7 @@ export const TableRiwayatProducts = ({ title, dataTable }) => {
     <div className="card flex-auto min-h-[300px]">
       <div className="flex gap-5 mb-5">
         <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center">
-          <img src={listCheck} alt="boxes" className="w-4 h-4" />
+          <img src={listCheck} alt="icon" className="w-4 h-4" />
         </div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>
       </div>
@@ -171,25 +156,17 @@ export const TableRiwayatProducts = ({ title, dataTable }) => {
           </tr>
         </thead>
         <tbody>
-          {dataTable ? (
-            dataTable.map((item) => (
-              <tr>
-                <td className="capitalize">
-                  {item.customer ? item.customer : "-"}
-                </td>
-                <td className="capitalize">
-                  {item.productPurchased
-                    ? item.productPurchased.join(", ")
-                    : "-"}
-                </td>
-                <td>{item.amount ? item.amount : 0}</td>
-                <td>{item.totalPrice ? formatCurrency(item.totalPrice) : 0}</td>
-                <td className="capitalize">{item.payment ? item.payment : '-'}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>Riwayat pesanan tidak tersedia</tr>
-          )}
+          {dataTable?.map((item) => (
+            <tr>
+              <td className="capitalize">{item.customer ?? "-"}</td>
+              <td className="capitalize">
+                {item.productPurchased.join(", ") ?? "-"}
+              </td>
+              <td>{item.amount ?? 0}</td>
+              <td>{formatCurrency(item.totalPrice) ?? 0}</td>
+              <td className="capitalize">{item.payment ?? "-"}</td>
+            </tr>
+          )) ?? <tr>Riwayat pesanan tidak tersedia</tr>}
         </tbody>
       </table>
     </div>
@@ -201,7 +178,7 @@ export const TableSupply = ({ title, dataTable }) => {
     <div className="card flex-auto">
       <div className="flex gap-5 mb-5">
         <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center">
-          <img src={boxes} alt="boxes" className="w-4 h-4" />
+          <img src={boxes} alt="icon" className="w-4 h-4" />
         </div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>
       </div>
@@ -214,21 +191,15 @@ export const TableSupply = ({ title, dataTable }) => {
           </tr>
         </thead>
         <tbody>
-          {dataTable ? (
-            dataTable.map((item) => (
-              <tr>
-                <td className="capitalize">
-                  {item.materialPurchased
-                    ? item.materialPurchased.join(", ")
-                    : "-"}
-                </td>
-                <td>{item.amount ? item.amount : 0}</td>
-                <td className="capitalize">{item.admin ? item.admin : "-"}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>Pesanan Bahan Baku Tidak tersedia</tr>
-          )}
+          {dataTable?.map((item) => (
+            <tr>
+              <td className="capitalize">
+                {item.materialPurchased.join(", ") ?? "-"}
+              </td>
+              <td>{item.amount ?? 0}</td>
+              <td className="capitalize">{item.admin ?? "-"}</td>
+            </tr>
+          )) ?? <tr>Pesanan Bahan Baku Tidak tersedia</tr>}
         </tbody>
       </table>
     </div>
@@ -240,7 +211,7 @@ export const TableRiwayatSupply = ({ title, dataTable }) => {
     <div className="card flex-auto min-h-[300px]">
       <div className="flex gap-5 mb-5">
         <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center">
-          <img src={listCheck} alt="boxes" className="w-4 h-4" />
+          <img src={listCheck} alt="icon" className="w-4 h-4" />
         </div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>
       </div>
@@ -254,20 +225,16 @@ export const TableRiwayatSupply = ({ title, dataTable }) => {
           </tr>
         </thead>
         <tbody>
-          {dataTable ? (
-            dataTable.map((item) => (
-              <tr>
-                <td className="capitalize">
-                  {item.materialPurchased ? item.materialPurchased.join(", ") : "-"}
-                </td>
-                <td>{item.amount ? item.amount : 0}</td>
-                <td>{item.supply ? item.supply : 0}</td>
-                <td className="capitalize">{item.admin ? item.admin : '-'}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>Riwayat pesanan tidak tersedia</tr>
-          )}
+          {dataTable?.map((item) => (
+            <tr>
+              <td className="capitalize">
+                {item.materialPurchased.join(", ") ?? "-"}
+              </td>
+              <td>{item.amount ?? 0}</td>
+              <td>{item.supply ?? 0}</td>
+              <td className="capitalize">{item.admin ?? "-"}</td>
+            </tr>
+          )) ?? <tr>Riwayat pesanan tidak tersedia</tr>}
         </tbody>
       </table>
     </div>
@@ -295,4 +262,4 @@ const MinimumStock = () => {
       </div>
     </>
   );
-}
+};

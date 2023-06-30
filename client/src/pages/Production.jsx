@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GetData } from "../Api";
 import { TableProduct, ScoreCard } from "../components";
+import { crown } from "../assets/icons";
 
 const Products = () => {
   const { users } = GetData("http://localhost:5000/product");
@@ -90,6 +91,7 @@ const Production = () => {
           title="Produk Tersedia"
           result={`${totalProduct} produk`}
           desc="pada hari ini"
+          image={crown}
           flex
         />
         <AddProduct />
