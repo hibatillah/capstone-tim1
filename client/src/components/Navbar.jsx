@@ -67,10 +67,10 @@ const Navbar = ({ user, handleNotif }) => {
           </>
         ) : (
           <>
-            <Link to="/auth#login">
+            <Link to="/login">
               <div className="btn btn-secondary">Login</div>
             </Link>
-            <Link to="/auth#signup">
+            <Link to="/register">
               <div className="btn btn-primary">Sign Up</div>
             </Link>
           </>

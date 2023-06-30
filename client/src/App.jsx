@@ -3,11 +3,14 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Admin, Customer } from './User'
 
 const App = () => {
-  const [user, setUser] = useState("supplier");
+  const [isLogin, setIsLogin] = useState(false); 
+  const [user, setUser] = useState("customer");
 
   return (
     <Router>
-      {user === "admin" || user === "supplier" ? (
+      {!isLogin ? (
+        <Customer />
+      ) : user === "admin" || user === "supplier" ? (
         <Admin user={user} />
       ) : (
         <Customer user={user} />

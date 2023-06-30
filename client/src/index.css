@@ -28,20 +28,20 @@
   td {
     @apply py-1.5 font-medium text-left text-tertiary dark:text-grey
   }
-  main::-webkit-scrollbar-thumb {
-    @apply w-1 rounded
+  *::-webkit-scrollbar {
+    @apply w-1.5 
   }
-  /* main.main-admin {
-    @apply max-h-[calc(100vh-116px)] overflow-y-scroll
-  } */
   main.main-customer {
-    @apply min-h-[calc(100vh-112px)]
+    @apply min-h-[calc(100vh-113.6px)]
   }
   label {
-    @apply font-medium text-tertiary/70 dark:text-grey cursor-pointer;
+    @apply font-medium text-tertiary/70 dark:text-grey cursor-pointer select-none;
   }
   select {
     @apply cursor-pointer;
+  }
+  mark {
+    @apply text-primary bg-inherit
   }
 }
 
@@ -57,11 +57,11 @@
     @apply p-5 rounded-lg bg-white dark:bg-black-dark;
   }
   .form-input {
-    @apply flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey-dark dark:ring-black-light dark:ring-2 dark:focus:ring-1 dark:focus:ring-primary-light;
+    @apply flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-white dark:ring-black-light dark:ring-2 dark:focus:ring-1 dark:focus:ring-primary-light;
   }
   /* button */
   .btn {
-    @apply rounded-md px-6 py-2 font-medium cursor-pointer capitalize;
+    @apply rounded-md px-6 py-2 font-medium cursor-pointer capitalize tracking-wide;
   }
   .btn-primary {
     @apply bg-primary text-white border border-primary active:ring-1 active:ring-primary active:ring-offset-2;

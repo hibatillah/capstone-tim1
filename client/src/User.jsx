@@ -6,7 +6,8 @@ import {
   Menu,
   CustomerOrder,
   About,
-  Auth,
+  Login,
+  Register,
   Dashboard,
   Production,
   Supply,
@@ -64,7 +65,8 @@ export const Customer = ({ user }) => {
           element={<CustomerOrder />}
         />
         <Route path="/about" element={<About />} />
-        <Route path="/auth" element={<Auth />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="*" element={<Unknown />} />
       </Routes>
       <Footer />

@@ -44,7 +44,7 @@ const AddOrder = ({ selected, data }) => {
           placeholder="Customer"
           value={selectedOrder?.customer}
           className="form-input capitalize"
-          disabled
+          readOnly
         />
         {/* product purchased */}
         <label
@@ -60,7 +60,7 @@ const AddOrder = ({ selected, data }) => {
           placeholder="Produk"
           value={selectedOrder?.productPurchased}
           className="form-input"
-          disabled
+          readOnly
         />
         {/* payment */}
         <label htmlFor="paymentType" className="self-center justify-self-end">
@@ -73,7 +73,7 @@ const AddOrder = ({ selected, data }) => {
           placeholder="Pembayaran"
           value={selectedOrder?.payment}
           className="form-input capitalize"
-          disabled
+          readOnly
         />
         {/* total */}
         <label
@@ -89,7 +89,7 @@ const AddOrder = ({ selected, data }) => {
           placeholder="Transaksi"
           value={formatCurrency(selectedOrder?.totalPrice? selectedOrder.totalPrice : null)}
           className="form-input"
-          disabled
+          readOnly
         />
         <button className="btn btn-secondary">Batalkan Pesanan</button>
         <button type="submit" className="btn btn-primary flex-initial">
