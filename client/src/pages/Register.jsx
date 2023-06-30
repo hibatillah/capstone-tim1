@@ -19,7 +19,7 @@ const Register = () => {
 
   return (
     <main className="main-customer grid place-items-center">
-      <div className="card flex items-center gap-12 w-[50%] min-h-[50%]">
+      <div className="card flex items-center gap-12 w-[70%] min-h-[50%] xl:w-[50%]">
         <img
           src={rotte2}
           alt="login-page"

@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Admin, Customer } from './User'
 
 const App = () => {
-  const [isLogin, setIsLogin] = useState(false); 
+  const [isLogin, setIsLogin] = useState(true); 
   const [user, setUser] = useState("customer");
 
   const handleLogin = () => setIsLogin(!isLogin); 
@@ -14,9 +14,9 @@ const App = () => {
       {!isLogin ? (
         <Customer handleLogin={handleLogin} handleUser={handleUser} />
       ) : user === "admin" || user === "supplier" ? (
-        <Admin user={user} />
+        <Admin user={user} handleLogin={handleLogin} />
       ) : (
-        <Customer user={user} />
+        <Customer user={user} handleLogin={handleLogin} />
       )}
     </Router>
   );

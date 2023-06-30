@@ -54,7 +54,7 @@ export const TableMaterial = ({ title, dataTable }) => {
         <thead>
           <tr>
             <th>Nama Bahan</th>
-            <th>Supplier</th>
+            {/* <th>Supplier</th> */}
             <th>Tersedia</th>
             <th>Minimum</th>
           </tr>
@@ -64,7 +64,7 @@ export const TableMaterial = ({ title, dataTable }) => {
             dataTable.map((item) => (
               <tr>
                 <td className="capitalize">{item.name ? item.name : "-"}</td>
-                <td className="capitalize">{item.supplier ? item.supplier : "-"}</td>
+                {/* <td className="capitalize">{item.supplier ? item.supplier : "-"}</td> */}
                 <td className="flex items-end gap-2">
                   {item.amount
                     ? !satuanMaterial[item.name]

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Square, Box, Note, SignOut, Gift } from "./Svg";
 
-const Aside = ({ user }) => {
+const Aside = ({ user, handleLogin }) => {
+  // menu
   const menuAdmin = [
     ["Dashboard", "/"],
     ["Produksi", "/production"],
@@ -15,11 +16,20 @@ const Aside = ({ user }) => {
     ["Suplai", "/supply"],
   ];
 
+  // active user
   const [activeUser, setActiveUser] = useState([]);
   useEffect(() => {
     setActiveUser(user === "admin" ? menuAdmin : menuSupplier);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user]);
+
+  // handle logout
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    handleLogin();
+    navigate("/");
+    console.log("logout success");
+  };
 
   return (
     <aside className="flex-none flex flex-col justify-start items-center gap-20 px-5 pt-10 pb-8 w-[15%] max-h-[calc(100vh-1.5rem)] bg-white rounded-xl dark:bg-black-dark">
@@ -71,11 +81,12 @@ const Aside = ({ user }) => {
           </li>
         ))}
       </ul>
-      <Link to="/auth" className="mt-auto">
-        <div className="flex gap-3 items-center px-4 py-2 font-medium rounded-md text-grey-dark stroke-grey-dark active:text-tertiary/70 active:stroke-tertiary/70 dark:active:text-grey dark:active:stroke-grey hover:bg-grey-light dark:hover:bg-black-light">
-          <SignOut /> Logout
-        </div>
-      </Link>
+      <div
+        onClick={handleLogout}
+        className="mt-auto flex gap-3 items-center px-4 py-2 font-medium rounded-md text-grey-dark stroke-grey-dark active:text-tertiary/70 active:stroke-tertiary/70 dark:active:text-grey dark:active:stroke-grey hover:bg-grey-light dark:hover:bg-black-light cursor-pointer"
+      >
+        <SignOut /> Logout
+      </div>
     </aside>
   );
 };
