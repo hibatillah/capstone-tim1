@@ -1,26 +1,27 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { GetData } from "../Api";
 import { TableOrder, TableRiwayat } from "../components";
+import { formatCurrency } from "../components/format";
 
 const Orders = () => {
-  const { users } = GetData("http://localhost:5000/order");
+  const { users } = GetData("http://localhost:5000/order/product");
   console.log(users);
   return users;
 };
 
-const AddOrder = ({ selected }) => {
+const AddOrder = ({ selected, data }) => {
+  // get current order
+  const [selectedOrder, setSelectedOrder] = useState();
+  useEffect(() => {
+    if (selected) setSelectedOrder(data[selected])
+    console.log('selected order',selectedOrder)
+  },[selected])
+
+  // confirm order
   const handleSubmit = (target) => {
     target.preventDefault();
   };
-
-  // get products
-  const dataOrders = Orders();
-  const selectedOrder = dataOrders?.data.filter(
-    (item) => item._id === selected
-  );
-  useEffect(() => {
-    console.log("selectedOrder", selectedOrder);
-  }, [selectedOrder]);
 
   return (
     <div className="card flex-none">
@@ -42,25 +43,10 @@ const AddOrder = ({ selected }) => {
           id="customer"
           placeholder="Customer"
           value={selectedOrder?.customer}
-          className="form-input"
+          className="form-input capitalize"
           disabled
         />
-        {/* amount */}
-        <label
-          htmlFor="codeTransaction"
-          className="self-center justify-self-end"
-        >
-          Kode Transaksi
-        </label>
-        <input
-          type="text"
-          name="codeTransaction"
-          id="codeTransaction"
-          placeholder="Transaksi"
-          value={selectedOrder?.codeTransaction}
-          className="form-input"
-          disabled
-        />
+        {/* product purchased */}
         <label
           htmlFor="productPurchased"
           className="self-center justify-self-end"
@@ -76,6 +62,7 @@ const AddOrder = ({ selected }) => {
           className="form-input"
           disabled
         />
+        {/* payment */}
         <label htmlFor="paymentType" className="self-center justify-self-end">
           Metode Pembayaran
         </label>
@@ -84,7 +71,23 @@ const AddOrder = ({ selected }) => {
           name="paymentType"
           id="paymentType"
           placeholder="Pembayaran"
-          value={selectedOrder?.paymentType}
+          value={selectedOrder?.payment}
+          className="form-input capitalize"
+          disabled
+        />
+        {/* total */}
+        <label
+          htmlFor="totalPrice"
+          className="self-center justify-self-end"
+        >
+          Total
+        </label>
+        <input
+          type="text"
+          name="totalPrice"
+          id="totalPrice"
+          placeholder="Transaksi"
+          value={formatCurrency(selectedOrder?.totalPrice? selectedOrder.totalPrice : null)}
           className="form-input"
           disabled
         />
@@ -102,19 +105,22 @@ const Order = () => {
   const [selectedOrder, setSelectedOrder] = useState();
   const selectOrder = (id) => setSelectedOrder(id);
 
+  const pendingOrders = dataOrders?.data.filter(item => item.status === 'pending');
+  const finishOrders = dataOrders?.data.filter(item => item.status === 'finish');
+
   return (
     <main className="main-admin space-y-4">
       <div className="flex items-stretch gap-4">
         <TableOrder
           title="Pesanan Berlangsung"
-          dataTable={dataOrders?.data}
+          dataTable={pendingOrders}
           selectOrder={selectOrder}
         />
         <div id="make-order" className="flex-none space-y-4">
-          <AddOrder selected={selectedOrder} />
+          <AddOrder data={pendingOrders} selected={selectedOrder} />
         </div>
       </div>
-      <TableRiwayat title="Riwayat Pesanan" dataTable={dataOrders?.data} />
+      <TableRiwayat title="Riwayat Pesanan" dataTable={finishOrders} />
     </main>
   );
 };

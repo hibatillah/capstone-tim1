@@ -53,7 +53,6 @@ recordRoutes.route("/order/product/add").post(function (req, res) {
     amount: req.body.amount,
     totalPrice: req.body.totalPrice,
     paymentType: req.body.paymentType,
-    description: req.body.description,
   };
   db_connect
     .collection("productsOrders")
@@ -82,7 +81,6 @@ recordRoutes.route("/order/product/update/:id").put(function (req, res) {
       amount: req.body.amount,
       totalPrice: req.body.totalPrice,
       paymentType: req.body.paymentType,
-      description: req.body.description,
     },
   };
   db_connect

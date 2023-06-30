@@ -114,11 +114,11 @@ export const TableOrder = ({ title, dataTable, selectOrder }) => {
         </thead>
         <tbody>
           {dataTable ? (
-            dataTable.map((item) => (
+            dataTable.map((item,i) => (
               <tr>
                 <td className="capitalize">{item.customer ? item.customer : "-"}</td>
-                <td className="capitalize">{item.productPurchased ? item.productPurchased : "-"}</td>
-                <td onClick={() => selectOrder(item._id)}>
+                <td className="capitalize">{item.productPurchased ? item.productPurchased.join(", ") : "-"}</td>
+                <td onClick={() => selectOrder(i)} className="cursor-pointer select-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -165,11 +165,17 @@ export const TableRiwayat = ({ title, dataTable }) => {
           {dataTable ? (
             dataTable.map((item) => (
               <tr>
-                <td>{item.name ? item.name : "-"}</td>
-                <td>{item.minimum ? item.minimum : "-"}</td>
+                <td className="capitalize">
+                  {item.customer ? item.customer : "-"}
+                </td>
+                <td className="capitalize">
+                  {item.productPurchased
+                    ? item.productPurchased.join(", ")
+                    : "-"}
+                </td>
                 <td>{item.amount ? item.amount : 0}</td>
                 <td>{item.totalPrice ? formatCurrency(item.totalPrice) : 0}</td>
-                <td>{item.paymentType ? item.paymentType : 0}</td>
+                <td className="capitalize">{item.payment ? item.payment : '-'}</td>
               </tr>
             ))
           ) : (
