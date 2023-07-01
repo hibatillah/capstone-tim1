@@ -1,13 +1,13 @@
 import React from "react";
 import { formatCurrency } from "./format";
-import { boxes, layout, list, listCheck } from "../assets/icons";
+import { boxes, layout, layers, listCheck } from "../assets/icons";
 
 export const TableProduct = ({ title, dataTable }) => {
   return (
     <div className="card flex-auto">
       <div className="flex gap-5 mb-5">
-        <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center">
-          <img src={layout} alt="icon" className="w-4 h-4" />
+        <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center cursor-pointer">
+          <img src={layout} alt="icon" className="w-4 h-4 select-none pointer-events-none" />
         </div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>
       </div>
@@ -46,8 +46,8 @@ export const TableMaterial = ({ title, dataTable }) => {
   return (
     <div className="card flex-auto">
       <div className="flex gap-5 mb-5">
-        <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center">
-          <img src={boxes} alt="icon" className="w-4 h-4" />
+        <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center cursor-pointer">
+          <img src={boxes} alt="icon" className="w-4 h-4 select-none pointer-events-none" />
         </div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>
       </div>
@@ -90,8 +90,8 @@ export const TableOrder = ({ title, dataTable, selectOrder }) => {
   return (
     <div className="card flex-auto">
       <div className="flex gap-5 mb-5">
-        <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center">
-          <img src={list} alt="icon" className="w-4 h-4" />
+        <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center cursor-pointer">
+          <img src={layers} alt="icon" className="w-4 h-4 select-none pointer-events-none" />
         </div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>
       </div>
@@ -140,8 +140,8 @@ export const TableRiwayatProducts = ({ title, dataTable }) => {
   return (
     <div className="card flex-auto min-h-[300px]">
       <div className="flex gap-5 mb-5">
-        <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center">
-          <img src={listCheck} alt="icon" className="w-4 h-4" />
+        <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center cursor-pointer">
+          <img src={listCheck} alt="icon" className="w-4 h-4 select-none pointer-events-none" />
         </div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>
       </div>
@@ -177,8 +177,8 @@ export const TableSupply = ({ title, dataTable }) => {
   return (
     <div className="card flex-auto">
       <div className="flex gap-5 mb-5">
-        <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center">
-          <img src={boxes} alt="icon" className="w-4 h-4" />
+        <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center cursor-pointer">
+          <img src={boxes} alt="icon" className="w-4 h-4 select-none pointer-events-none" />
         </div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>
       </div>
@@ -210,8 +210,8 @@ export const TableRiwayatSupply = ({ title, dataTable }) => {
   return (
     <div className="card flex-auto min-h-[300px]">
       <div className="flex gap-5 mb-5">
-        <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center">
-          <img src={listCheck} alt="icon" className="w-4 h-4" />
+        <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center cursor-pointer">
+          <img src={listCheck} alt="icon" className="w-4 h-4 select-none pointer-events-none" />
         </div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>
       </div>

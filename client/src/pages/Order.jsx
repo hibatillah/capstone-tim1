@@ -80,14 +80,14 @@ const AddOrder = ({ selected, data }) => {
           htmlFor="totalPrice"
           className="self-center justify-self-end"
         >
-          Total Harga
+          Total Harga (Rp)
         </label>
         <input
-          type="text"
+          type="number"
           name="totalPrice"
           id="totalPrice"
-          placeholder="Transaksi"
-          value={formatCurrency(selectedOrder?.totalPrice? selectedOrder.totalPrice : null)}
+          placeholder="0"
+          value={formatCurrency(12000) ?? 0}
           className="form-input"
           readOnly
         />
