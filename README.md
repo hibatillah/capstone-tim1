@@ -64,7 +64,7 @@ Jika versi yang akan dikembangkan tidak tersedia seperti gambar diatas, buka ter
 ```
 git checkout supplier-user
 ```
-supplier-user dapat disesuaikan dengan versi yang diinginkan
+*supplier-user* dapat disesuaikan dengan versi yang diinginkan.
 
 Setelah berpindah sesuai versi yang akan dikembangkan, buka terminal pada `capstone-tim1` lalu ketikkan:
 ```
@@ -73,12 +73,13 @@ git pull
 Hal ini dilakukan untuk memastikan code sudah sama dengan versi yang tersimpan pada repo GitHub.
 
 ### Simpan versi code
-Buka terminal dan ketikkan perintah berikut satu per satu, pada bagian `nama` dapat diubah dengan nama akun github anda dan `email@email.com` dapat diubah dengan akun email anda yang terhubung dengan github. **Perintah dibawah ini cukup dilakukan sekali saja saat pertama kali setup**.
+Terlebih dahulu diperlukan setup user dengan membuka terminal dan ketikkan perintah berikut satu per satu.<br>
+Pada bagian `nama` dapat diubah dengan nama akun github anda dan `email@email.com` dapat diubah dengan akun email anda yang terhubung dengan github. **Perintah dibawah ini cukup dilakukan sekali saja saat pertama kali setup**.
 ```
 git config --global user.name "nama"
 git config --global user.email "email@email.com"
 ```
-Setelah selesai coding, simpan perubahan code dengan memilih menu source control pada sidebar vscode, lalu masukkan pesan terkait **perubahan apa saja yang dilakukan** dan kemudian tekan `commit`. Maka perubahan akan dikirimkan ke github sesuai versi yang digunakan.<br>
+Setelah selesai coding, simpan perubahan code dengan memilih menu source control pada sidebar vscode, lalu masukkan pesan terkait **perubahan apa saja yang dilakukan** kemudian tekan tanda panah disebelah tombol commit dan pilih `commit & push`. Maka perubahan akan dikirimkan ke github sesuai versi yang digunakan.<br>
 
 ***Diharuskan berpindah versi sesuai bagian yang akan dikembangkan sebelum menyimpan versi code.***<br>
 <img src='https://github.com/hibatillah/capstone-tim1/assets/99963638/4f858a0b-5665-449d-805b-f838a06a7325' alt='branch' width='30%'/>
