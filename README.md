@@ -84,6 +84,15 @@ Setelah selesai coding, simpan perubahan code dengan memilih menu source control
 ***Diharuskan berpindah versi sesuai bagian yang akan dikembangkan sebelum menyimpan versi code.***<br>
 <img src='https://github.com/hibatillah/capstone-tim1/assets/99963638/4f858a0b-5665-449d-805b-f838a06a7325' alt='branch' width='30%'/>
 <img src='https://github.com/hibatillah/capstone-tim1/assets/99963638/6f25afbd-9826-4db2-957e-56e47d749f08' alt='branch' width='31%'/>
+
+Atau bisa menggunakan terminal, dengan menuliskan perintah berikut:
+```
+git add .
+git commit -m "pesan perubahan"
+git push origin customer-user
+```
+Bagian `pesan perubahan` dapat disesuaikan dengan perubahan code apa saja yang udah dilakukan.<br>
+`customer-user` dapat disesuaikan code tersebut akan disimpan ke versi mana, sesuai dengan versi yang tersedia.
 <br><br>
 
 > 🎉 happy coding! hopefully avoid errors 👀💯
