@@ -10,7 +10,7 @@ const Material = () => {
 
 const AddMaterials = () => {
   const [material, setMaterial] = useState("");
-  const [amount, setAmount] = useState();
+  const [setAmount] = useState();
 
   const handleSubmit = async (target) => {
     target.preventDefault();
