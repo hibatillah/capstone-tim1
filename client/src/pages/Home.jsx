@@ -21,11 +21,14 @@ const Home = () => {
             dan cake dengan harga yang murah dengan 40 Outlet yang tersebar di seluruh Riau.
             </p>
           </div>
-          
-        <button type="submit" className="btn btn-primary flex-initial text-xl">
+
+         <div classname="flex gap-4">
+          <button type="submit" className="btn btn-primary flex-initial text-xl">
           Pesan
         </button>
         <button className="btn btn-secondary text-xl">Tentang Kami</button>
+        </div> 
+         
 
         
             
