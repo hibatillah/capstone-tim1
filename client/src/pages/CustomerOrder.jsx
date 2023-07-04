@@ -16,10 +16,10 @@ const About = () => {
               </p>
               <br></br>
               <div classname="flex gap-4 ">
-                <button type="submit" className="btn btn-primary flex-initial text-xl ">
-                  Pesanan Berlangsung
+                <button type="submit" className="btn btn-primary">Pesanan Berlangsung</button>
+                <button className="btn btn-secondary flex-initial">
+                  Riwayat Pesanan
                 </button>
-                <button className="btn btn-secondary text-xl">Riwayat Pesanan</button>
               </div>     
             </div> 
                    
