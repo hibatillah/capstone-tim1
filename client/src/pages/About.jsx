@@ -29,7 +29,7 @@ const About = () => {
               <img
                src={snackBox1}
                alt="about-page"
-               className="card flex-auto h-[500px] rounded-md object-cover object-top -translate-y-10 translate-x-10"
+               className="card flex-auto h-[500px] rounded-md object-cover object-top -translate-y-12 translate-x-10"
               />
               <img
                src={snackBox1}
