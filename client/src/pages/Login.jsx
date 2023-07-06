@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GetData } from "../Api";
 import { rotte1 } from "../assets/img";
@@ -89,7 +89,7 @@ const Login = ({ handleLogin, handleUser }) => {
               {!loading ? "Login" : "Try to Login..."}
             </button>
             {error ? (
-              <p className="text-red-500">Email atau password salah</p>
+              <p className="text-red-500">Email atau Password salah</p>
             ) : null}
           </form>
         </div>

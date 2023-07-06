@@ -50,7 +50,7 @@
 
 @layer components {
   #search-box:has(input:focus) {
-    @apply ring-1 ring-primary ring-offset-1 dark:ring-primary
+    @apply ring-1 ring-primary ring-offset-1 dark:ring-primary-light border-none
   }
   input[type='search']::-webkit-search-cancel-button {
     @apply relative right-1 w-4 h-4 rounded-full bg-contain bg-[url('./assets/icons/clear.svg')] opacity-30 text-white cursor-pointer bg-no-repeat;
@@ -67,9 +67,9 @@
     @apply rounded-md px-6 py-2 font-medium cursor-pointer capitalize tracking-wide select-none;
   }
   .btn-primary {
-    @apply bg-primary text-white border border-primary active:ring-1 active:ring-primary active:ring-offset-2;
+    @apply bg-primary text-white border border-primary active:ring-1 active:ring-primary active:ring-offset-2 dark:bg-primary-light dark:border-primary-light dark:active:ring-primary-light;
   }
   .btn-secondary {
-    @apply bg-inherit text-primary border border-primary active:bg-primary active:text-white;
+    @apply bg-inherit text-primary border border-primary active:bg-primary active:text-white dark:text-primary-light dark:border-primary-light dark:active:bg-primary-light dark:active:text-white;
   }
 }

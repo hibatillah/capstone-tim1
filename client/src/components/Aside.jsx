@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Square, Box, Note, SignOut, Gift } from "./Svg";
 
-const Aside = ({ user, handleLogin }) => {
+const Aside = ({ user, handleLogin, handleUser }) => {
   const menu = {
     admin: [
       ["Dashboard", "/"],
@@ -19,6 +19,7 @@ const Aside = ({ user, handleLogin }) => {
   // handle logout
   const navigate = useNavigate();
   const handleLogout = () => {
+    handleUser("", "", "");
     handleLogin(false);
     navigate("/");
     console.log("logout success");

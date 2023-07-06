@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { GetData } from "../Api";
 import { TableProduct, ScoreCard } from "../components";
 import { layers } from "../assets/icons";
-import { PostData } from "../Api";
+import axios from "axios";
 
 const Products = () => {
   const { users } = GetData("http://localhost:5000/product");
@@ -10,24 +10,37 @@ const Products = () => {
   return users;
 };
 
-const AddProduct = () => {
-  const [product, setProduct] = useState("Coklat Oreo");
-  const [amount, setAmount] = useState();
+const AddProduct = ({ handleTotalProduct }) => {
+  const [status, setStatus] = useState("");
+  const dataProducts = Products();
 
-  // submit form
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const product = event.target.product.value;
+    const id = event.target.product.value;
     const amount = event.target.amount.value;
-    const data = { amount };
+    const product = dataProducts?.data.find((item) => item._id === id);
 
-    PostData(`http://localhost:5000/product/update/${product}`, data);
-    event.target.reset()
+    axios
+      .put(`http://localhost:5000/product/update/${id}`, {
+        name: product.name,
+        amount: parseInt(product.amount) + parseInt(amount),
+        price: product.price,
+      })
+      .then((res) => {
+        console.log(res);
+        setStatus("success");
+        event.target.reset();
+      })
+      .catch((err) => {
+        console.error(err);
+        setStatus("error");
+      })
+      .finally(() => {
+        handleTotalProduct(0)
+        setStatus("idle");
+      });
   };
-
-  // get products
-  const dataProducts = Products();
 
   return (
     <div className="card">
@@ -43,13 +56,7 @@ const AddProduct = () => {
         <label htmlFor="product" className="self-center justify-self-end">
           Pilih produk
         </label>
-        <select
-          name="product"
-          id="product"
-          onChange={(e) => setProduct(e.target.value)}
-          className="form-input"
-          value='6484980d60acb950ad6a4746'
-        >
+        <select name="product" id="product" className="form-input">
           {dataProducts ? (
             dataProducts.data.map((item) => (
               <option value={item._id}>{item.name}</option>
@@ -67,12 +74,22 @@ const AddProduct = () => {
           name="amount"
           id="amount"
           placeholder="0"
-          onChange={(e) => setAmount(e.target.value)}
           className="form-input"
           required
         />
         <button type="submit" className="btn btn-primary w-fit col-start-2">
-          Buat Produk
+          {(() => {
+            switch (status) {
+              case "loading":
+                return <span key={"loading"}>Dibuat...</span>;
+              case "success":
+                return <span key={"success"}>Produk berhasil dibuat</span>;
+              case "error":
+                return <span key={"error"}>Gagal membuat produk</span>;
+              default:
+                return <span key={"idle"}>Buat Produk</span>;
+            }
+          })()}
         </button>
       </form>
     </div>
@@ -84,11 +101,9 @@ const Production = () => {
 
   // get total product available
   const [totalProduct, setTotalProduct] = useState(0);
+  const handleTotalProduct = (id) => setTotalProduct(id)
   useEffect(() => {
-    if (dataProducts)
-      setTotalProduct(
-        dataProducts?.data.reduce((acc, item) => acc + item.amount, 0)
-      );
+    setTotalProduct(dataProducts?.data.map(item => item.amount).reduce((a, b) => a + b))
   }, [dataProducts]);
 
   return (
@@ -102,7 +117,7 @@ const Production = () => {
           image={layers}
           flex
         />
-        <AddProduct />
+        <AddProduct handleTotalProduct={handleTotalProduct} />
       </div>
     </main>
   );

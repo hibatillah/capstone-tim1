@@ -3,7 +3,7 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import { DarkMode, ToggleNotif } from "./";
 import { Square, Box, Note, Info, SignOut } from "./Svg";
 
-const Navbar = ({ user, handleNotif, handleLogin }) => {
+const Navbar = ({ user, handleNotif, handleLogin, handleUser }) => {
   const menu = [
     ["Beranda", "/"],
     ["Menu", "/menu"],
@@ -14,7 +14,8 @@ const Navbar = ({ user, handleNotif, handleLogin }) => {
   // handle logout
   const navigate = useNavigate();
   const handleLogout = () => {
-    handleLogin();
+    handleUser("", "", "");
+    handleLogin(false);
     navigate("/");
     console.log("logout success");
   };
@@ -60,14 +61,14 @@ const Navbar = ({ user, handleNotif, handleLogin }) => {
       </ul>
       <div
         className={`flex items-center ${
-          user === "customer" ? "gap-0" : "gap-3"
+          user.role === "customer" ? "gap-0" : "gap-3"
         }`}
       >
         <DarkMode />
-        {user === "customer" ? (
+        {user.role === "customer" ? (
           <>
             <ToggleNotif handleNotif={handleNotif} />
-            <div onClick={() => handleLogout(false)} className="w-10 h-10 rounded-md bg-white grid place-items-center cursor-pointer select-none active:bg-primary group dark:bg-black-dark dark:active:bg-primary">
+            <div onClick={handleLogout} className="w-10 h-10 rounded-md bg-white grid place-items-center cursor-pointer select-none active:bg-primary group dark:bg-black-dark dark:active:bg-primary">
               <SignOut custom="stroke-grey-dark group-hover:stroke-primary group-active:stroke-white dark:group-hover:stroke-primary-light dark:group-active:stroke-white" />
             </div>
           </>
