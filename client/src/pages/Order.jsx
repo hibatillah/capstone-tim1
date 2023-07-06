@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { GetData } from "../Api";
-import { TableOrder, TableRiwayatProducts } from "../components";
+import { TableOrder, TableRiwayatOrder } from "../components";
 import { formatCurrency } from "../components/format";
 
 const Orders = () => {
@@ -105,8 +105,8 @@ const Order = () => {
   const [selectedOrder, setSelectedOrder] = useState();
   const selectOrder = (id) => setSelectedOrder(id);
 
-  const pendingOrders = dataOrders?.data.filter(item => item.status === 'pending');
-  const finishOrders = dataOrders?.data.filter(item => item.status === 'finish');
+  const pendingOrders = dataOrders?.data.filter(item => item.status === 'diproses');
+  const finishOrders = dataOrders?.data.filter(item => item.status === 'diterima' || item.status === 'ditolak');
 
   return (
     <main className="main-admin space-y-4">
@@ -120,7 +120,7 @@ const Order = () => {
           <AddOrder data={pendingOrders} selected={selectedOrder} />
         </div>
       </div>
-      <TableRiwayatProducts title="Riwayat Pesanan" dataTable={finishOrders} />
+      <TableRiwayatOrder title="Riwayat Pesanan" dataTable={finishOrders} />
     </main>
   );
 };

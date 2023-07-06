@@ -48,11 +48,12 @@ const AddMaterials = ({ user }) => {
     setStatus("loading");
 
     const data = {
-      dateTime: currentDatetime(),
+      datetime: currentDatetime(),
       supplier: event.target.supplier.value,
-      materialPurchased: event.target.material.value,
-      amount: event.target.amount.value,
+      material: event.target.material.value,
+      demand: parseInt(event.target.amount.value),
       admin: user.name,
+      status: 'dipesan',
     };
 
     axios

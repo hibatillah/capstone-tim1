@@ -10,7 +10,7 @@ import {
   TableProduct,
   TableMaterial,
   TableOrder,
-  TableRiwayatProducts,
+  TableRiwayatOrder,
   TableRiwayatSupply,
   TableSupply,
   TableRiwayatMaterial
@@ -29,7 +29,7 @@ export {
   TableProduct,
   TableMaterial,
   TableOrder,
-  TableRiwayatProducts,
+  TableRiwayatOrder,
   TableRiwayatSupply,
   TableSupply,
   TableRiwayatMaterial

@@ -8,7 +8,11 @@ export const TableProduct = ({ title, dataTable }) => {
     <div className="card flex-auto">
       <div className="flex gap-5 mb-5">
         <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center cursor-pointer">
-          <img src={layout} alt="icon" className="w-4 h-4 select-none pointer-events-none" />
+          <img
+            src={layout}
+            alt="icon"
+            className="w-4 h-4 select-none pointer-events-none"
+          />
         </div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>
       </div>
@@ -48,7 +52,11 @@ export const TableMaterial = ({ title, dataTable }) => {
     <div className="card flex-auto">
       <div className="flex gap-5 mb-5">
         <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center cursor-pointer">
-          <img src={boxes} alt="icon" className="w-4 h-4 select-none pointer-events-none" />
+          <img
+            src={boxes}
+            alt="icon"
+            className="w-4 h-4 select-none pointer-events-none"
+          />
         </div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>
       </div>
@@ -64,7 +72,7 @@ export const TableMaterial = ({ title, dataTable }) => {
           {dataTable?.map((item) => (
             <tr>
               <td className="capitalize">{item.name ?? "-"}</td>
-              <td className="flex items-end gap-2">
+              <td className="flex items-center gap-2">
                 {!satuanMaterial[item.name]
                   ? item.amount / 1000
                   : item.amount ?? "-"}{" "}
@@ -102,7 +110,7 @@ export const TableRiwayatMaterial = ({ title, dataTable }) => {
       <div className="flex gap-5 mb-5">
         <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center cursor-pointer">
           <img
-            src={boxes}
+            src={listCheck}
             alt="icon"
             className="w-4 h-4 select-none pointer-events-none"
           />
@@ -114,40 +122,47 @@ export const TableRiwayatMaterial = ({ title, dataTable }) => {
           <tr>
             <th>Tanggal</th>
             <th>Waktu</th>
-            <th>Nama Bahan</th>
+            <th>Bahan</th>
             <th>Supplier</th>
-            <th>Jumlah Pesanan</th>
             <th>Pemesan</th>
+            <th>Pesanan</th>
+            <th>Suplai</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody className="overflow-y-scroll">
           {dataTable?.map((item) => (
             <tr className="capitalize">
-              <td>{item.dateTime.split(' ')[0] ?? "-"}</td>
-              <td>{item.dateTime.split(' ')[1] ?? "-"}</td>
-              <td>{item.materialPurchased ?? "-"}</td>
+              <td>{item.datetime.split(" ")[0] ?? "-"}</td>
+              <td>{item.datetime.split(" ")[1] ?? "-"}</td>
+              <td>{item.material ?? "-"}</td>
               <td>{item.supplier ?? "-"}</td>
-              <td className="flex items-end gap-2">
-                {!satuanMaterial[item.name]
-                  ? item.amount / 1000
-                  : item.amount ?? "-"}{" "}
-                {satuanMaterial[item.name] || "kg"}
-              </td>
               <td>{item.admin ?? "-"}</td>
               <td>
-              {(() => {
-                switch (item.status) {
-                  case "diproses":
-                    return <Statusbar title='diproses' />
-                  case "ditolak":
-                    return <Statusbar title='ditolak' />
-                  case "diterima":
-                    return <Statusbar title='diterima' />
-                  default:
-                    return null
-                }
-              })()}
+                {!satuanMaterial[item.name]
+                  ? item.demand / 1000
+                  : item.demand ?? 0}{" "}
+                {satuanMaterial[item.name] || "kg"}
+              </td>
+              <td>
+                {!satuanMaterial[item.name]
+                  ? item.supply / 1000
+                  : item.supply ?? 0}{" "}
+                {satuanMaterial[item.name] || "kg"}
+              </td>
+              <td>
+                {(() => {
+                  switch (item.status) {
+                    case "diproses":
+                      return <Statusbar title="diproses" />;
+                    case "ditolak":
+                      return <Statusbar title="ditolak" />;
+                    case "diterima":
+                      return <Statusbar title="diterima" />;
+                    default:
+                      return null;
+                  }
+                })()}
               </td>
             </tr>
           )) ?? <tr>Bahan Baku Tidak tersedia</tr>}
@@ -162,7 +177,11 @@ export const TableOrder = ({ title, dataTable, selectOrder }) => {
     <div className="card flex-auto">
       <div className="flex gap-5 mb-5">
         <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center cursor-pointer">
-          <img src={layers} alt="icon" className="w-4 h-4 select-none pointer-events-none" />
+          <img
+            src={layers}
+            alt="icon"
+            className="w-4 h-4 select-none pointer-events-none"
+          />
         </div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>
       </div>
@@ -179,7 +198,7 @@ export const TableOrder = ({ title, dataTable, selectOrder }) => {
             <tr>
               <td className="capitalize">{item.customer ?? "-"}</td>
               <td className="capitalize">
-                {item.productPurchased.join(", ") ?? "-"}
+                {item.productPurchased ?? "-"}
               </td>
               <td
                 onClick={() => selectOrder(i)}
@@ -207,7 +226,7 @@ export const TableOrder = ({ title, dataTable, selectOrder }) => {
   );
 };
 
-export const TableRiwayatProducts = ({ title, dataTable }) => {
+export const TableRiwayatOrder = ({ title, dataTable }) => {
   return (
     <div className="card flex-auto h-[450px]">
       <div className="flex gap-5 mb-5">
@@ -223,23 +242,40 @@ export const TableRiwayatProducts = ({ title, dataTable }) => {
       <table className="table-auto w-full">
         <thead>
           <tr>
-            <th>Nama Customer</th>
+            <th>Tanggal</th>
+            <th>Waktu</th>
+            <th>Customer</th>
             <th>Item</th>
             <th>Jumlah</th>
             <th>Total (Rp)</th>
             <th>Pembayaran</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
           {dataTable?.map((item) => (
-            <tr>
-              <td className="capitalize">{item.customer ?? "-"}</td>
-              <td className="capitalize">
-                {item.productPurchased.join(", ") ?? "-"}
-              </td>
+            <tr className="capitalize">
+              <td>{item.datetime.split(" ")[0] ?? "-"}</td>
+              <td>{item.datetime.split(" ")[1] ?? "-"}</td>
+              <td>{item.customer ?? "-"}</td>
+              <td>{item.product.join(", ") ?? "-"}</td>
               <td>{item.amount ?? 0}</td>
-              <td>{formatCurrency(item.totalPrice) ?? 0}</td>
-              <td className="capitalize">{item.payment ?? "-"}</td>
+              <td>{formatCurrency(item.total) ?? 0}</td>
+              <td>{item.payment ?? "-"}</td>
+              <td>
+                {(() => {
+                  switch (item.status) {
+                    case "diproses":
+                      return <Statusbar title="diproses" />;
+                    case "ditolak":
+                      return <Statusbar title="ditolak" />;
+                    case "diterima":
+                      return <Statusbar title="diterima" />;
+                    default:
+                      return null;
+                  }
+                })()}
+              </td>
             </tr>
           )) ?? <tr>Riwayat pesanan tidak tersedia</tr>}
         </tbody>
@@ -253,7 +289,11 @@ export const TableSupply = ({ title, dataTable }) => {
     <div className="card flex-auto">
       <div className="flex gap-5 mb-5">
         <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center cursor-pointer">
-          <img src={boxes} alt="icon" className="w-4 h-4 select-none pointer-events-none" />
+          <img
+            src={boxes}
+            alt="icon"
+            className="w-4 h-4 select-none pointer-events-none"
+          />
         </div>
         <h2 className="text-primary dark:text-primary-light">{title}</h2>
       </div>

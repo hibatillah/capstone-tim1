@@ -47,12 +47,13 @@ recordRoutes.route("/order/product/:id").get(function (req, res) {
 recordRoutes.route("/order/product/add").post(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myObj = {
-    dateTime: req.body.dateTime,
+    datetime: req.body.datetime,
     customer: req.body.customer,
-    productPurchased: req.body.productPurchased,
+    product: req.body.product,
     amount: req.body.amount,
-    totalPrice: req.body.totalPrice,
+    total: req.body.total,
     payment: req.body.payment,
+    status: req.body.status,
   };
   db_connect
     .collection("productsOrders")
@@ -75,12 +76,14 @@ recordRoutes.route("/order/product/update/:id").put(function (req, res) {
   let myquery = { _id: new ObjectId(req.params.id) };
   let newValues = {
     $set: {
-      dateTime: req.body.dateTime,
+      datetime: req.body.datetime,
       customer: req.body.customer,
-      productPurchased: req.body.productPurchased,
+      product: req.body.product,
       amount: req.body.amount,
-      totalPrice: req.body.totalPrice,
+      total: req.body.total,
       payment: req.body.payment,
+      payment: req.body.payment,
+      status: req.body.status,
     },
   };
   db_connect

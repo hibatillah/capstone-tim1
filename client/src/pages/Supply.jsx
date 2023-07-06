@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { GetData } from "../Api";
-import { TableSupply, TableRiwayatSupply } from "../components";
+import { TableSupply, TableRiwayatMaterial } from "../components";
 
 const Supplies = () => {
   const { users } = GetData("http://localhost:5000/order/material");
@@ -90,7 +90,7 @@ const Supply = () => {
     (item) => item.status === "pending"
   );
   const finishOrders = dataSupply?.data.filter(
-    (item) => item.status === "finish"
+    (item) => item.status === "ditolak" || item.status === "diterima"
   );
 
   return (
@@ -105,7 +105,7 @@ const Supply = () => {
           <AddOrder data={pendingOrders} selected={selectedOrder} />
         </div>
       </div>
-      <TableRiwayatSupply title="Riwayat Pesanan Bahan Baku" dataTable={finishOrders} />
+      <TableRiwayatMaterial title="Riwayat Pesanan Bahan Baku" dataTable={finishOrders} />
     </main>
   );
 };
