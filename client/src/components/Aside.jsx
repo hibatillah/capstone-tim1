@@ -1,32 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Square, Box, Note, SignOut, Gift } from "./Svg";
 
 const Aside = ({ user, handleLogin }) => {
-  // menu
-  const menuAdmin = [
-    ["Dashboard", "/"],
-    ["Produksi", "/production"],
-    ["Material", "/materials"],
-    ["Pesanan", "/order"],
-  ];
-
-  const menuSupplier = [
-    ["Dashboard", "/"],
-    ["Suplai", "/supply"],
-  ];
-
-  // active user
-  const [activeUser, setActiveUser] = useState([]);
-  useEffect(() => {
-    setActiveUser(user === "admin" ? menuAdmin : menuSupplier);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  const menu = {
+    admin: [
+      ["Dashboard", "/"],
+      ["Produksi", "/production"],
+      ["Material", "/materials"],
+      ["Pesanan", "/order"],
+    ],
+    supplier: [
+      ["Dashboard", "/"],
+      ["Suplai", "/supply"],
+    ],
+  };
 
   // handle logout
   const navigate = useNavigate();
   const handleLogout = () => {
-    handleLogin();
+    handleLogin(false);
     navigate("/");
     console.log("logout success");
   };
@@ -39,7 +32,7 @@ const Aside = ({ user, handleLogin }) => {
         </h2>
       </a>
       <ul className="flex flex-col gap-y-2 select-none">
-        {activeUser.map(([name, path], i) => (
+        {menu[user.role].map(([name, path], i) => (
           <li key={i}>
             <NavLink
               to={path}
@@ -50,7 +43,7 @@ const Aside = ({ user, handleLogin }) => {
               }
             >
               <div className="flex gap-3 items-center px-4 py-2 font-medium rounded-md hover:bg-grey-light dark:hover:bg-black-light">
-                {user === "admin"
+                {user.role === "admin"
                   ? (() => {
                       switch (name) {
                         case "Dashboard":

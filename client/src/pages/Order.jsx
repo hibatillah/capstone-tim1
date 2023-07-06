@@ -87,7 +87,7 @@ const AddOrder = ({ selected, data }) => {
           name="totalPrice"
           id="totalPrice"
           placeholder="0"
-          value={formatCurrency(12000) ?? 0}
+          value={formatCurrency(selectedOrder?.totalPrice) ?? 0}
           className="form-input"
           readOnly
         />

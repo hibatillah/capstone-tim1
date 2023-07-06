@@ -10,46 +10,37 @@ const User = () => {
 };
 
 const Login = ({ handleLogin, handleUser }) => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  // login state
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   // check user
-  const [isUser, setIsUser] = useState(false);
-  const [user, setUser] = useState();
   const dataUser = User();
 
-  useEffect(() => {
-    setUser(
-      dataUser?.data.filter(
-        (user) => user.email === email && user.password === password
-      )
-    );
-    if (Array.isArray(user) && user.length) setIsUser(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email, password]);
-
   // login handle
-  const navigate = useNavigate();
-  const handleSubmit = (target) => {
-    target.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     setLoading(true);
-    setError(false);
 
-    const data = { email, password };
-    console.log("submit", data);
+    const data = {
+      email: event.target.email.value,
+      password: event.target.password.value,
+    };
 
-    if (isUser) {
-      handleLogin();
-      handleUser(user);
+    if (
+      dataUser?.data.some(
+        (item) => item.email === data.email && item.password === data.password
+      )
+    ) {
+      const user = dataUser.data.find(
+        (item) => item.email === data.email && item.password === data.password
+      );
+      handleLogin(true);
+      handleUser(user._id, user.name, user.role);
+      console.log('login success')
       navigate("/");
-      console.log("login success");
     } else {
       setError(true);
-      console.warn("login failed");
     }
     setLoading(false);
   };
@@ -78,7 +69,6 @@ const Login = ({ handleLogin, handleUser }) => {
                 id="email"
                 placeholder="Masukkan email"
                 className="form-input"
-                onChange={(e) => setEmail(e.target.value)}
                 autoComplete="off"
                 required
               />
@@ -91,7 +81,6 @@ const Login = ({ handleLogin, handleUser }) => {
                 id="password"
                 placeholder="Masukkan password"
                 className="form-input"
-                onChange={(e) => setPassword(e.target.value)}
                 autoComplete="off"
                 required
               />

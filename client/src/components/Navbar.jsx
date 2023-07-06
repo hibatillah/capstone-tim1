@@ -67,7 +67,7 @@ const Navbar = ({ user, handleNotif, handleLogin }) => {
         {user === "customer" ? (
           <>
             <ToggleNotif handleNotif={handleNotif} />
-            <div onClick={handleLogout} className="w-10 h-10 rounded-md bg-white grid place-items-center cursor-pointer select-none active:bg-primary group dark:bg-black-dark dark:active:bg-primary">
+            <div onClick={() => handleLogout(false)} className="w-10 h-10 rounded-md bg-white grid place-items-center cursor-pointer select-none active:bg-primary group dark:bg-black-dark dark:active:bg-primary">
               <SignOut custom="stroke-grey-dark group-hover:stroke-primary group-active:stroke-white dark:group-hover:stroke-primary-light dark:group-active:stroke-white" />
             </div>
           </>

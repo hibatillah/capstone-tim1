@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { GetData } from "../Api";
 import { TableProduct, ScoreCard } from "../components";
 import { layers } from "../assets/icons";
+import { PostData } from "../Api";
 
 const Products = () => {
   const { users } = GetData("http://localhost:5000/product");
@@ -14,9 +15,15 @@ const AddProduct = () => {
   const [amount, setAmount] = useState();
 
   // submit form
-  const handleSubmit = (target) => {
-    target.preventDefault();
-    console.log('submitted',{ product, amount });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const product = event.target.product.value;
+    const amount = event.target.amount.value;
+    const data = { amount };
+
+    PostData(`http://localhost:5000/product/update/${product}`, data);
+    event.target.reset()
   };
 
   // get products
@@ -41,6 +48,7 @@ const AddProduct = () => {
           id="product"
           onChange={(e) => setProduct(e.target.value)}
           className="form-input"
+          value='6484980d60acb950ad6a4746'
         >
           {dataProducts ? (
             dataProducts.data.map((item) => (

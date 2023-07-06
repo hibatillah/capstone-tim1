@@ -13,6 +13,9 @@
   *::selection{
     @apply bg-primary/80 text-white
   }
+  body {
+    @apply debug-screens
+  }
   p { @apply text-grey-dark dark:text-grey }
   h1 { @apply text-2xl font-bold text-tertiary dark:text-white }
   h2 { @apply text-xl font-semibold text-tertiary dark:text-grey-light }

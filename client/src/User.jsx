@@ -35,7 +35,7 @@ export const Admin = ({ user, handleLogin }) => {
       <div className="h-[calc(100vh-1.5rem)] pr-3 flex-auto space-y-5 overflow-y-scroll">
         <Header handleNotif={handleNotif} />
         <Routes>
-          <Route index element={<Dashboard />} />
+          <Route index element={<Dashboard user={user} />} />
           <Route path="/production" element={<Production />} />
           <Route path="/materials" element={<Materials />} />
           <Route path="/order" element={<Order />} />
