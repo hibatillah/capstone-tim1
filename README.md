@@ -11,9 +11,9 @@ Capstone projek ini merupakan projek UAS semester 4 gabungan beberapa mata kulia
 * Visualisasi Data
 
 ## Tim 1
-* [Astri Adinda Safira](mailto:astri21si@mahasiswa.pcr.ac.id) 21573010
+* [Astri Adinda Safira](mailto:astri21si@mahasiswa.pcr.ac.id) 2157301011
 * [M. Hibatillah Hasanin](mailto:hibatillah21si@mahasiswa.pcr.ac.id) 2157301046
-* [Muhammad Qalbi Husaini](mailto:qalbi21si@mahasiswa.pcr.ac.id) 21573010
+* [Muhammad Qalbi Husaini](mailto:qalbi21si@mahasiswa.pcr.ac.id) 2157301058
 
 ## Teknologi 
 Projek dibangun dengan MERN stack:
