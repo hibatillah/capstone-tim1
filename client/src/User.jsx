@@ -6,7 +6,8 @@ import {
   Menu,
   CustomerOrder,
   About,
-  Auth,
+  Login,
+  Register,
   Dashboard,
   Production,
   Supply,
@@ -17,25 +18,26 @@ import {
 
 const ToggleNotif = () => {
   const [toggleNotif, setToggleNotif] = useState(false);
-  const handleNotif = () => {
-    setToggleNotif(!toggleNotif);
-  };
+  const handleNotif = () => setToggleNotif(!toggleNotif);
 
-  return { toggleNotif, handleNotif };
+  return {
+    toggleNotif,
+    handleNotif,
+  };
 };
 
-export const Admin = ({ user }) => {
+export const Admin = ({ user, handleLogin, handleUser }) => {
   const { toggleNotif, handleNotif } = ToggleNotif();
 
   return (
-    <div className="relative w-full min-h-screen flex gap-x-5 py-3 pl-3 pr-5 bg-grey-light dark:bg-black-light font-outfit">
-      <Aside user={user} />
-      <div className="flex-auto space-y-5">
+    <div className="relative w-full h-screen flex gap-x-5 py-3 pl-3 bg-grey-light dark:bg-black-light font-outfit">
+      <Aside user={user} handleLogin={handleLogin} handleUser={handleUser} />
+      <div className="h-[calc(100vh-1.5rem)] pr-3 flex-auto space-y-5 overflow-y-scroll">
         <Header handleNotif={handleNotif} />
         <Routes>
-          <Route index element={<Dashboard />} />
+          <Route index element={<Dashboard user={user} />} />
           <Route path="/production" element={<Production />} />
-          <Route path="/materials" element={<Materials />} />
+          <Route path="/materials" element={<Materials user={user} />} />
           <Route path="/order" element={<Order />} />
           <Route path="/supply" element={<Supply />} />
           <Route path="*" element={<Unknown />} />
@@ -46,17 +48,20 @@ export const Admin = ({ user }) => {
   );
 };
 
-export const Customer = ({ user }) => {
+export const Customer = ({ user, handleUser, handleLogin }) => {
   const { toggleNotif, handleNotif } = ToggleNotif();
 
   return (
     <div className="w-full min-h-screen bg-grey-light font-outfit dark:bg-black-light">
-      <Navbar user={user} handleNotif={handleNotif} />
+      <Navbar
+        user={user}
+        handleNotif={handleNotif}
+        handleUser={handleUser}
+        handleLogin={handleLogin}
+      />
       {user === "customer" ? (
         <Notifications stateNotif={toggleNotif} handleNotif={handleNotif} />
-      ) : (
-        <></>
-      )}
+      ) : null}
       <Routes>
         <Route index element={<Home />} />
         <Route path="/menu" element={<Menu />} />
@@ -65,7 +70,11 @@ export const Customer = ({ user }) => {
           element={<CustomerOrder />}
         />
         <Route path="/about" element={<About />} />
-        <Route path="/auth" element={<Auth />} />
+        <Route
+          path="/login"
+          element={<Login handleUser={handleUser} handleLogin={handleLogin} />}
+        />
+        <Route path="/register" element={<Register />} />
         <Route path="*" element={<Unknown />} />
       </Routes>
       <Footer />

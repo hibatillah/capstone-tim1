@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import axios from "axios";
 
 export const GetData = (link) => {
   const fetcher = (url) => fetch(url).then((res) => res.json())
@@ -12,19 +13,12 @@ export const GetData = (link) => {
 }
 
 export const PostData = (link, data) => {
-  const fetcher = (url) => fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  })
-  .then((res) => res.json())
-  .then((data) => data)
-
-  const { data: response, error, isLoading } = useSWR(link, fetcher);
-
-  return {
-    response,
-    isLoading,
-    isError: error,
-  };
+  axios.post(link, data)
+    .then((res) => {
+      console.log(res);
+      return {status: res.status}
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 }

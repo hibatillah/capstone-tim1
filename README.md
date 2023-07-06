@@ -11,9 +11,9 @@ Capstone projek ini merupakan projek UAS semester 4 gabungan beberapa mata kulia
 * Visualisasi Data
 
 ## Tim 1
-* [Astri Adinda Safira](mailto:astri21si@mahasiswa.pcr.ac.id) 21573010
+* [Astri Adinda Safira](mailto:astri21si@mahasiswa.pcr.ac.id) 2157301011
 * [M. Hibatillah Hasanin](mailto:hibatillah21si@mahasiswa.pcr.ac.id) 2157301046
-* [Muhammad Qalbi Husaini](mailto:qalbi21si@mahasiswa.pcr.ac.id) 21573010
+* [Muhammad Qalbi Husaini](mailto:qalbi21si@mahasiswa.pcr.ac.id) 2157301058
 
 ## Teknologi 
 Projek dibangun dengan MERN stack:
@@ -22,3 +22,6 @@ Projek dibangun dengan MERN stack:
 * ReactJS v18.2.0
 * NodeJS v18.12.1
 * TailwindCSS v3.3.2
+
+## Activity
+![Alt](https://repobeats.axiom.co/api/embed/634c61fd926841919e7af2101fc17edfe356c9a8.svg "Repobeats analytics image")

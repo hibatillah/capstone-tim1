@@ -48,8 +48,9 @@ recordRoutes.route("/material/add").post(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myObj = {
     name: req.body.name,
-    priceUnit: req.body.priceUnit,
     supplier: req.body.supplier,
+    minimum: req.body.minimum,
+    amount: req.body.amount,
   };
   db_connect
     .collection("materials")
@@ -73,8 +74,9 @@ recordRoutes.route("/material/update/:id").put(function (req, res) {
   let newValues = {
     $set: {
       name: req.body.name,
-      priceUnit: req.body.priceUnit,
       supplier: req.body.supplier,
+      minimum: req.body.minimum,
+      amount: req.body.amount,
     },
   };
   db_connect

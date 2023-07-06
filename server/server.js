@@ -24,7 +24,8 @@ const supplier = require("./routes/supplier");
 const customer = require("./routes/customer");
 const product = require("./routes/product");
 const material = require("./routes/material");
-const order = require("./routes/order");
+const productsOrders = require("./routes/productsOrders");
+const materialsOrders = require("./routes/materialsOrders");
 
 // use routes
-app.use([user, cashier, supplier, customer, product, material, order]);
+app.use([user, cashier, supplier, customer, product, material, productsOrders, materialsOrders]);

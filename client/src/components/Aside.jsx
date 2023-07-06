@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Square, Box, Note, SignOut, Gift } from "./Svg";
 
-const Aside = ({ user }) => {
-  const menuAdmin = [
-    ["Dashboard", "/"],
-    ["Produksi", "/production"],
-    ["Material", "/materials"],
-    ["Pesanan", "/order"],
-    ["Sign Out", "/auth"],
-  ];
+const Aside = ({ user, handleLogin, handleUser }) => {
+  const menu = {
+    admin: [
+      ["Dashboard", "/"],
+      ["Produksi", "/production"],
+      ["Material", "/materials"],
+      ["Pesanan", "/order"],
+    ],
+    supplier: [
+      ["Dashboard", "/"],
+      ["Suplai", "/supply"],
+    ],
+  };
 
-  const menuSupplier = [
-    ["Dashboard", "/"],
-    ["Suplai", "/supply"],
-    ["Sign Out", "/auth"],
-  ];
-
-  const [activeUser, setActiveUser] = useState([]);
-  useEffect(() => {
-    setActiveUser(user === "admin" ? menuAdmin : menuSupplier);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeUser, user]);
+  // handle logout
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    handleUser("", "", "");
+    handleLogin(false);
+    navigate("/");
+    console.log("logout success");
+  };
 
   return (
-    <aside className="flex-none flex flex-col justify-start items-center gap-20 px-5 py-10 w-[15%] max-h-[calc(100vh-1.5rem)] bg-white rounded-xl dark:bg-black-dark">
+    <aside className="flex-none flex flex-col justify-start items-center gap-20 px-5 pt-10 pb-8 w-[15%] max-h-[calc(100vh-1.5rem)] bg-white rounded-xl dark:bg-black-dark">
       <a href="/">
         <h2 className="text-primary font-bold dark:text-primary-light">
           Rotte Bakery
         </h2>
       </a>
       <ul className="flex flex-col gap-y-2 select-none">
-        {activeUser.map(([name, path], i) => (
+        {menu[user.role].map(([name, path], i) => (
           <li key={i}>
             <NavLink
               to={path}
@@ -42,7 +44,7 @@ const Aside = ({ user }) => {
               }
             >
               <div className="flex gap-3 items-center px-4 py-2 font-medium rounded-md hover:bg-grey-light dark:hover:bg-black-light">
-                {user === "admin"
+                {user.role === "admin"
                   ? (() => {
                       switch (name) {
                         case "Dashboard":
@@ -53,8 +55,6 @@ const Aside = ({ user }) => {
                           return <Box />;
                         case "Pesanan":
                           return <Note />;
-                        case "Sign Out":
-                          return <SignOut />;
                         default:
                           return null;
                       }
@@ -65,8 +65,6 @@ const Aside = ({ user }) => {
                           return <Square />;
                         case "Suplai":
                           return <Box />;
-                        case "Sign Out":
-                          return <SignOut />;
                         default:
                           return null;
                       }
@@ -77,6 +75,12 @@ const Aside = ({ user }) => {
           </li>
         ))}
       </ul>
+      <div
+        onClick={handleLogout}
+        className="mt-auto flex gap-3 items-center px-4 py-2 font-medium rounded-md text-grey-dark stroke-grey-dark active:text-tertiary/70 active:stroke-tertiary/70 dark:active:text-grey dark:active:stroke-grey hover:bg-grey-light dark:hover:bg-black-light cursor-pointer"
+      >
+        <SignOut /> Logout
+      </div>
     </aside>
   );
 };

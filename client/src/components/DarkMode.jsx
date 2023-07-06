@@ -17,7 +17,7 @@ const DarkMode = () => {
   return (
     <div
       onClick={handleTheme}
-      className="w-10 h-10 rounded-md bg-white grid place-items-center cursor-pointer select-none active:bg-primary group dark:bg-black-dark dark:active:bg-primary"
+      className="w-10 h-10 rounded-md bg-white grid place-items-center cursor-pointer select-none active:bg-primary group dark:bg-black-dark dark:active:bg-primary-light"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

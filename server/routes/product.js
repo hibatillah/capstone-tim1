@@ -47,7 +47,9 @@ recordRoutes.route("/product/:id").get(function (req, res) {
 recordRoutes.route("/product/add").post(function (req, res) {
   let db_connect = dbo.getDb("rotte");
   let myObj = {
+    name: req.body.name,
     amount: req.body.amount,
+    price: req.body.price,
   };
   db_connect
     .collection("products")
@@ -70,7 +72,9 @@ recordRoutes.route("/product/update/:id").put(function (req, res) {
   let myquery = { _id: new ObjectId(req.params.id) };
   let newValues = {
     $set: {
+      name: req.body.name,
       amount: req.body.amount,
+      price: req.body.price,
     },
   };
   db_connect

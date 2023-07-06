@@ -11,7 +11,13 @@
     @apply box-border;
   }
   *::selection {
-    @apply bg-primary/80 text-white;
+    @apply bg-primary/80 text-white dark:bg-primary-light;
+  }
+  *::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+  body {
+    @apply debug-screens;
   }
   p {
     @apply text-grey-dark dark:text-grey;
@@ -31,23 +37,23 @@
   table tbody td {
     @apply py-1.5 font-medium text-left text-tertiary dark:text-grey;
   }
-  main::-webkit-scrollbar-thumb {
-    @apply w-1 rounded;
-  }
-  main.main-admin {
-    @apply max-h-[calc(100vh-116px)] overflow-y-scroll;
-  }
   main.main-customer {
-    @apply min-h-[calc(100vh-112px)];
+    @apply min-h-[calc(100vh-113.6px)];
   }
   label {
-    @apply font-medium text-tertiary/70 dark:text-grey;
+    @apply font-medium text-tertiary/70 dark:text-grey cursor-pointer select-none;
+  }
+  select {
+    @apply cursor-pointer;
+  }
+  mark {
+    @apply text-primary bg-inherit;
   }
 }
 
 @layer components {
   #search-box:has(input:focus) {
-    @apply ring-1 ring-primary ring-offset-1 dark:ring-primary;
+    @apply ring-1 ring-primary ring-offset-1 dark:ring-primary-light border-none;
   }
   input[type="search"]::-webkit-search-cancel-button {
     @apply relative right-1 w-4 h-4 rounded-full bg-contain bg-[url('./assets/icons/clear.svg')] opacity-30 text-white cursor-pointer bg-no-repeat;
@@ -56,13 +62,17 @@
   .card {
     @apply p-5 rounded-lg bg-white dark:bg-black-dark;
   }
+  .form-input {
+    @apply flex-initial px-3 py-2 rounded-md text-tertiary ring-1 ring-grey-dark focus:outline-none focus:ring-primary dark:bg-transparent dark:text-grey dark:ring-grey-dark dark:focus:ring-1 dark:focus:ring-primary-light;
+  }
+  /* button */
   .btn {
-    @apply rounded-md px-6 py-2 font-medium cursor-pointer;
+    @apply rounded-md px-6 py-2 font-medium cursor-pointer capitalize tracking-wide select-none;
   }
   .btn-primary {
-    @apply bg-primary text-white border border-primary active:ring-1 active:ring-primary active:ring-offset-2;
+    @apply bg-primary text-white border border-primary active:ring-1 active:ring-primary active:ring-offset-2 dark:bg-primary-light dark:border-primary-light dark:active:ring-primary-light;
   }
   .btn-secondary {
-    @apply bg-inherit text-primary border border-primary active:bg-primary active:text-white;
+    @apply bg-inherit text-primary border border-primary active:bg-primary active:text-white dark:text-primary-light dark:border-primary-light dark:active:bg-primary-light dark:active:text-white;
   }
 }

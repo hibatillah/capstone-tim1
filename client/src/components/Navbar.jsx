@@ -1,15 +1,24 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { DarkMode, ToggleNotif } from "./";
 import { Square, Box, Note, Info, SignOut } from "./Svg";
 
-const Navbar = ({ user, handleNotif }) => {
+const Navbar = ({ user, handleNotif, handleLogin, handleUser }) => {
   const menu = [
     ["Beranda", "/"],
     ["Menu", "/menu"],
     ["Pesanan", `${user === "customer" ? `/order/:${user.id}` : "/order"}`],
     ["Tentang Rotte", "/about"],
   ];
+
+  // handle logout
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    handleUser("", "", "");
+    handleLogin(false);
+    navigate("/");
+    console.log("logout success");
+  };
 
   return (
     <nav className="flex justify-center items-center gap-3 px-12 py-3 bg-white dark:bg-black-dark">
@@ -52,25 +61,23 @@ const Navbar = ({ user, handleNotif }) => {
       </ul>
       <div
         className={`flex items-center ${
-          user === "customer" ? "gap-0" : "gap-3"
+          user.role === "customer" ? "gap-0" : "gap-3"
         }`}
       >
         <DarkMode />
-        {user === "customer" ? (
+        {user.role === "customer" ? (
           <>
             <ToggleNotif handleNotif={handleNotif} />
-            <Link to="/auth">
-              <div className="w-10 h-10 rounded-md bg-white grid place-items-center cursor-pointer select-none active:bg-primary group dark:bg-black-dark dark:active:bg-primary">
-                <SignOut custom="stroke-grey-dark group-hover:stroke-primary group-active:stroke-white dark:group-hover:stroke-primary-light dark:group-active:stroke-white" />
-              </div>
-            </Link>
+            <div onClick={handleLogout} className="w-10 h-10 rounded-md bg-white grid place-items-center cursor-pointer select-none active:bg-primary group dark:bg-black-dark dark:active:bg-primary">
+              <SignOut custom="stroke-grey-dark group-hover:stroke-primary group-active:stroke-white dark:group-hover:stroke-primary-light dark:group-active:stroke-white" />
+            </div>
           </>
         ) : (
           <>
-            <Link to="/auth#login">
+            <Link to="/login">
               <div className="btn btn-secondary">Login</div>
             </Link>
-            <Link to="/auth#signup">
+            <Link to="/register">
               <div className="btn btn-primary">Sign Up</div>
             </Link>
           </>

@@ -6,7 +6,8 @@ import Menu from "./Menu";
 import Order from "./Order";
 import Production from "./Production";
 import Supply from "./Supply";
-import Auth from "./Auth";
+import Login from "./Login";
+import Register from "./Register";
 import Unknown from "./Unknown";
 import Materials from "./Materials";
 
@@ -19,7 +20,8 @@ export {
   Order,
   Production,
   Supply,
-  Auth,
+  Login,
+  Register,
   Unknown,
   Materials,
 }
