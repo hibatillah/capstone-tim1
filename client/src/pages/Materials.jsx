@@ -27,8 +27,6 @@ const AddMaterials = ({ user }) => {
   const dataSuppliers = Suppliers();
 
   const [supplier, setSupplier] = useState("A");
-  const [material, setMaterial] = useState("Tepung");
-  const [amount, setAmount] = useState();
   const [status, setStatus] = useState("");
 
   const materialSupplier = {
@@ -37,11 +35,6 @@ const AddMaterials = ({ user }) => {
     C: ["Coklat Bubuk", "Coklat Batang"],
     Kemasan: ["Plastik", "Toples Kaca"],
   };
-
-  useEffect(() => {
-    setMaterial(materialSupplier[supplier][0]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [supplier]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -107,7 +100,6 @@ const AddMaterials = ({ user }) => {
         <select
           name="material"
           id="material"
-          onChange={(e) => setMaterial(e.target.value)}
           className="form-input"
         >
           {dataSuppliers ? (
@@ -126,8 +118,7 @@ const AddMaterials = ({ user }) => {
           type="number"
           name="amount"
           id="amount"
-          placeholder="0"
-          onChange={(e) => setAmount(e.target.value)}
+          placeholder="0" 
           className="form-input"
           required
         />
