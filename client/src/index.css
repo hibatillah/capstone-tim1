@@ -4,38 +4,41 @@
 
 @layer base {
   @font-face {
-    font-family: 'Outfit';
-    src: url('./assets/fonts/Outfit-VariableFont_wght.ttf');
+    font-family: "Outfit";
+    src: url("./assets/fonts/Outfit-VariableFont_wght.ttf");
   }
   * {
-    @apply box-border
+    @apply box-border;
   }
-  *::selection{
-    @apply bg-primary/80 text-white
+  *::selection {
+    @apply bg-primary/80 text-white;
   }
-  p { @apply text-grey-dark dark:text-grey }
-  h1 { @apply text-2xl font-bold text-tertiary dark:text-white }
-  h2 { @apply text-xl font-semibold text-tertiary dark:text-grey-light }
-  h3 { @apply text-lg font-semibold text-tertiary dark:text-grey-light }
-  table
-  thead 
-  th {
-    @apply pb-2 font-medium
-     text-left text-grey-dark
+  p {
+    @apply text-grey-dark dark:text-grey;
   }
-  table 
-  tbody 
-  td {
-    @apply py-1.5 font-medium text-left text-tertiary dark:text-grey
+  h1 {
+    @apply text-2xl font-bold text-tertiary dark:text-white;
+  }
+  h2 {
+    @apply text-xl font-semibold text-tertiary dark:text-grey-light;
+  }
+  h3 {
+    @apply text-lg font-semibold text-tertiary dark:text-grey-light;
+  }
+  table thead th {
+    @apply pb-2 font-medium text-left text-grey-dark;
+  }
+  table tbody td {
+    @apply py-1.5 font-medium text-left text-tertiary dark:text-grey;
   }
   main::-webkit-scrollbar-thumb {
-    @apply w-1 rounded
+    @apply w-1 rounded;
   }
   main.main-admin {
-    @apply max-h-[calc(100vh-116px)] overflow-y-scroll
+    @apply max-h-[calc(100vh-116px)] overflow-y-scroll;
   }
   main.main-customer {
-    @apply min-h-[calc(100vh-112px)]
+    @apply min-h-[calc(100vh-112px)];
   }
   label {
     @apply font-medium text-tertiary/70 dark:text-grey;
@@ -44,22 +47,22 @@
 
 @layer components {
   #search-box:has(input:focus) {
-    @apply ring-1 ring-primary ring-offset-1 dark:ring-primary
+    @apply ring-1 ring-primary ring-offset-1 dark:ring-primary;
   }
-  input[type='search']::-webkit-search-cancel-button {
+  input[type="search"]::-webkit-search-cancel-button {
     @apply relative right-1 w-4 h-4 rounded-full bg-contain bg-[url('./assets/icons/clear.svg')] opacity-30 text-white cursor-pointer bg-no-repeat;
     -webkit-appearance: none;
   }
   .card {
-    @apply p-5 rounded-lg bg-white dark:bg-black-dark
+    @apply p-5 rounded-lg bg-white dark:bg-black-dark;
   }
   .btn {
-    @apply rounded-md px-6 py-2 font-medium cursor-pointer
+    @apply rounded-md px-6 py-2 font-medium cursor-pointer;
   }
   .btn-primary {
-    @apply bg-primary text-white border border-primary active:ring-1 active:ring-primary active:ring-offset-2
+    @apply bg-primary text-white border border-primary active:ring-1 active:ring-primary active:ring-offset-2;
   }
   .btn-secondary {
-    @apply bg-inherit text-primary border border-primary active:bg-primary active:text-white
+    @apply bg-inherit text-primary border border-primary active:bg-primary active:text-white;
   }
 }

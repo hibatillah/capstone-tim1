@@ -4,7 +4,7 @@ import RotteBakery from './RotteBakery.png'
 import snackBox1 from './snack-box-1.png'
 import RedBean from './red-bean.jpeg'
 import FitO from './Fit-o.jpeg'
-//import snackBox2 from './snack-box-2.png'
+import snackBox2 from './snack-box-2.png'
 
 export {
   merah404,
@@ -13,5 +13,5 @@ export {
   snackBox1,
   RedBean,
   FitO,
-//  snackBox2,
+ snackBox2,
 }

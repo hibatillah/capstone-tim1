@@ -1,37 +1,37 @@
-import React, {} from "react";
+import React from "react";
 import { RotteBakery } from "../assets/img";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-
   return (
     <main className="main-customer grid place-items-center">
-      <div className="flex gap-32 w-[70%] min-h-[70%] ">
-        <img
-          src={RotteBakery}
-          alt="home-page"
-          className="flex-auto h-[550px] rounded-md object-cover object-top"
-        />
-        <div className="flex-[0_1_2/5] flex flex-col justify-center gap-y-8">
+      <div className="grid grid-cols-[450px_1fr] gap-16 w-[70%] ">
+        <div className="card">
+          <img
+            src={RotteBakery}
+            alt="home-page"
+            className="w-full h-[500px] rounded-md object-cover object-top"
+          />
+        </div>
+        <div className="flex flex-col justify-center gap-y-8">
           <div>
-            <h3 className="text-blue-900 text-2xl">Ada di Semua Suasana</h3>
+            <h3 className="text-tertiary text-xl">Ada di Semua Suasana</h3>
             <h1 className="text-primary text-5xl py-1">Rotte Bakery</h1>
             <br></br>
-            <p className= "text-blue-900 text-xl">
-            Rotte Bakery merupakan outlet toko yang menjual berbagai jenis roti, kue, 
-            dan cake dengan harga yang murah dengan 40 Outlet yang tersebar di seluruh Riau.
+            <p className="text-tertiary text-lg">
+              Rotte Bakery merupakan outlet toko yang menjual berbagai jenis
+              roti, kue, dan cake dengan harga yang murah dengan 40 Outlet yang
+              tersebar di seluruh Riau.
             </p>
           </div>
-
-         <div classname="flex gap-4">
-          <button type="submit" className="btn btn-primary flex-initial text-xl">
-          Pesan
-        </button>
-        <button className="btn btn-secondary text-xl">Tentang Kami</button>
-        </div> 
-         
-
-        
-            
+          <div className="flex gap-3">
+            <Link to="/menu" className="btn btn-primary">
+              Pesan Sekarang!
+            </Link>
+            <Link to="/about" className="btn btn-secondary">
+              Tentang Kami
+            </Link>
+          </div>
         </div>
       </div>
     </main>
