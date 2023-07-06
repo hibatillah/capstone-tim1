@@ -16,3 +16,13 @@ export const ScoreCard = ({ title, result, desc, flex, image }) => {
     </div>
   );
 };
+
+export const Statusbar = ({ title }) => {
+  const label = {
+    diproses: 'bg-yellow-100 text-yellow-600',
+    ditolak: 'bg-red-100 text-red-600',
+    diterima: 'bg-green-100 text-green-600',
+  }
+  
+  return <div className={`px-3 py-1 rounded text-sm w-fit ${label[title]}`}>{title}</div>
+}

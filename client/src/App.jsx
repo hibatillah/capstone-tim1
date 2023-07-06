@@ -8,7 +8,7 @@ const App = () => {
 
   const [user, setUser] = useState({
     id: '',
-    name: '',
+    name: 'habib',
     role: 'admin',
   });
   const handleUser = (id, name, role) => setUser({

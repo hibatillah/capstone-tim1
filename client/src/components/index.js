@@ -5,7 +5,7 @@ import Footer from "./Footer";
 import DarkMode from "./DarkMode";
 import Notifications from "./Notifications";
 import ToggleNotif from "./ToggleNotif";
-import { ScoreCard } from "./Card";
+import { ScoreCard, Statusbar } from "./Card";
 import {
   TableProduct,
   TableMaterial,
@@ -13,6 +13,7 @@ import {
   TableRiwayatProducts,
   TableRiwayatSupply,
   TableSupply,
+  TableRiwayatMaterial
 } from "./Table";
 
 export {
@@ -24,10 +25,12 @@ export {
   Notifications,
   ToggleNotif,
   ScoreCard,
+  Statusbar,
   TableProduct,
   TableMaterial,
   TableOrder,
   TableRiwayatProducts,
   TableRiwayatSupply,
   TableSupply,
+  TableRiwayatMaterial
 };

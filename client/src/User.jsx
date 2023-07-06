@@ -37,7 +37,7 @@ export const Admin = ({ user, handleLogin, handleUser }) => {
         <Routes>
           <Route index element={<Dashboard user={user} />} />
           <Route path="/production" element={<Production />} />
-          <Route path="/materials" element={<Materials />} />
+          <Route path="/materials" element={<Materials user={user} />} />
           <Route path="/order" element={<Order />} />
           <Route path="/supply" element={<Supply />} />
           <Route path="*" element={<Unknown />} />

@@ -51,6 +51,7 @@ recordRoutes.route("/order/material/add").post(function (req, res) {
     materialPurchased: req.body.materialPurchased,
     amount: req.body.amount,
     admin: req.body.admin,
+    supplier: req.body.supplier,
   };
   db_connect
     .collection("materialsOrders")

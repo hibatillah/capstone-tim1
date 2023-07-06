@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { GetData } from "../Api";
-import { TableMaterial } from "../components";
+import { TableMaterial, TableRiwayatMaterial } from "../components";
+import { currentDatetime } from "../components/format";
+import axios from "axios";
 
 const Material = () => {
   const { users } = GetData("http://localhost:5000/material");
@@ -14,11 +16,20 @@ const Suppliers = () => {
   return users;
 };
 
-const AddMaterials = () => {
-  // post data
+const OrderMaterials = () => {
+  const { users } = GetData("http://localhost:5000/order/material");
+  console.log(users);
+  return users;
+};
+
+const AddMaterials = ({ user }) => {
+  const dataMaterials = Material();
+  const dataSuppliers = Suppliers();
+
   const [supplier, setSupplier] = useState("A");
   const [material, setMaterial] = useState("Tepung");
   const [amount, setAmount] = useState();
+  const [status, setStatus] = useState("");
 
   const materialSupplier = {
     A: ["Tepung", "Gula", "Telur", "Ragi"],
@@ -32,22 +43,31 @@ const AddMaterials = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [supplier]);
 
-  useEffect(() => {
-    console.log("selected", { supplier, material, amount });
-  }, [amount, material, supplier]);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setStatus("loading");
 
-  const handleSubmit = (target) => {
-    target.preventDefault();
-    console.log("submitted", { supplier, material, amount });
+    const data = {
+      dateTime: currentDatetime(),
+      supplier: event.target.supplier.value,
+      materialPurchased: event.target.material.value,
+      amount: event.target.amount.value,
+      admin: user.name,
+    };
+
+    axios
+      .post("http://localhost:5000/order/material/add", data)
+      .then((res) => {
+        setStatus("success");
+        console.log(res);
+        event.target.reset();
+      })
+      .catch((err) => {
+        setStatus("error");
+        console.error(err);
+      })
+      .finally(() => setTimeout(() => setStatus("idle"), 5000));
   };
-
-  // get data
-  const dataMaterials = Material();
-  const dataSuppliers = Suppliers();
-
-  useEffect(() => {
-    console.log({ dataSuppliers, dataMaterials });
-  }, [dataMaterials, dataSuppliers]);
 
   return (
     <div className="card flex flex-col">
@@ -57,15 +77,17 @@ const AddMaterials = () => {
       </div>
       <form
         onSubmit={handleSubmit}
-        className={`grid grid-cols-[auto_1fr] gap-5 ${dataMaterials? 'mt-auto mb-10' : 'mt-14'}`}
+        className={`grid grid-cols-[auto_1fr] gap-5 ${
+          dataMaterials ? "mt-auto mb-10" : "mt-14"
+        }`}
       >
         {/* select supplier */}
-        <label htmlFor="product" className="self-center justify-self-end">
+        <label htmlFor="supplier" className="self-center justify-self-end">
           Pilih Supplier
         </label>
         <select
-          name="product"
-          id="product"
+          name="supplier"
+          id="supplier"
           onChange={(e) => setSupplier(e.target.value)}
           className="form-input"
         >
@@ -88,8 +110,8 @@ const AddMaterials = () => {
           className="form-input"
         >
           {dataSuppliers ? (
-            materialSupplier[supplier].map((material) => (
-              <option value={material}>{material}</option>
+            materialSupplier[supplier].map((item) => (
+              <option value={item._id}>{item}</option>
             ))
           ) : (
             <option value="0">Bahan tidak tersedia</option>
@@ -113,20 +135,40 @@ const AddMaterials = () => {
           Pesan Bahan Baku
         </button>
       </form>
+      {status === "success" ? (
+        <p key={"success"} className="text-tertiary">
+          Berhasil dipesan!
+        </p>
+      ) : status === "error" ? (
+        <p key={"error"} className="text-primary dark:text-primary-light">
+          Gagal dipesan
+        </p>
+      ) : status === "loading" ? (
+        <p key={"loading"}>Dipesan...</p>
+      ) : null}
     </div>
   );
 };
 
-const Materials = () => {
+const Materials = ({ user }) => {
   const dataProducts = Material();
+  const dataOrderMaterials = OrderMaterials();
 
   return (
-    <main className="main-admin flex items-stretch gap-4">
-      <TableMaterial
-        title="Persediaan Bahan Baku"
-        dataTable={dataProducts?.data}
-      />
-      <AddMaterials />
+    <main className="main-admin space-y-4">
+      <div className="flex items-stretch gap-4">
+        <TableMaterial
+          title="Persediaan Bahan Baku"
+          dataTable={dataProducts?.data}
+        />
+        <AddMaterials user={user} />
+      </div>
+      <div className="flex items-stretch gap-4">
+        <TableRiwayatMaterial
+          title="Pemesanan Bahan Baku"
+          dataTable={dataOrderMaterials?.data}
+        />
+      </div>
     </main>
   );
 };
