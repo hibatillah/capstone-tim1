@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { GetData } from "../Api";
 import { TableOrder, TableRiwayatOrder } from "../components";
-import { formatCurrency } from "../components/format";
+import { formatCurrency, currentDatetime } from "../components/format";
+import axios from "axios";
 
 const Orders = () => {
   const { users } = GetData("http://localhost:5000/order/product");
@@ -11,28 +12,69 @@ const Orders = () => {
 };
 
 const AddOrder = ({ selected, data }) => {
-  // get current order
   const [selectedOrder, setSelectedOrder] = useState();
+  const [status, setStatus] = useState("");
+  const dataOrder = Orders();
+
   useEffect(() => {
-    if (selected) setSelectedOrder(data[selected])
-    console.log('selected order',selectedOrder)
-  },[selected])
+    if (selected) setSelectedOrder(data.find((item) => item._id === selected));
+    console.log("selected order", selectedOrder);
+  }, [selected]);
+
+  const DataOrder = (label) => {
+    return {
+      datetime: currentDatetime(),
+      customer: selectedOrder.customer,
+      product: selectedOrder.product,
+      amount: selectedOrder.amount,
+      total: selectedOrder.total,
+      payment: selectedOrder.payment,
+      status: label
+    };
+  };
+  
+  const updateProductOrder = (data, label) => {
+    axios
+      .put(
+        `http://localhost:5000/order/product/update/${selectedOrder._id}`,
+        data
+      )
+      .then((res) => {
+        console.log(res);
+        setStatus(label);
+      })
+      .catch((err) => {
+        console.log(err);
+        setStatus("error");
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setStatus("");
+        }, 3000);
+      });
+  };
 
   // confirm order
-  const handleSubmit = (target) => {
-    target.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const data = DataOrder("diterima");
+    updateProductOrder(data, "send");
+  };
+
+  // cancel order
+  const cancelOrder = (e) => {
+    e.preventDefault()
+    const data = DataOrder("ditolak");
+    updateProductOrder(data, "decline");
   };
 
   return (
     <div className="card flex-none">
       <div>
         <h3> Konfirmasi Pesanan </h3>
-        <p> Lakukan Konfirmasi Pesanan oleh Customer </p>
+        <p> Lakukan Konfirmasi Pesanan Customer </p>
       </div>
-      <form
-        onSubmit={handleSubmit}
-        className="grid grid-cols-[auto_1fr] gap-5 mt-14"
-      >
+      <form className="grid grid-cols-[auto_1fr] gap-5 mt-14">
         {/* customer*/}
         <label htmlFor="customer" className="self-center justify-self-end">
           Nama Customer
@@ -58,7 +100,7 @@ const AddOrder = ({ selected, data }) => {
           name="productPurchased"
           id="productPurchased"
           placeholder="Produk"
-          value={selectedOrder?.productPurchased}
+          value={selectedOrder?.product.join(", ")}
           className="form-input"
           readOnly
         />
@@ -76,10 +118,7 @@ const AddOrder = ({ selected, data }) => {
           readOnly
         />
         {/* total */}
-        <label
-          htmlFor="totalPrice"
-          className="self-center justify-self-end"
-        >
+        <label htmlFor="totalPrice" className="self-center justify-self-end">
           Total Harga (Rp)
         </label>
         <input
@@ -87,14 +126,33 @@ const AddOrder = ({ selected, data }) => {
           name="totalPrice"
           id="totalPrice"
           placeholder="0"
-          value={formatCurrency(selectedOrder?.totalPrice) ?? 0}
+          value={formatCurrency(selectedOrder?.total) ?? 0}
           className="form-input"
           readOnly
         />
-        <button className="btn btn-secondary">Batalkan Pesanan</button>
-        <button type="submit" className="btn btn-primary flex-initial">
+        <button
+          onClick={(e) =>
+            status !== "empty" ? cancelOrder(e) : null
+          }
+          className="btn btn-secondary"
+        >
+          Batalkan Pesanan
+        </button>
+        <button
+          onClick={(e) => status !== "empty" ? handleSubmit(e) : null}
+          className="btn btn-primary flex-initial"
+        >
           Konfirmasi Pesanan
         </button>
+        <div className="mt-3 text-tertiary">
+          {status === "send" ? (
+            <span>Pesanan dikonfirmasi!</span>
+          ) : status === "decline" ? (
+            <span>Pesanan ditolak!</span>
+          ) : status === "error" ? (
+            <span>Terjadi kesalahan!</span>
+          ) : null}
+        </div>
       </form>
     </div>
   );
@@ -105,8 +163,12 @@ const Order = () => {
   const [selectedOrder, setSelectedOrder] = useState();
   const selectOrder = (id) => setSelectedOrder(id);
 
-  const pendingOrders = dataOrders?.data.filter(item => item.status === 'diproses');
-  const finishOrders = dataOrders?.data.filter(item => item.status === 'diterima' || item.status === 'ditolak');
+  const pendingOrders = dataOrders?.data.filter(
+    (item) => item.status === "diproses"
+  );
+  const finishOrders = dataOrders?.data.filter(
+    (item) => item.status === "diterima" || item.status === "ditolak"
+  );
 
   return (
     <main className="main-admin space-y-4">

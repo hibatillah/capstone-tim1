@@ -46,7 +46,7 @@ const AddMaterials = ({ user }) => {
       material: event.target.material.value,
       demand: parseInt(event.target.amount.value),
       admin: user.name,
-      status: 'dipesan',
+      status: 'diproses',
     };
 
     axios

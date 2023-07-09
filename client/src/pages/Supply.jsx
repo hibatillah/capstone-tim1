@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { GetData } from "../Api";
 import { TableSupply, TableRiwayatMaterial } from "../components";
+import { currentDatetime } from "../components/format";
+import axios from "axios";
 
 const Supplies = () => {
   const { users } = GetData("http://localhost:5000/order/material");
@@ -9,27 +11,104 @@ const Supplies = () => {
   return users;
 };
 
+const Materials = () => {
+  const { users } = GetData("http://localhost:5000/material");
+  console.log(users);
+  return users;
+};
+
 const AddOrder = ({ selected, data }) => {
-  // get current order
   const [selectedOrder, setSelectedOrder] = useState();
+  const dataSupply = Supplies();
+  const dataMaterial = Materials();
+
+  const [supply, setSupply] = useState();
+  const [status, setStatus] = useState("");
+
   useEffect(() => {
-    if (selected) setSelectedOrder(data[selected]);
+    supply === "" ? setStatus("empty") : setStatus("");
+  });
+
+  useEffect(() => {
+    if (selected) setSelectedOrder(data.find((item) => item._id === selected));
     console.log("selected order", selectedOrder);
-  }, [selected]);
+  }, [dataSupply, selected]);
+
+  const DataOrder = (label) => {
+    return {
+      datetime: currentDatetime(),
+      material: selectedOrder.material,
+      demand: selectedOrder.demand,
+      supply: supply,
+      admin: selectedOrder.admin,
+      supplier: selectedOrder.supplier,
+      status: label,
+    };
+  };
+
+  const updateMaterial = (id, data) => {
+    axios
+      .put(
+        `http://localhost:5000/material/update/${id}`,
+        data
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  };
+
+  const updateMaterialOrder = (data, label) => {
+    axios
+      .put(
+        `http://localhost:5000/order/material/update/${selectedOrder._id}`,
+        data
+      )
+      .then((res) => {
+        console.log(res);
+        setStatus(label);
+      })
+      .catch((err) => {
+        console.log(err);
+        setStatus("error");
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setStatus("");
+        }, 3000);
+      });
+  };
 
   // confirm order
-  const handleSubmit = (target) => {
-    target.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const data = DataOrder("diterima");
+    updateMaterialOrder(data, "send");
+    const material = dataMaterial?.data?.find(item => item.name === selectedOrder?.material)
+    updateMaterial(material._id, {
+      name: material.name,
+      supplier: material.supplier,
+      minimum: material.minimum,
+      amount: parseInt(material.amount) + parseInt(data.supply),
+    })
+  };
+
+  // cancel order
+  const cancelOrder = (e) => {
+    e.preventDefault()
+    const data = DataOrder("ditolak");
+    updateMaterialOrder(data, "decline");
   };
 
   return (
     <div className="card flex-none">
       <div>
         <h3>Konfirmasi Pesanan</h3>
-        <p>Lakukan Konfirmasi Pesanan oleh Customer</p>
+        <p>Lakukan Konfirmasi Pesanan Bahan Baku</p>
       </div>
       <form
-        onSubmit={handleSubmit}
         className="grid grid-cols-[auto_1fr] gap-5 mt-14"
       >
         {/* bahan*/}
@@ -41,15 +120,12 @@ const AddOrder = ({ selected, data }) => {
           name="bahan"
           id="bahan"
           placeholder="Bahan"
-          value={selectedOrder?.materialPurchased}
+          value={selectedOrder?.material}
           className="form-input capitalize"
           readOnly
         />
         {/* jumlah pesanan */}
-        <label
-          htmlFor="amount"
-          className="self-center justify-self-end"
-        >
+        <label htmlFor="amount" className="self-center justify-self-end">
           Jumlah Pesanan
         </label>
         <input
@@ -57,7 +133,7 @@ const AddOrder = ({ selected, data }) => {
           name="amount"
           id="amount"
           placeholder="Pesanan"
-          value={selectedOrder?.amount}
+          value={selectedOrder?.demand}
           className="form-input"
           readOnly
         />
@@ -71,11 +147,33 @@ const AddOrder = ({ selected, data }) => {
           id="supply"
           placeholder="Supply"
           className="form-input"
+          onChange={(e) => setSupply(e.target.value)}
         />
-        <button className="btn btn-secondary">Batalkan Pesanan</button>
-        <button type="submit" className="btn btn-primary flex-initial">
+        <button
+          onClick={(e) =>
+            status !== "empty" ? cancelOrder(e) : null
+          }
+          className="btn btn-secondary"
+        >
+          Batalkan Pesanan
+        </button>
+        <button
+          onClick={(e) => status !== "empty" ? handleSubmit(e) : null}
+          className="btn btn-primary flex-initial"
+        >
           Konfirmasi Pesanan
         </button>
+        <div className="mt-3 text-tertiary">
+          {status === "send" ? (
+            <span>Supply berhasil dikirim!</span>
+          ) : status === "decline" ? (
+            <span>Pesanan ditolak!</span>
+          ) : status === "error" ? (
+            <span>Terjadi kesalahan!</span>
+          ) : status === "empty" ? (
+            <span>Isi pesanan!</span>
+          ) : null}
+        </div>
       </form>
     </div>
   );
@@ -87,7 +185,7 @@ const Supply = () => {
   const selectOrder = (id) => setSelectedOrder(id);
 
   const pendingOrders = dataSupply?.data.filter(
-    (item) => item.status === "pending"
+    (item) => item.status === "diproses"
   );
   const finishOrders = dataSupply?.data.filter(
     (item) => item.status === "ditolak" || item.status === "diterima"
@@ -105,7 +203,10 @@ const Supply = () => {
           <AddOrder data={pendingOrders} selected={selectedOrder} />
         </div>
       </div>
-      <TableRiwayatMaterial title="Riwayat Pesanan Bahan Baku" dataTable={finishOrders} />
+      <TableRiwayatMaterial
+        title="Riwayat Pesanan Bahan Baku"
+        dataTable={finishOrders}
+      />
     </main>
   );
 };

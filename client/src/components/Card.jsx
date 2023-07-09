@@ -37,5 +37,5 @@ export const Statusbar = ({ title }) => {
     diterima: 'bg-green-100 text-green-600',
   }
   
-  return <div className={`px-3 py-1 rounded text-sm w-fit ${label[title]}`}>{title}</div>
+  return <div className={`px-3 py-1 rounded text-sm w-fit select-none ${label[title]}`}>{title}</div>
 }

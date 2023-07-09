@@ -98,8 +98,8 @@ export const TableMaterial = ({ title, dataTable }) => {
 export const TableRiwayatMaterial = ({ title, dataTable }) => {
   const satuanMaterial = {
     "Roti Tawar": "buah",
-    Telur: "butir",
-    plastik: "lembar",
+    "Telur": "butir",
+    "plastik": "lembar",
     "Selai Coklat": "toples",
     "Susu Kental Manis": "ml",
     "toples kaca": "buah",
@@ -139,16 +139,16 @@ export const TableRiwayatMaterial = ({ title, dataTable }) => {
               <td>{item.supplier ?? "-"}</td>
               <td>{item.admin ?? "-"}</td>
               <td>
-                {!satuanMaterial[item.name]
+                {!satuanMaterial[item.material]
                   ? item.demand / 1000
                   : item.demand ?? 0}{" "}
-                {satuanMaterial[item.name] || "kg"}
+                {satuanMaterial[item.material] || "kg"}
               </td>
               <td>
-                {!satuanMaterial[item.name]
+                {!satuanMaterial[item.material]
                   ? item.supply / 1000
                   : item.supply ?? 0}{" "}
-                {satuanMaterial[item.name] || "kg"}
+                {satuanMaterial[item.material] || "kg"}
               </td>
               <td>
                 {(() => {
@@ -194,14 +194,14 @@ export const TableOrder = ({ title, dataTable, selectOrder }) => {
           </tr>
         </thead>
         <tbody>
-          {dataTable?.map((item, i) => (
+          {dataTable?.map((item) => (
             <tr>
               <td className="capitalize">{item.customer ?? "-"}</td>
               <td className="capitalize">
-                {item.productPurchased ?? "-"}
+                {item.product.join(', ') ?? "-"}
               </td>
               <td
-                onClick={() => selectOrder(i)}
+                onClick={() => selectOrder(item._id)}
                 className="cursor-pointer select-none"
               >
                 <svg
@@ -284,7 +284,7 @@ export const TableRiwayatOrder = ({ title, dataTable }) => {
   );
 };
 
-export const TableSupply = ({ title, dataTable }) => {
+export const TableSupply = ({ title, dataTable, selectOrder }) => {
   return (
     <div className="card flex-auto">
       <div className="flex gap-5 mb-5">
@@ -300,19 +300,36 @@ export const TableSupply = ({ title, dataTable }) => {
       <table className="table-auto w-full">
         <thead>
           <tr>
-            <th>Nama Bahan Baku</th>
-            <th>Jumlah</th>
             <th>Admin</th>
+            <th>Bahan Baku</th>
+            <th>Jumlah</th>
+            <th>Opsi</th>
           </tr>
         </thead>
         <tbody>
           {dataTable?.map((item) => (
             <tr>
-              <td className="capitalize">
-                {item.materialPurchased.join(", ") ?? "-"}
-              </td>
-              <td>{item.amount ?? 0}</td>
               <td className="capitalize">{item.admin ?? "-"}</td>
+              <td className="capitalize">{item.material ?? "-"}</td>
+              <td>{item.demand ?? 0}</td>
+              <td
+                onClick={() => selectOrder(item._id)}
+                className="cursor-pointer select-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  class="w-5 h-5 stroke-primary"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                  />
+                </svg>
+              </td>
             </tr>
           )) ?? <tr>Pesanan Bahan Baku Tidak tersedia</tr>}
         </tbody>
