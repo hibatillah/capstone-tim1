@@ -35,7 +35,7 @@ const Login = ({ handleLogin, handleUser }) => {
       const user = dataUser.data.find(
         (item) => item.email === data.email && item.password === data.password
       );
-      handleLogin(true);
+      handleLogin(true); 
       handleUser(user._id, user.name, user.role);
       console.log('login success')
       navigate("/");

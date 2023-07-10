@@ -17,7 +17,7 @@
     @apply w-1.5;
   }
   body {
-    @apply debug-screens;
+    @apply  bg-grey-light;
   }
   p {
     @apply text-grey-dark dark:text-grey;
@@ -30,6 +30,9 @@
   }
   h3 {
     @apply text-lg font-semibold text-tertiary dark:text-grey-light;
+  }
+  table {
+    @apply overflow-y-scroll
   }
   table thead th {
     @apply pb-2 font-medium text-left text-grey-dark;
