@@ -32,7 +32,7 @@ module.exports = {
         tertiary: "#2B3674",
         grey: {
           light: "#F4F7FF",
-          DEFAULT: "#DCDCDC",
+          DEFAULT: "#DCDCDC", 
           dark: "#A3AED0",
         },
       },

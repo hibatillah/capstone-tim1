@@ -14,7 +14,7 @@
     @apply bg-primary/80 text-white dark:bg-primary-light;
   }
   *::-webkit-scrollbar {
-    @apply w-1.5;
+    @apply w-1.5 cursor-pointer;
   }
   body {
     @apply  bg-grey-light;
@@ -31,11 +31,8 @@
   h3 {
     @apply text-lg font-semibold text-tertiary dark:text-grey-light;
   }
-  table {
-    @apply overflow-y-scroll
-  }
   table thead th {
-    @apply pb-2 font-medium text-left text-grey-dark;
+    @apply py-2 font-medium text-left text-grey-dark border-b border-slate-200
   }
   table tbody td {
     @apply py-1.5 font-medium text-left text-tertiary dark:text-grey;

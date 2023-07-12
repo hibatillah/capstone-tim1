@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { GetData } from "../Api";
-import { TableProduct, ScoreCard } from "../components";
-import { layers } from "../assets/icons";
+import { TableProduct } from "../components";
 import axios from "axios";
 
 const Products = () => {
@@ -10,9 +9,16 @@ const Products = () => {
   return users;
 };
 
-const AddProduct = ({ handleTotalProduct }) => {
+const Materials = () => {
+  const { users } = GetData("http://localhost:5000/material");
+  console.log(users);
+  return users;
+};
+
+const AddProduct = () => {
   const [status, setStatus] = useState("");
   const dataProducts = Products();
+  const dataMaterials = Materials();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,9 +32,37 @@ const AddProduct = ({ handleTotalProduct }) => {
         name: product.name,
         amount: parseInt(product.amount) + parseInt(amount),
         price: product.price,
+        compositions: product.compositions,
       })
       .then((res) => {
         console.log(res);
+        console.log({product})
+
+        product.compositions?.map((el) => {
+          dataMaterials?.data?.map((item) => {
+            if (el[0].toLowerCase() === item.name.toLowerCase()) {
+              axios
+                .put(`http://localhost:5000/material/update/${item._id}`, {
+                  name: item.name,
+                  supplier: item.supplier,
+                  minimum: item.minimum,
+                  amount:
+                    parseInt(item.amount) - parseInt(el[1]) * parseInt(amount),
+                })
+                .then((res) => {
+                  console.log(res);
+                  console.log("material updated");
+                })
+                .catch((err) => {
+                  console.error(err);
+                  console.info("update material failed");
+                });
+            } else {
+              console.info("material not found");
+            }
+          });
+        });
+
         setStatus("success");
         event.target.reset();
       })
@@ -37,7 +71,6 @@ const AddProduct = ({ handleTotalProduct }) => {
         setStatus("error");
       })
       .finally(() => {
-        handleTotalProduct(0)
         setStatus("idle");
       });
   };
@@ -99,26 +132,10 @@ const AddProduct = ({ handleTotalProduct }) => {
 const Production = () => {
   const dataProducts = Products();
 
-  // get total product available
-  const [totalProduct, setTotalProduct] = useState(0);
-  const handleTotalProduct = (id) => setTotalProduct(id)
-  useEffect(() => {
-    setTotalProduct(dataProducts?.data.map(item => item.amount).reduce((a, b) => a + b))
-  }, [dataProducts]);
-
   return (
-    <main className="main-admin flex items-stretch gap-4">
+    <main className="main-admin flex items-start gap-4">
       <TableProduct title="Persediaan Produk" dataTable={dataProducts?.data} />
-      <div id="make-product" className="flex-none space-y-4">
-        <ScoreCard
-          title="Produk Tersedia"
-          result={`${totalProduct} produk`}
-          desc="pada hari ini"
-          image={layers}
-          flex
-        />
-        <AddProduct handleTotalProduct={handleTotalProduct} />
-      </div>
+      <AddProduct />
     </main>
   );
 };

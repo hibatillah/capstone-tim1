@@ -106,7 +106,7 @@ export const TableRiwayatMaterial = ({ title, dataTable }) => {
   };
 
   return (
-    <div className="card flex-auto h-[450px]">
+    <div className="card flex-auto h-[450px] overflow-y-scroll">
       <div className="flex gap-5 mb-5">
         <div className="w-8 h-8 mb-2 rounded bg-grey-light dark:bg-black-light grid place-items-center cursor-pointer">
           <img
@@ -115,10 +115,10 @@ export const TableRiwayatMaterial = ({ title, dataTable }) => {
             className="w-4 h-4 select-none pointer-events-none"
           />
         </div>
-        <h2 className="text-primary dark:text-primary-light">{title}</h2>
+        <h2 className="sticky top-0 text-primary dark:text-primary-light">{title}</h2>
       </div>
       <table className="table-auto w-full">
-        <thead>
+        <thead className="sticky -top-5 bg-white">
           <tr>
             <th>Tanggal</th>
             <th>Waktu</th>
@@ -130,7 +130,7 @@ export const TableRiwayatMaterial = ({ title, dataTable }) => {
             <th>Status</th>
           </tr>
         </thead>
-        <tbody className="overflow-y-scroll">
+        <tbody className="">
           {dataTable?.map((item) => (
             <tr className="capitalize">
               <td>{item.datetime.split(" ")[0] ?? "-"}</td>
