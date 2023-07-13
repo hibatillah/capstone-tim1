@@ -10,6 +10,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Unknown from "./Unknown";
 import Materials from "./Materials";
+import HistoryOrder from "./HistoryOrder";
 
 export {
   Dashboard,
@@ -24,4 +25,5 @@ export {
   Register,
   Unknown,
   Materials,
+  HistoryOrder,
 }

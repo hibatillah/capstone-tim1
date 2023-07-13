@@ -24,7 +24,7 @@ const App = () => {
       ) : user?.role === "admin" || user?.role === "supplier" ? (
         <Admin user={user} handleLogin={handleLogin} handleUser={handleUser} />
       ) : (
-        <Customer user={user} handleLogin={handleLogin} />
+        <Customer user={user} handleLogin={handleLogin} handleUser={handleUser} />
       )}
     </Router>
   );

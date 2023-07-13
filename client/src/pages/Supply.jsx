@@ -48,16 +48,13 @@ const AddOrder = ({ selected, data }) => {
 
   const updateMaterial = (id, data) => {
     axios
-      .put(
-        `http://localhost:5000/material/update/${id}`,
-        data
-      )
+      .put(`http://localhost:5000/material/update/${id}`, data)
       .then((res) => {
         console.log(res);
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   };
 
   const updateMaterialOrder = (data, label) => {
@@ -74,30 +71,38 @@ const AddOrder = ({ selected, data }) => {
         console.log(err);
         setStatus("error");
       })
-      .finally(() => {
-        setTimeout(() => {
-          setStatus("");
-        }, 3000);
-      });
   };
+  console.log({ selectedOrder });
 
   // confirm order
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    setStatus('idle')
+
     const data = DataOrder("diterima");
     updateMaterialOrder(data, "send");
-    const material = dataMaterial?.data?.find(item => item.name === selectedOrder?.material)
-    updateMaterial(material._id, {
-      name: material.name,
-      supplier: material.supplier,
-      minimum: material.minimum,
-      amount: parseInt(material.amount) + parseInt(data.supply),
-    })
+    console.log('order',data)
+
+    dataMaterial?.data?.map((item) => {
+      if (item.name.toLowerCase() === selectedOrder.material.toLowerCase()) {
+        updateMaterial(item._id, {
+          name: item.name,
+          supplier: item.supplier,
+          minimum: item.minimum,
+          amount: parseInt(item.amount) + parseInt(supply),
+        });
+        alert('Material updated')
+      }
+    });
+    e.target.reset();
+    setTimeout(() => {
+      setStatus('')
+    }, 3000);
   };
 
   // cancel order
   const cancelOrder = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const data = DataOrder("ditolak");
     updateMaterialOrder(data, "decline");
   };
@@ -108,9 +113,7 @@ const AddOrder = ({ selected, data }) => {
         <h3>Konfirmasi Pesanan</h3>
         <p>Lakukan Konfirmasi Pesanan Bahan Baku</p>
       </div>
-      <form
-        className="grid grid-cols-[auto_1fr] gap-5 mt-14"
-      >
+      <form onSubmit={handleSubmit} className="grid grid-cols-[auto_1fr] gap-5 mt-14">
         {/* bahan*/}
         <label htmlFor="bahan" className="self-center justify-self-end">
           Nama Bahan Baku
@@ -150,15 +153,13 @@ const AddOrder = ({ selected, data }) => {
           onChange={(e) => setSupply(e.target.value)}
         />
         <button
-          onClick={(e) =>
-            status !== "empty" ? cancelOrder(e) : null
-          }
+          onClick={(e) => (status !== "empty" ? cancelOrder(e) : null)}
           className="btn btn-secondary"
         >
           Batalkan Pesanan
         </button>
         <button
-          onClick={(e) => status !== "empty" ? handleSubmit(e) : null}
+          type="submit"
           className="btn btn-primary flex-initial"
         >
           Konfirmasi Pesanan
@@ -170,8 +171,8 @@ const AddOrder = ({ selected, data }) => {
             <span>Pesanan ditolak!</span>
           ) : status === "error" ? (
             <span>Terjadi kesalahan!</span>
-          ) : status === "empty" ? (
-            <span>Isi pesanan!</span>
+          ) : status === "idle" ? (
+            <span>Diproses...</span>
           ) : null}
         </div>
       </form>

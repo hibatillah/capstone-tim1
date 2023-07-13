@@ -1,24 +1,35 @@
-import React from "react";
+import React from 'react'
 import { RedBean } from "../assets/img";
 import { FitO } from "../assets/img";
 import { Link } from "react-router-dom";
 
-const CustomerOrder = ({ user }) => {
+const HistoryOrder = ({ user }) => {
   return (
     <main className="main-customer grid justify-center py-20">
       <div className="grid grid-cols-[auto_1fr] gap-32 ">
         <div>
           <h1 className="text-primary text-3xl py-1">Pesan Sekarang!</h1>
-          <p className="text-tertiary text-lg">
+          <p className="text-tertiary text-xl">
             Pesan dan rasakan nikmatnya berbagai
-            <p className="text-tertiary text-lg">
+            <p className="text-tertiary text-xl">
               roti yang ada di Rotte Bakery
             </p>
           </p>
           <br></br>
           <div className="flex p-2 rounded-full bg-white">
-            <button className="btn btn-primary rounded-full">Pesanan Berlangsung</button>
-            <Link to={user.role === 'customer' ? `/order/history/${user._id}` : '/order/history'} className="btn text-primary rounded-full">Riwayat Pesanan</Link>
+            <Link
+              to={
+                user.role === "customer"
+                  ? `/order/${user._id}`
+                  : "/order"
+              }
+              className="btn text-primary rounded-full"
+            >
+              Pesanan Berlangsung
+            </Link>
+            <button className="btn btn-primary rounded-full">
+              Riwayat Pesanan
+            </button>
           </div>
         </div>
 
@@ -65,6 +76,6 @@ const CustomerOrder = ({ user }) => {
       </div>
     </main>
   );
-};
+}
 
-export default CustomerOrder;
+export default HistoryOrder

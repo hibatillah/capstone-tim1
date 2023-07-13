@@ -13,6 +13,7 @@ import {
   Supply,
   Order,
   Materials,
+  HistoryOrder,
   Unknown,
 } from "./pages";
 
@@ -66,8 +67,12 @@ export const Customer = ({ user, handleUser, handleLogin }) => {
         <Route index element={<Home />} />
         <Route path="/menu" element={<Menu />} />
         <Route
-          path={user === "customer" ? `/order/:${user.id}` : "/order"}
-          element={<CustomerOrder />}
+          path={user === "customer" ? `/order/:${user._id}` : "/order"}
+          element={<CustomerOrder user={user} />}
+        />
+        <Route
+          path={user === "customer" ? `/order/history/:${user._id}` : "/order/history"}
+          element={<HistoryOrder user={user} />}
         />
         <Route path="/about" element={<About />} />
         <Route
