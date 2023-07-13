@@ -198,7 +198,7 @@ export const TableOrder = ({ title, dataTable, selectOrder }) => {
             <tr>
               <td className="capitalize">{item.customer ?? "-"}</td>
               <td className="capitalize">
-                {item.product.join(', ') ?? "-"}
+                {item.product ?? "-"}
               </td>
               <td
                 onClick={() => selectOrder(item._id)}
@@ -258,7 +258,7 @@ export const TableRiwayatOrder = ({ title, dataTable }) => {
               <td>{item.datetime.split(" ")[0] ?? "-"}</td>
               <td>{item.datetime.split(" ")[1] ?? "-"}</td>
               <td>{item.customer ?? "-"}</td>
-              <td>{item.product.join(", ") ?? "-"}</td>
+              <td>{item.product ?? "-"}</td>
               <td>{item.amount ?? 0}</td>
               <td>{formatCurrency(item.total) ?? 0}</td>
               <td>{item.payment ?? "-"}</td>

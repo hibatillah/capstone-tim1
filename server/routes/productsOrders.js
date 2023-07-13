@@ -82,7 +82,6 @@ recordRoutes.route("/order/product/update/:id").put(function (req, res) {
       amount: req.body.amount,
       total: req.body.total,
       payment: req.body.payment,
-      payment: req.body.payment,
       status: req.body.status,
     },
   };

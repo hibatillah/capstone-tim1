@@ -65,7 +65,7 @@ export const Customer = ({ user, handleUser, handleLogin }) => {
       ) : null}
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/menu" element={<Menu />} />
+        <Route path="/menu" element={<Menu user={user} />} />
         <Route
           path={user === "customer" ? `/order/:${user._id}` : "/order"}
           element={<CustomerOrder user={user} />}

@@ -7,7 +7,7 @@ const Navbar = ({ user, handleNotif, handleLogin, handleUser }) => {
   const menu = [
     ["Beranda", "/"],
     ["Menu", "/menu"],
-    ["Pesanan", `${user === "customer" ? `/order/:${user.id}` : "/order"}`],
+    // ["Pesanan", `${user === "customer" ? `/order/:${user.id}` : "/order"}`],
     ["Tentang Rotte", "/about"],
   ];
 

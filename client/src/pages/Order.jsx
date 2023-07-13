@@ -10,11 +10,17 @@ const Orders = () => {
   console.log(users);
   return users;
 };
+const Product = () => {
+  const { users } = GetData("http://localhost:5000/product");
+  console.log(users);
+  return users;
+};
 
 const AddOrder = ({ selected, data }) => {
   const [selectedOrder, setSelectedOrder] = useState();
   const [status, setStatus] = useState("");
   const dataOrder = Orders();
+  const dataProduct = Product();
 
   useEffect(() => {
     if (selected) setSelectedOrder(data.find((item) => item._id === selected));
@@ -42,6 +48,28 @@ const AddOrder = ({ selected, data }) => {
       .then((res) => {
         console.log(res);
         setStatus(label);
+
+        // update stock product
+        const product = dataProduct?.data?.find(item => item.name === selectedOrder.product)
+
+        dataProduct?.data?.map(item => {
+          if (item._id === product._id) {
+            axios
+              .put(`http://localhost:5000/product/update/${item._id}`, {
+                name: item.name,
+                amount: item.amount - selectedOrder.amount,
+                price: item.price,
+              })
+              .then((res) => {
+                console.log(res);
+                console.log('product stock update')
+              })
+              .catch((err) => {
+                console.log(err);
+              })
+          }
+          return item
+        })
       })
       .catch((err) => {
         console.log(err);
@@ -100,7 +128,7 @@ const AddOrder = ({ selected, data }) => {
           name="productPurchased"
           id="productPurchased"
           placeholder="Produk"
-          value={selectedOrder?.product.join(", ")}
+          value={selectedOrder?.product}
           className="form-input"
           readOnly
         />
