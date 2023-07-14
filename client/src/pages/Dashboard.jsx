@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
 import React from "react";
 import { ScoreCard } from "../components";
 import { crown, dollarCircle, rocket } from "../assets/icons";
@@ -20,21 +21,16 @@ const Dashboard = ({ user }) => {
           <p className="font-medium text-grey capitalize">{user.role}</p>
         </div>
         {scoreContents.map(([title, result, desc, image], i) => (
-          <ScoreCard
-            title={title}
-            result={result}
-            desc={desc}
-            image={image}
-          />
+          <ScoreCard title={title} result={result} desc={desc} image={image} />
         ))}
       </section>
       <section className="flex items-stretch gap-4 h-60">
-        <div className="card flex-auto"></div>
-        <div className="card flex-none w-1/3"></div>
-      </section>
-      <section className="flex items-stretch gap-4 h-60">
-        <div className="card flex-auto"></div>
-        <div className="card flex-none w-1/3"></div>
+        <iframe
+          width="100%"
+          height="3622"
+          src="https://lookerstudio.google.com/embed/reporting/cf91c1b4-068c-4de2-ac5b-d8ff567b9c77/page/rZiWD"
+          frameborder="0"
+        ></iframe>
       </section>
     </>
   );
