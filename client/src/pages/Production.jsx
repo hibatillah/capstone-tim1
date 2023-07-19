@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GetData } from "../Api";
+import { GetData, Get, PostData } from "../Api";
 import { TableProduct } from "../components";
 import axios from "axios";
 
@@ -17,7 +17,7 @@ const Materials = () => {
 
 const AddProduct = () => {
   const [status, setStatus] = useState("");
-  const dataProducts = Products();
+  const dataProducts = Products()
   const dataMaterials = Materials();
 
   const handleSubmit = (event) => {
@@ -27,13 +27,15 @@ const AddProduct = () => {
     const amount = event.target.amount.value;
     const product = dataProducts?.data.find((item) => item._id === id);
 
+    const data = {
+      name: product.name,
+      amount: parseInt(product.amount) + parseInt(amount),
+      price: product.price,
+      compositions: product.compositions,
+    };
+    
     axios
-      .put(`http://localhost:5000/product/update/${id}`, {
-        name: product.name,
-        amount: parseInt(product.amount) + parseInt(amount),
-        price: product.price,
-        compositions: product.compositions,
-      })
+      .put(`http://localhost:5000/product/update/${id}`, data)
       .then((res) => {
         console.log(res);
         console.log({product})
@@ -130,7 +132,7 @@ const AddProduct = () => {
 };
 
 const Production = () => {
-  const dataProducts = Products();
+  const dataProducts = Products()
 
   return (
     <main className="main-admin flex items-start gap-4">

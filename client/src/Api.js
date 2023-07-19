@@ -12,11 +12,35 @@ export const GetData = (link) => {
   };
 }
 
+const api = axios.create({
+  baseURL: 'http://localhost:5000',
+})
+
+export const Get = async (link) => {
+  try {
+    const res = await api.get(link)
+    console.log(res.data)
+    return res.data
+  }
+  catch (err) {
+    console.log(err);
+  }
+}
+
 export const PostData = (link, data) => {
-  axios.post(link, data)
+  api.post(link, data)
     .then((res) => {
       console.log(res);
-      return {status: res.status}
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+}
+
+export const PuttData = (link, id, data) => {
+  api.put(`${link}/${id}`, data)
+    .then((res) => {
+      console.log(res);
     })
     .catch((err) => {
       console.log(err);

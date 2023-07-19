@@ -60,18 +60,18 @@ export const Customer = ({ user, handleUser, handleLogin }) => {
         handleUser={handleUser}
         handleLogin={handleLogin}
       />
-      {user === "customer" ? (
+      {user.role === "customer" ? (
         <Notifications stateNotif={toggleNotif} handleNotif={handleNotif} />
       ) : null}
       <Routes>
         <Route index element={<Home />} />
         <Route path="/menu" element={<Menu user={user} />} />
         <Route
-          path={user === "customer" ? `/order/:${user._id}` : "/order"}
+          path={user.role === "customer" ? `/order/:${user._id}` : "/order"}
           element={<CustomerOrder user={user} />}
         />
         <Route
-          path={user === "customer" ? `/order/history/:${user._id}` : "/order/history"}
+          path={user.role === "customer" ? `/order/history/:${user._id}` : "/order/history"}
           element={<HistoryOrder user={user} />}
         />
         <Route path="/about" element={<About />} />
